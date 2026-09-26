@@ -10,3 +10,7 @@ id_rsa*
 .claude/settings.local.json
 Thumbs.db
 .DS_Store
+*.sqlite
+*.db
+credentials*.json
+service-account*.json

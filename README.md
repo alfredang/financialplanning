@@ -14,6 +14,21 @@ A one-page marketing site for a fictional financial planning firm, built with pl
 - **Enquiry form** with client-side validation and a simulated submit.
 - **Footer** with contact details, a newsletter signup and social links.
 
+## Tech stack
+
+- HTML5, CSS3 (custom properties, mobile-first media queries) and vanilla JavaScript (one IIFE, no dependencies)
+- Google Fonts: Playfair Display (headings) and Inter (body)
+- GitHub Actions and GitHub Pages for hosting
+
+## Project structure
+
+```
+index.html                    # the whole site: markup, <style> and <script>
+docs/screenshot.png           # README screenshot
+.github/workflows/pages.yml   # GitHub Pages deploy
+CLAUDE.md                     # notes for Claude Code
+```
+
 ## Placeholder content
 
 The following are **fictional** and need replacing before real use:
@@ -39,7 +54,7 @@ You need internet access for Google Fonts (Playfair Display and Inter), the Unsp
 
 ## Deployment
 
-Every push to `main` deploys the repo root to GitHub Pages via [.github/workflows/pages.yml](.github/workflows/pages.yml). You can also run the workflow manually from the Actions tab.
+Every push to `main` copies `index.html` into `_site/` and deploys only that to GitHub Pages via [.github/workflows/pages.yml](.github/workflows/pages.yml). You can also run the workflow manually from the Actions tab.
 
 ## Conventions
 
