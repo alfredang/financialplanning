@@ -4,7 +4,7 @@
   <meta charset="UTF-8" />
   <!-- Security: strict CSP. The inline script and style blocks are allowed by SHA-256 hash only,
        so any edit to either one needs the hashes regenerated (see CLAUDE.md). -->
-  <meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'sha256-SjUbs14IvuSBoYyTC7Y8xCgp+tabeeiAjj7dpLuciRc='; style-src 'sha256-XW7i/LBnNPp0IIRrwkFSkn3zUZ1cMRuuEN5WG6ULAV4=' https://fonts.googleapis.com; font-src https://fonts.gstatic.com; img-src 'self' data:; connect-src 'self'; form-action 'none'; base-uri 'none'; object-src 'none'; frame-src 'none'; worker-src 'none'; manifest-src 'none'; media-src 'none'; upgrade-insecure-requests; require-trusted-types-for 'script'; trusted-types 'none'" />
+  <meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'sha256-jSAhDMY/bT5oOCbTWiL/L6Lz+0IBTJK9/8r90P0lEqE='; style-src 'sha256-PwHYHbDOqoZL+N+aXEUVGb8cZngJ/QzQsFRm9uC+49E=' https://fonts.googleapis.com; font-src https://fonts.gstatic.com; img-src 'self' data:; connect-src 'self'; form-action 'none'; base-uri 'none'; object-src 'none'; frame-src 'none'; worker-src 'none'; manifest-src 'none'; media-src 'none'; upgrade-insecure-requests; require-trusted-types-for 'script'; trusted-types 'none'" />
   <meta name="referrer" content="strict-origin-when-cross-origin" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
@@ -122,6 +122,8 @@
       --error-soft: #FCEEEE;
       --success: #1D7A4E;
       --success-soft: #E8F4EE;
+      --wa: #0B7A55;
+      --on-wa: #FFFFFF;
       --header-bg: rgba(248, 246, 246, 0.92);
       --backdrop: rgba(34, 26, 28, 0.55);
       --shadow: 0 1px 2px rgba(34, 26, 28, 0.06), 0 10px 30px rgba(34, 26, 28, 0.07);
@@ -167,6 +169,8 @@
         --error-soft: #3A1A1A;
         --success: #6FD3A0;
         --success-soft: #16291F;
+        --wa: #25D366;
+        --on-wa: #062B17;
         --header-bg: rgba(20, 13, 15, 0.9);
         --backdrop: rgba(0, 0, 0, 0.7);
         --shadow: 0 1px 2px rgba(0, 0, 0, 0.4), 0 10px 30px rgba(0, 0, 0, 0.35);
@@ -190,6 +194,8 @@
       --error-soft: #3A1A1A;
       --success: #6FD3A0;
       --success-soft: #16291F;
+      --wa: #25D366;
+      --on-wa: #062B17;
       --header-bg: rgba(20, 13, 15, 0.9);
       --backdrop: rgba(0, 0, 0, 0.7);
       --shadow: 0 1px 2px rgba(0, 0, 0, 0.4), 0 10px 30px rgba(0, 0, 0, 0.35);
@@ -959,7 +965,7 @@
     }
 
     /* =========================================================
-       14. OVERLAYS: lunch talk dialog, sticky CTA, back to top
+       14. OVERLAYS: lunch talk dialog, sticky CTA, back to top, chat widget
        ========================================================= */
     .talk-dialog {
       width: min(92vw, 460px);
@@ -1016,8 +1022,8 @@
 
     .back-to-top {
       position: fixed;
-      right: var(--space-4);
-      bottom: calc(var(--space-4) + 72px);
+      right: calc(var(--space-4) + 10px);
+      bottom: calc(144px + env(safe-area-inset-bottom));
       z-index: 90;
       opacity: 0;
       visibility: hidden;
@@ -1026,6 +1032,234 @@
       transition: opacity var(--transition), visibility var(--transition);
     }
     .back-to-top.show { opacity: 1; visibility: visible; }
+
+    /* Chat widget: a little robot that hands the conversation over to WhatsApp */
+    .chat-widget {
+      position: fixed;
+      right: var(--space-4);
+      bottom: calc(var(--space-4) + env(safe-area-inset-bottom));
+      z-index: 96;
+      display: flex;
+      flex-direction: column;
+      align-items: flex-end;
+      gap: var(--space-3);
+      pointer-events: none;
+      transition: bottom 0.3s ease;
+    }
+    .chat-widget > * { pointer-events: auto; }
+    /* Hop up above the mobile CTA bar while it is showing */
+    .sticky-cta.show ~ .chat-widget { bottom: calc(72px + env(safe-area-inset-bottom)); }
+
+    .chat-launcher {
+      position: relative;
+      width: 64px; height: 64px;
+      display: grid;
+      place-items: center;
+      padding: 0;
+      border: 1px solid var(--line);
+      border-radius: 50%;
+      background: var(--surface);
+      box-shadow: var(--shadow);
+      transition: transform var(--transition), border-color var(--transition);
+    }
+    .chat-launcher:hover { transform: translateY(-3px) rotate(-5deg); border-color: var(--line-strong); }
+    .chat-launcher[aria-expanded="true"] { border-color: var(--red); }
+    .chat-launcher .chat-bot { width: 46px; height: 46px; animation: bot-bob 3.2s ease-in-out infinite; }
+    .chat-badge {
+      position: absolute;
+      top: -2px; right: -2px;
+      min-width: 20px; height: 20px;
+      display: grid;
+      place-items: center;
+      border: 2px solid var(--surface);
+      border-radius: 999px;
+      background: var(--wa);
+      color: var(--on-wa);
+      font-size: 0.7rem;
+      font-weight: 700;
+      line-height: 1;
+    }
+
+    /* The robot itself (inline SVG, coloured by tokens so it follows the theme) */
+    .bot-head { fill: var(--red); }
+    .bot-ear { fill: var(--red-strong); }
+    .bot-antenna { stroke: var(--red-strong); stroke-width: 3; stroke-linecap: round; }
+    .bot-bulb { fill: var(--wa); transform-box: fill-box; transform-origin: center; animation: bot-glow 2.4s ease-in-out infinite; }
+    .bot-face { fill: var(--surface); }
+    .bot-eye { fill: var(--ink); transform-box: fill-box; transform-origin: center; animation: bot-blink 4.5s infinite; }
+    .bot-cheek { fill: var(--red); opacity: 0.4; }
+    .bot-mouth { fill: none; stroke: var(--ink); stroke-width: 2.4; stroke-linecap: round; }
+    @keyframes bot-bob {
+      0%, 100% { transform: translateY(1px); }
+      50% { transform: translateY(-3px); }
+    }
+    @keyframes bot-blink {
+      0%, 90%, 100% { transform: scaleY(1); }
+      93% { transform: scaleY(0.1); }
+    }
+    @keyframes bot-glow {
+      0%, 100% { transform: scale(1); opacity: 1; }
+      50% { transform: scale(0.75); opacity: 0.6; }
+    }
+    @keyframes chat-pop {
+      from { opacity: 0; transform: translateY(8px) scale(0.96); }
+      to { opacity: 1; transform: none; }
+    }
+
+    /* "Hi there" speech bubble next to the launcher */
+    .chat-tease {
+      position: relative;
+      max-width: 230px;
+      background: var(--surface);
+      border: 1px solid var(--line);
+      border-radius: var(--radius-lg) var(--radius-lg) 4px var(--radius-lg);
+      box-shadow: var(--shadow);
+      transform-origin: bottom right;
+      animation: chat-pop 0.35s ease both;
+    }
+    .chat-tease-open {
+      display: block;
+      width: 100%;
+      padding: var(--space-3) var(--space-6) var(--space-3) var(--space-4);
+      border: none;
+      background: transparent;
+      font-size: 0.92rem;
+      line-height: 1.4;
+      text-align: left;
+    }
+    .chat-tease-open strong { display: block; color: var(--red); }
+    .chat-tease-close {
+      position: absolute;
+      top: 2px; right: 2px;
+      width: 32px; height: 32px;
+      color: var(--muted);
+    }
+    .chat-tease-close svg { width: 14px; height: 14px; }
+
+    /* Chat panel */
+    .chat-panel {
+      width: min(340px, calc(100vw - 2 * var(--space-4)));
+      max-height: calc(100dvh - 140px);
+      display: flex;
+      flex-direction: column;
+      overflow: hidden;
+      background: var(--surface);
+      border: 1px solid var(--line);
+      border-radius: var(--radius-lg);
+      box-shadow: var(--shadow);
+      transform-origin: bottom right;
+      animation: chat-pop 0.3s ease both;
+    }
+    .chat-panel[hidden] { display: none; }
+    .chat-head {
+      display: flex;
+      align-items: center;
+      gap: var(--space-3);
+      padding: var(--space-3) var(--space-2) var(--space-3) var(--space-4);
+      background: var(--red);
+      color: var(--on-red);
+    }
+    .chat-avatar {
+      flex: none;
+      width: 44px; height: 44px;
+      display: grid;
+      place-items: center;
+      border-radius: 50%;
+      background: var(--surface);
+    }
+    .chat-avatar .chat-bot { width: 34px; height: 34px; }
+    .chat-head-text { flex: 1; min-width: 0; line-height: 1.3; }
+    .chat-title { font-family: var(--font-display); font-size: 1.15rem; font-weight: 600; }
+    .chat-status { display: flex; align-items: center; gap: var(--space-2); font-size: 0.8rem; opacity: 0.9; }
+    .chat-status::before {
+      content: "";
+      width: 8px; height: 8px;
+      border-radius: 50%;
+      background: var(--wa);
+      box-shadow: 0 0 0 2px var(--on-red);
+    }
+    .chat-head .icon-btn { color: var(--on-red); }
+    .chat-head .icon-btn:hover { border-color: var(--on-red); }
+    .chat-head .icon-btn:focus-visible { outline-color: var(--on-red); outline-offset: -4px; }
+
+    .chat-body {
+      flex: 1;
+      min-height: 140px;
+      overflow-y: auto;
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      gap: var(--space-2);
+      padding: var(--space-4);
+      background: var(--surface-2);
+    }
+    .chat-msg {
+      max-width: 88%;
+      padding: var(--space-2) var(--space-3);
+      background: var(--surface);
+      border: 1px solid var(--line);
+      border-radius: 4px var(--radius-lg) var(--radius-lg) var(--radius-lg);
+      font-size: 0.93rem;
+      line-height: 1.45;
+      animation: chat-pop 0.25s ease both;
+    }
+    .chat-typing {
+      display: flex;
+      gap: 4px;
+      padding: var(--space-3);
+      background: var(--surface);
+      border: 1px solid var(--line);
+      border-radius: 4px var(--radius-lg) var(--radius-lg) var(--radius-lg);
+    }
+    .chat-typing span {
+      width: 7px; height: 7px;
+      border-radius: 50%;
+      background: var(--muted);
+      animation: chat-dot 1s ease-in-out infinite;
+    }
+    .chat-typing span:nth-child(2) { animation-delay: 0.15s; }
+    .chat-typing span:nth-child(3) { animation-delay: 0.3s; }
+    @keyframes chat-dot {
+      0%, 60%, 100% { transform: none; opacity: 0.5; }
+      30% { transform: translateY(-4px); opacity: 1; }
+    }
+
+    .chat-quick {
+      display: flex;
+      flex-wrap: wrap;
+      gap: var(--space-2);
+      padding: var(--space-3) var(--space-4) 0;
+    }
+    .chat-quick[hidden] { display: none; }
+    .chat-chip {
+      padding: 0.4rem 0.8rem;
+      border: 1px solid var(--red);
+      border-radius: 999px;
+      color: var(--red);
+      font-size: 0.85rem;
+      font-weight: 600;
+      text-decoration: none;
+      transition: background-color var(--transition), color var(--transition);
+    }
+    .chat-chip:hover { background: var(--red); color: var(--on-red); }
+
+    .chat-foot { padding: var(--space-3) var(--space-4) var(--space-4); }
+    .chat-wa {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: var(--space-2);
+      min-height: 48px;
+      border-radius: 999px;
+      background: var(--wa);
+      color: var(--on-wa);
+      font-weight: 600;
+      text-decoration: none;
+      transition: transform var(--transition);
+    }
+    .chat-wa:hover { transform: translateY(-1px); }
+    .chat-wa svg { width: 22px; height: 22px; }
+    .chat-note { margin-top: var(--space-2); text-align: center; font-size: 0.75rem; color: var(--muted); }
 
     /* =========================================================
        15. PRINT (checklist "save as PDF")
@@ -1070,7 +1304,9 @@
       .footer-bottom { flex-direction: row; justify-content: space-between; padding-bottom: var(--space-5); }
 
       .sticky-cta { display: none; }
-      .back-to-top { right: var(--space-6); bottom: var(--space-6); }
+      .back-to-top { right: calc(var(--space-6) + 10px); bottom: calc(var(--space-6) + 76px); }
+      .chat-widget,
+      .sticky-cta.show ~ .chat-widget { right: var(--space-6); bottom: var(--space-6); }
     }
 
     /* ---- Desktop: 1024px and up ---- */
@@ -2025,7 +2261,90 @@
         });
 
         /* =========================================================
-           11. FOOTER YEAR
+           11. CHAT WIDGET (a friendly bot that hands off to WhatsApp)
+           ========================================================= */
+        var chatLauncher = document.getElementById("chat-launcher");
+        var chatPanel = document.getElementById("chat-panel");
+        var chatBody = document.getElementById("chat-body");
+        var chatQuick = document.getElementById("chat-quick");
+        var chatTease = document.getElementById("chat-tease");
+        var chatBadge = document.getElementById("chat-badge");
+        var chatClose = document.getElementById("chat-close");
+        var CHAT_KEY = "hw-chat-seen";
+        var CHAT_LINES = [
+          "Hi there! I'm Sunny, Horizon's little helper. 👋",
+          "Got a question about retirement, CPF or insurance? Our planners reply on WhatsApp, usually within the hour on weekdays.",
+          "Pick a topic below, or just say hello!"
+        ];
+        var chatGreeted = false;
+
+        function chatSeen() {
+          try { return sessionStorage.getItem(CHAT_KEY) === "1"; } catch (e) { return false; }
+        }
+
+        function markChatSeen() {
+          try { sessionStorage.setItem(CHAT_KEY, "1"); } catch (e) { /* ignore */ }
+          chatBadge.hidden = true;
+          chatTease.hidden = true;
+        }
+
+        function addBotLine(text) {
+          var p = document.createElement("p");
+          p.className = "chat-msg";
+          p.textContent = text;
+          chatBody.appendChild(p);
+          chatBody.scrollTop = chatBody.scrollHeight;
+        }
+
+        // Play the greeting once, with a short "typing" pause before each line
+        function greet() {
+          if (chatGreeted) return;
+          chatGreeted = true;
+          if (reduceMotion) {
+            CHAT_LINES.forEach(addBotLine);
+            chatQuick.hidden = false;
+            return;
+          }
+          var typing = document.createElement("div");
+          typing.className = "chat-typing";
+          typing.setAttribute("aria-hidden", "true");
+          for (var d = 0; d < 3; d++) typing.appendChild(document.createElement("span"));
+          var i = 0;
+          (function next() {
+            if (i >= CHAT_LINES.length) { chatQuick.hidden = false; return; }
+            chatBody.appendChild(typing);
+            setTimeout(function () {
+              typing.remove();
+              addBotLine(CHAT_LINES[i++]);
+              next();
+            }, i === 0 ? 600 : 1100);
+          })();
+        }
+
+        function setChat(open) {
+          chatPanel.hidden = !open;
+          chatLauncher.setAttribute("aria-expanded", String(open));
+          if (open) {
+            markChatSeen();
+            greet();
+            chatClose.focus();
+          }
+        }
+
+        chatLauncher.addEventListener("click", function () { setChat(chatPanel.hidden); });
+        chatClose.addEventListener("click", function () { setChat(false); chatLauncher.focus(); });
+        document.getElementById("chat-tease-open").addEventListener("click", function () { setChat(true); });
+        document.getElementById("chat-tease-close").addEventListener("click", markChatSeen);
+        chatPanel.addEventListener("keydown", function (e) {
+          if (e.key === "Escape") { setChat(false); chatLauncher.focus(); }
+        });
+
+        // Say hello with a speech bubble a few seconds in, once per session
+        if (chatSeen()) chatBadge.hidden = true;
+        else setTimeout(function () { if (chatPanel.hidden && !chatSeen()) chatTease.hidden = false; }, 4000);
+
+        /* =========================================================
+           12. FOOTER YEAR
            ========================================================= */
         document.getElementById("year").textContent = new Date().getFullYear();
       }
@@ -2836,6 +3155,49 @@
   <button class="icon-btn back-to-top" id="back-to-top" type="button" aria-label="Back to top">
     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M18 15l-6-6-6 6"/></svg>
   </button>
+
+  <!-- Chat widget: friendly bot that hands off to WhatsApp (keep it after .sticky-cta so the CSS can lift it above the bar) -->
+  <div class="chat-widget">
+    <section class="chat-panel" id="chat-panel" role="dialog" aria-labelledby="chat-title" hidden>
+      <div class="chat-head">
+        <span class="chat-avatar" aria-hidden="true">
+          <svg class="chat-bot" viewBox="0 0 64 64"><path class="bot-antenna" d="M32 13V7"/><circle class="bot-bulb" cx="32" cy="5" r="3.5"/><rect class="bot-ear" x="2" y="29" width="7" height="14" rx="3.5"/><rect class="bot-ear" x="55" y="29" width="7" height="14" rx="3.5"/><rect class="bot-head" x="6" y="12" width="52" height="46" rx="19"/><rect class="bot-face" x="13" y="21" width="38" height="28" rx="12"/><ellipse class="bot-eye" cx="25" cy="33" rx="3.2" ry="4"/><ellipse class="bot-eye" cx="39" cy="33" rx="3.2" ry="4"/><ellipse class="bot-cheek" cx="19.5" cy="40" rx="3" ry="2"/><ellipse class="bot-cheek" cx="44.5" cy="40" rx="3" ry="2"/><path class="bot-mouth" d="M28.5 40.5q3.5 3.5 7 0"/></svg>
+        </span>
+        <div class="chat-head-text">
+          <p class="chat-title" id="chat-title">Sunny from Horizon</p>
+          <p class="chat-status">Planners online, Mon to Fri 9am to 6pm</p>
+        </div>
+        <button type="button" class="icon-btn" id="chat-close" aria-label="Close chat">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18"/></svg>
+        </button>
+      </div>
+      <div class="chat-body" id="chat-body" aria-live="polite"></div>
+      <div class="chat-quick" id="chat-quick" hidden>
+        <a class="chat-chip" href="https://wa.me/6512345678?text=Hi!%20I'd%20like%20to%20book%20a%20free%20financial%20review." target="_blank" rel="noopener noreferrer">Book a free review</a>
+        <a class="chat-chip" href="https://wa.me/6512345678?text=Hi!%20I%20have%20a%20question%20about%20retirement%20planning." target="_blank" rel="noopener noreferrer">Retirement question</a>
+        <a class="chat-chip" href="https://wa.me/6512345678?text=Hi!%20I'd%20like%20some%20help%20with%20CPF%20and%20SRS." target="_blank" rel="noopener noreferrer">CPF &amp; SRS help</a>
+      </div>
+      <div class="chat-foot">
+        <a class="chat-wa" href="https://wa.me/6512345678?text=Hi%20Horizon%20Wealth!%20I%20have%20a%20question." target="_blank" rel="noopener noreferrer">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3.5 20.5l1.3-4.2A8.5 8.5 0 1 1 8 19.4z"/><path d="M9.2 8.6c.3-.5.8-.5 1 0l.6 1.4c.1.3 0 .6-.2.8l-.4.4a5.6 5.6 0 0 0 2.6 2.6l.4-.4c.2-.2.5-.3.8-.2l1.4.6c.5.2.5.7 0 1a2.8 2.8 0 0 1-3 .2 8 8 0 0 1-3.4-3.4 2.8 2.8 0 0 1 .2-3z"/></svg>
+          Chat on WhatsApp<span class="sr-only"> (opens in a new tab)</span>
+        </a>
+        <p class="chat-note">General information only, not financial advice.</p>
+      </div>
+    </section>
+
+    <div class="chat-tease" id="chat-tease" hidden>
+      <button type="button" class="chat-tease-open" id="chat-tease-open"><strong>Hi there! 👋</strong>Got a money question? Chat with us on WhatsApp.</button>
+      <button type="button" class="icon-btn chat-tease-close" id="chat-tease-close" aria-label="Dismiss message">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18"/></svg>
+      </button>
+    </div>
+
+    <button type="button" class="chat-launcher" id="chat-launcher" aria-expanded="false" aria-controls="chat-panel" aria-label="Chat with us">
+      <svg class="chat-bot" viewBox="0 0 64 64" aria-hidden="true"><path class="bot-antenna" d="M32 13V7"/><circle class="bot-bulb" cx="32" cy="5" r="3.5"/><rect class="bot-ear" x="2" y="29" width="7" height="14" rx="3.5"/><rect class="bot-ear" x="55" y="29" width="7" height="14" rx="3.5"/><rect class="bot-head" x="6" y="12" width="52" height="46" rx="19"/><rect class="bot-face" x="13" y="21" width="38" height="28" rx="12"/><ellipse class="bot-eye" cx="25" cy="33" rx="3.2" ry="4"/><ellipse class="bot-eye" cx="39" cy="33" rx="3.2" ry="4"/><ellipse class="bot-cheek" cx="19.5" cy="40" rx="3" ry="2"/><ellipse class="bot-cheek" cx="44.5" cy="40" rx="3" ry="2"/><path class="bot-mouth" d="M28.5 40.5q3.5 3.5 7 0"/></svg>
+      <span class="chat-badge" id="chat-badge" aria-hidden="true">1</span>
+    </button>
+  </div>
 
 </body>
 </html>
