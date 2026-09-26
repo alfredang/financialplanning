@@ -10,7 +10,8 @@ A one-page marketing site for a fictional financial planning firm, built with pl
 
 - **Retirement calculator (primary lead magnet)** in the hero. Five sliders give an instant readiness score, shown as a sun rising over the logo's horizon line. The headline result is free; a milestone-by-milestone report unlocks with first name and email.
 - **Retirement checklist (second lead magnet)**, partially gated: the first 5 of 15 checks are visible, the rest unlock with an email and can be printed or saved as a PDF.
-- **Exit-intent offer** on desktop and a **sticky call-to-action bar** on mobile.
+- **Lunch talk invitation**: a popup 10 seconds into the visit (once per session, on every device) invites visitors to a free one-hour retirement planning lunch talk at the Bukit Timah office, with a name and email RSVP. It stops appearing once the talk is over.
+- A **sticky call-to-action bar** on mobile.
 - Services, a three-step "how it works", a testimonials carousel, an FAQ, and an enquiry form that can be pre-filled from the calculator result.
 - **Light and dark themes**: follows the OS setting, with a toggle in the header that remembers your choice.
 
