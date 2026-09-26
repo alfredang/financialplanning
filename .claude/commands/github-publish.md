@@ -1,7 +1,7 @@
 ---
 description: Security-scan the project, then push to GitHub, write the README and About section, deploy GitHub Pages via Actions, and link the live site on the repo
 argument-hint: "[repo-name] [--private]"
-allowed-tools: Bash(git:*), Bash(gh:*), Bash(gitleaks:*), Bash(grep:*), Bash(find:*), Bash(ls:*), Bash(cat:*), Bash(du:*), Bash(sleep:*), Bash(curl:*), Read, Write, Edit, Glob, Grep
+allowed-tools: Bash(git:*), Bash(gh:*), Bash(gitleaks:*), Bash(grep:*), Bash(find:*), Bash(ls:*), Bash(cat:*), Bash(du:*), Bash(sleep:*), Bash(curl:*), Read, Write, Edit, Glob, Grep, mcp__playwright__browser_navigate, mcp__playwright__browser_resize, mcp__playwright__browser_wait_for, mcp__playwright__browser_evaluate, mcp__playwright__browser_take_screenshot, mcp__playwright__browser_close
 ---
 
 # Publish this project to GitHub
@@ -63,13 +63,24 @@ Scan **everything that would be pushed**: the working tree, staged files and the
    `gh repo create OWNER/REPO --public --source . --remote origin --push` (use `--private` if the user passed it).
 4. Otherwise run `git push -u origin <branch>`. If the push is rejected as non-fast-forward, **don't force-push**. Run `git pull --rebase` and ask the user if there are conflicts.
 
-## Step 3: Create or update the README
+## Step 3: Capture a screenshot with Playwright
+
+Use the Playwright MCP tools (`mcp__playwright__*`) to take a fresh screenshot of the site for the README. If the Playwright MCP server isn't available, keep any existing screenshot, say so in the report and move on.
+
+1. Resize the browser to a desktop viewport: `browser_resize` to 1440 × 900.
+2. Navigate to the site. Use the entry file as a `file:///` URL (for example `file:///C:/path/to/project/index.html`, with forward slashes). If `file://` is blocked, use the live Pages URL instead once it exists.
+3. Wait for the page to settle: `browser_wait_for` about 3 seconds so web fonts, images and any entrance animations finish. If the page has animated counters or fade-ins, use `browser_evaluate` to jump them to their final state (for example add the `visible` class to `.fade-in` elements and set each counter to its final value) so the capture doesn't show half-finished numbers.
+4. Take a viewport screenshot (not full-page) with `browser_take_screenshot`, type `png`, saved to `docs/screenshot.png` (create `docs/` if needed). Pass the absolute path as the filename so it lands in the project and not in `.playwright-mcp/`.
+5. Close the browser with `browser_close`, then open the image with Read to check it shows the page properly (no blank areas, missing images or cookie banners). Retake it if not.
+6. Make sure `.playwright-mcp/` is in `.gitignore` so Playwright's scratch files are never committed.
+
+## Step 4: Create or update the README
 
 Read the project (the entry files, CLAUDE.md and any existing README.md) so the README describes what is actually there. Then create `README.md`, or update it, keeping any sections the user wrote by hand. It should include:
 
 - A title and a one-line tagline
 - A **live demo link**: `https://OWNER.github.io/REPO/` (for a repo named `OWNER.github.io` it's `https://OWNER.github.io/`)
-- A screenshot, if one exists (for example `docs/screenshot.png`)
+- The screenshot from Step 3 (`docs/screenshot.png`) with descriptive alt text
 - Features: short bullets taken from the real content
 - The tech stack
 - Getting started: how to run it locally
@@ -80,7 +91,7 @@ Read the project (the entry files, CLAUDE.md and any existing README.md) so the 
 
 Commit and push it, rerunning the Step 1 pattern scan on the changed files first.
 
-## Step 4: GitHub Pages through GitHub Actions
+## Step 5: GitHub Pages through GitHub Actions
 
 1. Create or update `.github/workflows/pages.yml`:
    - Triggers: `push` to the default branch, plus `workflow_dispatch`
@@ -95,14 +106,14 @@ Commit and push it, rerunning the Step 1 pattern scan on the changed files first
 4. If the run fails, read `gh run view <id> --log-failed`, fix the problem and push again.
 5. Get the live URL with `gh api repos/OWNER/REPO/pages -q .html_url` and check it with `curl -sI <url>`, which should return 200. It can take a minute to go live.
 
-## Step 5: Update the repo About section and add the Pages link
+## Step 6: Update the repo About section and add the Pages link
 
 Run all of this in one call:
 
 ```
 gh repo edit OWNER/REPO \
   --description "<one-line summary, max ~120 chars>" \
-  --homepage "<Pages URL from Step 4>" \
+  --homepage "<Pages URL from Step 5>" \
   --add-topic <topic1> --add-topic <topic2> ...
 ```
 
@@ -111,10 +122,11 @@ gh repo edit OWNER/REPO \
 - The `--homepage` flag is what puts the Pages link in the About panel. Confirm it with `gh repo view OWNER/REPO --json description,homepageUrl,repositoryTopics`.
 - Make sure the README's live demo link matches this URL.
 
-## Step 6: Report
+## Step 7: Report
 
 Finish with a short summary:
 - The security scan result (passed, or what was fixed)
+- Whether the screenshot was refreshed
 - The repo URL
 - The live GitHub Pages URL and its HTTP status
 - The About section: description, homepage and topics
