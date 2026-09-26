@@ -4,13 +4,14 @@ A one-page marketing site for a fictional financial planning firm, built with pl
 
 **Live site:** https://alfredang.github.io/financialplanning/
 
-![Horizon Wealth Planning hero: red-accented headline "Financial planning that starts with your retirement number" beside an interactive retirement calculator with a sun rising over a horizon line](docs/screenshot.png)
+![Horizon Wealth Planning hero: red-accented headline "Financial planning that starts with your retirement number" beside an interactive retirement calculator with a sun rising over a horizon line, and a small red robot chat widget in the bottom-right corner saying "Hi there! Got a money question? Chat with us on WhatsApp."](docs/screenshot.png)
 
 ## What's on the page
 
 - **Retirement calculator (primary lead magnet)** in the hero. Five sliders give an instant readiness score, shown as a sun rising over the logo's horizon line. The headline result is free; a milestone-by-milestone report unlocks with first name and email.
 - **Retirement checklist (second lead magnet)**, partially gated: the first 5 of 15 checks are visible, the rest unlock with an email and can be printed or saved as a PDF.
 - **Lunch talk invitation**: a popup 10 seconds into the visit (once per session, on every device) invites visitors to a free one-hour retirement planning lunch talk at the Bukit Timah office, with a name and email RSVP. It stops appearing once the talk is over.
+- **WhatsApp chat widget**: a cute animated robot ("Sunny") in the bottom-right corner. It says hello with a speech bubble once per session, then opens a small chat panel with a typed greeting, quick-topic buttons and a "Chat on WhatsApp" button, each opening WhatsApp with a pre-filled message.
 - A **sticky call-to-action bar** on mobile.
 - Services, a three-step "how it works", a testimonials carousel, an FAQ, and an enquiry form that can be pre-filled from the calculator result.
 - **Light and dark themes**: follows the OS setting, with a toggle in the header that remembers your choice.
@@ -58,6 +59,7 @@ CLAUDE.md                     # notes for Claude Code (including the CSP hash co
 The following are **fictional** and need replacing before real use:
 
 - The firm name, address, phone number (`+65 6234 5678`) and email (`hello@horizonwealth.example`)
+- The WhatsApp number in the chat widget (`wa.me/6512345678`, in five links near the end of `index.html`)
 - The testimonials, the stats (15+ years, 1,200+ clients, S$500M) and the social links (all `href="#"`)
 
 **There is no backend.** Every form goes through one function, `submitLead()`, which logs the lead as JSON (with any UTM campaign parameters) to the browser console. To actually capture leads, replace its body with a `fetch()` POST to your CRM or email tool and add that origin to `connect-src` in the CSP. The "we've emailed you a copy" messages assume you set up that delivery email.
