@@ -1,0 +1,63 @@
+# Horizon Wealth Planning
+
+A one-page marketing site for a fictional financial planning firm, built with plain HTML, CSS and JavaScript in a single `index.html`. There are no frameworks, no build step and no dependencies.
+
+**Live site:** https://alfredang.github.io/financialplanning/
+
+![Horizon Wealth Planning hero: navy header with gold logo, "Plan Today. Prosper Tomorrow." headline, consultation buttons and stats for 15+ years, 1,200+ clients and $500M assets advised](docs/screenshot.png)
+
+## What's on the page
+
+- **Sticky header** with anchor navigation and a mobile menu.
+- **Hero** with a background photo, calls to action, and stat counters that animate when they scroll into view.
+- **Testimonials carousel** showing 1 card on mobile and 3 at 1024px and up, with dots, autoplay and keyboard support.
+- **Enquiry form** with client-side validation and a simulated submit.
+- **Footer** with contact details, a newsletter signup and social links.
+
+## Placeholder content
+
+The following are **fictional** and need replacing before real use:
+
+- The firm name, address, phone number (`+65 6234 5678`) and email (`hello@horizonwealth.example`)
+- The testimonials and avatar photos (from `i.pravatar.cc`)
+- The stats (15+ years, 1,200+ clients, $500M)
+- The social links, which are all `href="#"`
+
+**There is no backend.** A valid enquiry logs its data as JSON to the browser console after a 1.5s simulated delay, then shows a success message. The newsletter form only validates. To actually receive submissions, wire both forms up to a real endpoint.
+
+## Running locally
+
+Open `index.html` directly, or serve the folder:
+
+```powershell
+start index.html
+# or
+python -m http.server 8000   # then visit http://localhost:8000
+```
+
+You need internet access for Google Fonts (Playfair Display and Inter), the Unsplash hero image and the avatars.
+
+## Deployment
+
+Every push to `main` deploys the repo root to GitHub Pages via [.github/workflows/pages.yml](.github/workflows/pages.yml). You can also run the workflow manually from the Actions tab.
+
+## Conventions
+
+- **Everything stays in `index.html`**: CSS in one `<style>` tag, JS in one `<script>` tag. Don't add frameworks, build tools or extra source files.
+- **Section order is the same across HTML, CSS and JS**, and each block is marked with a `===== N. NAME =====` banner comment.
+- **Use the design tokens** on `:root` (`--navy`, `--gold`, `--bg`, `--space-1…8`, `--nav-h`) rather than hardcoded values.
+- **Styles are mobile-first.** The only breakpoints are `min-width: 768px` and `min-width: 1024px`, grouped near the end of the stylesheet.
+- **Carousel:** `--per-view` in CSS and `getPerView()` in JS must use the same breakpoint. If you add a testimonial, update every slide's `aria-label="n of N"`.
+- **Form fields:** each one needs a `.field` wrapper, a `<small id="{name}-error">` and an entry in the `validators` map.
+- **Reduced motion:** `prefers-reduced-motion` turns off the animations in CSS, and the JS skips the counters and autoplay.
+- Add `.fade-in` (plus `.delay-1/2/3` if you want a delay) to any element to reveal it on scroll.
+
+## Testing
+
+There's no test suite. To syntax-check the JavaScript:
+
+```bash
+sed -n '/<script>/,/<\/script>/p' index.html | sed '1d;$d' > "$TEMP/hw.js" && node --check "$TEMP/hw.js"
+```
+
+Then check it by hand in a browser at mobile, tablet and desktop widths.
