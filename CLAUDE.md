@@ -33,7 +33,7 @@ The page needs internet access only for Google Fonts (IBM Plex Sans Condensed fo
 
 ## Architecture
 
-The file follows the same order in all three layers, and each major block is marked with a `/* ===== N. NAME ===== */` banner comment (`<!-- ===== -->` in the HTML). Keep that convention when adding sections. Page order: header, hero + retirement calculator, stats, services, process, checklist, testimonials, FAQ, contact, footer (with privacy notice), exit dialog, sticky mobile CTA.
+The file follows the same order in all three layers, and each major block is marked with a `/* ===== N. NAME ===== */` banner comment (`<!-- ===== -->` in the HTML). Keep that convention when adding sections. Page order: header, hero + retirement calculator, stats, services, process, checklist, testimonials, FAQ, contact, footer (with privacy notice), lunch talk dialog, sticky mobile CTA.
 
 **CSS**
 - Design tokens are custom properties on `:root`: `--red`, `--red-strong`, `--red-soft`, `--on-red`, `--ink`, `--muted`, `--bg`, `--surface`, `--surface-2`, `--line`, `--line-strong`, the spacing scale `--space-1…8`, `--radius-sm/--radius/--radius-lg`, and `--nav-h`. Use the tokens and don't hardcode colors.
@@ -43,14 +43,14 @@ The file follows the same order in all three layers, and each major block is mar
 - Never add inline `style="..."` attributes: the CSP blocks them. Setting `el.style.x` from JS is fine.
 
 **JS**
-One IIFE in `<head>`. Section 0 runs immediately (frame-busting, applying the stored theme before first paint); everything else runs in `init()` on `DOMContentLoaded`: nav + theme toggle, scroll handler, fade-in, counters, retirement calculator, checklist gate, carousel, enquiry form, newsletter, exit-intent dialog, footer year.
+One IIFE in `<head>`. Section 0 runs immediately (frame-busting, applying the stored theme before first paint); everything else runs in `init()` on `DOMContentLoaded`: nav + theme toggle, scroll handler, fade-in, counters, retirement calculator, checklist gate, carousel, enquiry form, newsletter, lunch talk dialog, footer year.
 - **Security rules (enforced by CSP `require-trusted-types-for 'script'`):** never use `innerHTML`, `outerHTML`, `insertAdjacentHTML`, `document.write`, `eval` or string `setTimeout`. They throw. Build DOM with `createElement`/`textContent`/`replaceChildren`, or clone a `<template>` (see `enquiry-success-tpl`).
 - **Lead capture:** every form goes through `submitLead(kind, fields)`. It is the single integration point: it currently logs JSON to the console after a 1.2s delay. To wire a real backend, replace its body with a `fetch()` POST and add the endpoint's origin to `connect-src` in the CSP. UTM parameters are captured (allow-listed) into `attribution` and sent with every lead.
 - **Anti-spam (client-side only, the backend must re-validate):** each form has a `.hp-field` honeypot input (`name="website"`); `looksLikeBot()` also rejects submits within 2.5s of page load; `coolingDown(key)` limits one submit per 30s per form. Bots get a fake success.
 - **Input hygiene:** `clean(value, max)` strips control characters and caps length; `NAME_RE` (Unicode letters) validates names; select/radio values are checked against the `ALLOWED` lists. Every input has a `maxlength`.
 - **Retirement calculator:** range inputs `#calc-age/-retire/-savings/-monthly/-income`, each with an `<output id="{id}-out">`. `project()` works in today's dollars using the constants `GROWTH`, `INFLATION`, `RETIRED_GROWTH`, `LIFE_TO`; if you change them, update the assumptions text under the calculator and the FAQ answer (visible text and JSON-LD). The score moves the sun in the `#gauge` SVG. The headline result is free; the milestone table (`#calc-report`) unlocks after the name + email gate, which also unlocks the checklist.
 - **Checklist:** the first 5 items are visible; the rest sit in `#checklist-locked` (`inert`, `aria-hidden`, blurred) until `unlockChecklist()` runs. The unlock flag `hw-checklist-unlocked` is kept in localStorage (no personal data is ever stored). "Print or save as PDF" adds `body.printing-checklist` so the print styles show only the sheet.
-- **Exit-intent dialog:** desktop only (fine pointer), after 8s on the page, once per session, never if the checklist is already unlocked.
+- **Lunch talk dialog (`#talk-dialog`):** a modal invite shown on every device after `TALK_DELAY_MS` (10s), once per session (`hw-talk-shown` in sessionStorage). It waits if the tab is hidden or a form field has focus, and stops appearing after `TALK_ENDS`. RSVPs go through `submitLead("lunch-talk-rsvp", …)`. For a new event, update the date/venue text in the dialog, `TALK_ENDS` and the `event` id.
 - **Fade-in:** add `.fade-in` (plus `.delay-1/2/3`). Use sparingly.
 - **Counters:** `.stat-number[data-target][data-prefix][data-suffix]` with a sibling `.sr-only` final value; the animated span is `aria-hidden`.
 - **Carousel:** `--per-view` on `.carousel` (1, or 3 at 1024px+) must match `getPerView()`. To add a testimonial, copy an `<li class="carousel-slide">` and update every slide's `aria-label="n of N"`.

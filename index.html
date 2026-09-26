@@ -4,7 +4,7 @@
   <meta charset="UTF-8" />
   <!-- Security: strict CSP. The inline script and style blocks are allowed by SHA-256 hash only,
        so any edit to either one needs the hashes regenerated (see CLAUDE.md). -->
-  <meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'sha256-zc5hyKeZiaJ9FwsduGaD9P6pcsD4CfAKlz2Sd+pJJIE='; style-src 'sha256-Q2LB68X88S+6wu9wGa9WhqwoqyG9ZxRhh9SVcSwhm7s=' https://fonts.googleapis.com; font-src https://fonts.gstatic.com; img-src 'self' data:; connect-src 'self'; form-action 'none'; base-uri 'none'; object-src 'none'; frame-src 'none'; worker-src 'none'; manifest-src 'none'; media-src 'none'; upgrade-insecure-requests; require-trusted-types-for 'script'; trusted-types 'none'" />
+  <meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'sha256-SjUbs14IvuSBoYyTC7Y8xCgp+tabeeiAjj7dpLuciRc='; style-src 'sha256-XW7i/LBnNPp0IIRrwkFSkn3zUZ1cMRuuEN5WG6ULAV4=' https://fonts.googleapis.com; font-src https://fonts.gstatic.com; img-src 'self' data:; connect-src 'self'; form-action 'none'; base-uri 'none'; object-src 'none'; frame-src 'none'; worker-src 'none'; manifest-src 'none'; media-src 'none'; upgrade-insecure-requests; require-trusted-types-for 'script'; trusted-types 'none'" />
   <meta name="referrer" content="strict-origin-when-cross-origin" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
@@ -366,7 +366,7 @@
       color: var(--error);
     }
 
-    /* Mini lead form (calculator gate, checklist, exit dialog) */
+    /* Mini lead form (calculator gate, checklist, lunch talk dialog) */
     .lead-form { display: grid; gap: var(--space-3); }
     .lead-form .form-msg { font-size: 0.875rem; min-height: 1.3em; }
     .form-msg.error { color: var(--error); }
@@ -959,21 +959,43 @@
     }
 
     /* =========================================================
-       14. OVERLAYS: exit-intent dialog, sticky CTA, back to top
+       14. OVERLAYS: lunch talk dialog, sticky CTA, back to top
        ========================================================= */
-    .exit-dialog {
+    .talk-dialog {
       width: min(92vw, 460px);
+      max-height: calc(100dvh - 2 * var(--space-4));
       margin: auto;
       border: 1px solid var(--line);
+      border-top: 4px solid var(--red);
       border-radius: var(--radius-lg);
       background: var(--surface);
       color: var(--ink);
       padding: var(--space-6) var(--space-5) var(--space-5);
       box-shadow: var(--shadow);
     }
-    .exit-dialog::backdrop { background: var(--backdrop); }
-    .exit-dialog h2 { font-size: 1.9rem; margin-bottom: var(--space-2); padding-right: var(--space-6); }
-    .exit-dialog > p { color: var(--muted); margin-bottom: var(--space-4); }
+    .talk-dialog::backdrop { background: var(--backdrop); }
+    .talk-dialog h2 { font-size: 1.9rem; margin-bottom: var(--space-2); padding-right: var(--space-6); }
+    .talk-dialog > p { color: var(--muted); margin-bottom: var(--space-4); }
+    .talk-dialog > .fine-print { margin: var(--space-2) 0 0; }
+    .talk-kicker {
+      font-size: 0.8rem;
+      font-weight: 600;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--red) !important;
+      margin-bottom: var(--space-1) !important;
+    }
+    .talk-meta {
+      display: grid;
+      gap: var(--space-2);
+      margin-bottom: var(--space-4);
+      padding: var(--space-3) var(--space-4);
+      border-radius: var(--radius);
+      background: var(--surface-2);
+    }
+    .talk-meta div { display: grid; grid-template-columns: 4.5rem 1fr; gap: var(--space-2); }
+    .talk-meta dt { font-weight: 600; }
+    .talk-meta dd { margin: 0; }
     .dialog-close { position: absolute; top: var(--space-2); right: var(--space-2); }
 
     .sticky-cta {
@@ -1946,51 +1968,59 @@
         });
 
         /* =========================================================
-           10. EXIT-INTENT OFFER (desktop, once per session)
+           10. LUNCH TALK INVITE (after 10s on the page, once per session)
            ========================================================= */
-        var exitDialog = document.getElementById("exit-dialog");
-        var exitForm = document.getElementById("exit-form");
-        var exitEmail = document.getElementById("exit-email");
-        var exitMsg = document.getElementById("exit-msg");
-        var exitBtn = exitForm.querySelector("button[type=submit]");
-        var EXIT_KEY = "hw-exit-shown";
+        var talkDialog = document.getElementById("talk-dialog");
+        var talkForm = document.getElementById("talk-form");
+        var talkName = document.getElementById("talk-name");
+        var talkEmail = document.getElementById("talk-email");
+        var talkMsg = document.getElementById("talk-msg");
+        var talkBtn = talkForm.querySelector("button[type=submit]");
+        var TALK_KEY = "hw-talk-shown";
+        var TALK_DELAY_MS = 10000;
+        var TALK_ENDS = Date.parse("2026-09-30T13:30:00+08:00");  // stop inviting once the talk is over
 
-        function exitAlreadyShown() {
-          try { return sessionStorage.getItem(EXIT_KEY) === "1"; } catch (e) { return true; }
+        function talkAlreadyShown() {
+          try { return sessionStorage.getItem(TALK_KEY) === "1"; } catch (e) { return true; }
         }
 
-        function maybeShowExit(e) {
-          if (e.clientY > 0 || e.relatedTarget) return;
-          if (Date.now() - pageLoadedAt < 8000) return;
-          if (exitAlreadyShown() || checklistSection.classList.contains("is-unlocked")) return;
-          if (formCard.querySelector(".form-success") || typeof exitDialog.showModal !== "function") return;
-          try { sessionStorage.setItem(EXIT_KEY, "1"); } catch (err) { /* ignore */ }
-          exitDialog.showModal();
+        function showTalk() {
+          if (Date.now() > TALK_ENDS || talkAlreadyShown() || typeof talkDialog.showModal !== "function") return;
+          // Don't interrupt someone who is filling in a form, or who has hidden the tab
+          var active = document.activeElement;
+          if (document.hidden || (active && active.matches("input, select, textarea"))) {
+            setTimeout(showTalk, 3000);
+            return;
+          }
+          try { sessionStorage.setItem(TALK_KEY, "1"); } catch (err) { /* ignore */ }
+          talkDialog.showModal();
         }
 
-        if (window.matchMedia("(hover: hover) and (pointer: fine)").matches) {
-          document.addEventListener("mouseout", maybeShowExit);
-        }
+        setTimeout(showTalk, TALK_DELAY_MS);
 
-        document.getElementById("exit-close").addEventListener("click", function () { exitDialog.close(); });
-        exitDialog.addEventListener("click", function (e) {
-          if (e.target === exitDialog) exitDialog.close();  // click on backdrop
+        document.getElementById("talk-close").addEventListener("click", function () { talkDialog.close(); });
+        talkDialog.addEventListener("click", function (e) {
+          if (e.target === talkDialog) talkDialog.close();  // click on backdrop
         });
 
-        exitForm.addEventListener("submit", function (e) {
+        talkForm.addEventListener("submit", function (e) {
           e.preventDefault();
-          var email = clean(exitEmail.value, 254);
-          if (!fieldError(exitEmail, exitMsg, isValidEmail(email) ? "" : "Please enter a valid email address.")) return;
-          if (looksLikeBot(exitForm)) { exitDialog.close(); return; }
-          if (coolingDown("exit")) return;
+          var name = clean(talkName.value, 80);
+          var email = clean(talkEmail.value, 254);
+          talkName.classList.remove("invalid");
+          talkEmail.classList.remove("invalid");
+          if (!fieldError(talkName, talkMsg, NAME_RE.test(name) ? "" : "Please enter your name.")) return;
+          if (!fieldError(talkEmail, talkMsg, isValidEmail(email) ? "" : "Please enter a valid email address.")) return;
+          if (looksLikeBot(talkForm)) { talkDialog.close(); return; }
+          if (coolingDown("talk")) return;
 
-          setBusy(exitBtn, true, "Unlocking…");
-          submitLead("retirement-checklist-exit", { email: email }).then(function () {
-            setBusy(exitBtn, false);
-            unlockChecklist();
-            exitDialog.close();
-            checklistSection.scrollIntoView({ behavior: reduceMotion ? "auto" : "smooth" });
-            document.getElementById("unlocked-title").focus({ preventScroll: true });
+          setBusy(talkBtn, true, "Reserving…");
+          submitLead("lunch-talk-rsvp", { name: name, email: email, event: "retirement-lunch-talk-2026-09-30" }).then(function () {
+            setBusy(talkBtn, false);
+            talkForm.reset();
+            talkMsg.className = "form-msg success";
+            talkMsg.textContent = "You're in, " + name + ". Check your inbox for the address and details.";
+            talkBtn.disabled = true;
           });
         });
 
@@ -2768,23 +2798,32 @@
     </div>
   </footer>
 
-  <!-- Exit-intent offer -->
-  <dialog class="exit-dialog" id="exit-dialog" aria-labelledby="exit-title">
-    <button type="button" class="icon-btn dialog-close" id="exit-close" aria-label="Close">
+  <!-- Lunch talk invitation (timed popup) -->
+  <dialog class="talk-dialog" id="talk-dialog" aria-labelledby="talk-title">
+    <button type="button" class="icon-btn dialog-close" id="talk-close" aria-label="Close">
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18"/></svg>
     </button>
-    <h2 id="exit-title">Take the retirement checklist with you</h2>
-    <p>15 checks our advisers use to see if someone is on track. Free, and it takes about 10 minutes.</p>
-    <form class="lead-form" id="exit-form" novalidate aria-label="Get the retirement checklist">
-      <label for="exit-email" class="sr-only">Email address</label>
-      <input class="input" type="email" id="exit-email" name="email" autocomplete="email" placeholder="you@example.com" maxlength="254" required aria-describedby="exit-msg" />
+    <p class="talk-kicker">Free lunch talk &middot; Limited seats</p>
+    <h2 id="talk-title">Retirement planning, over lunch</h2>
+    <p>A one-hour talk on CPF, SRS and turning your savings into retirement income. Bring your questions.</p>
+    <dl class="talk-meta">
+      <div><dt>When</dt><dd>Wed 30 Sep, 12:30pm to 1:30pm</dd></div>
+      <div><dt>Where</dt><dd>Our Bukit Timah office</dd></div>
+      <div><dt>Cost</dt><dd>Free. Light refreshments provided.</dd></div>
+    </dl>
+    <form class="lead-form" id="talk-form" novalidate aria-label="Reserve a seat at the lunch talk">
+      <label for="talk-name" class="sr-only">Your name</label>
+      <input class="input" type="text" id="talk-name" name="name" autocomplete="name" placeholder="Your name" maxlength="80" required aria-describedby="talk-msg" />
+      <label for="talk-email" class="sr-only">Email address</label>
+      <input class="input" type="email" id="talk-email" name="email" autocomplete="email" placeholder="you@example.com" maxlength="254" required aria-describedby="talk-msg" />
       <div class="hp-field" aria-hidden="true">
-        <label for="exit-hp">Leave this field empty</label>
-        <input type="text" id="exit-hp" name="website" tabindex="-1" autocomplete="off" />
+        <label for="talk-hp">Leave this field empty</label>
+        <input type="text" id="talk-hp" name="website" tabindex="-1" autocomplete="off" />
       </div>
-      <button type="submit" class="btn btn-primary btn-block"><span class="spinner" aria-hidden="true"></span><span class="btn-text">Send me the checklist</span></button>
-      <p class="form-msg" id="exit-msg" aria-live="polite"></p>
+      <button type="submit" class="btn btn-primary btn-block"><span class="spinner" aria-hidden="true"></span><span class="btn-text">Reserve my seat</span></button>
+      <p class="form-msg" id="talk-msg" aria-live="polite"></p>
     </form>
+    <p class="fine-print">We'll email you the full address and a reminder the day before.</p>
   </dialog>
 
   <!-- Mobile sticky call to action -->
