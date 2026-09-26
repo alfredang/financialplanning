@@ -1,36 +1,131 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en-SG">
 <head>
   <meta charset="UTF-8" />
+  <!-- Security: strict CSP. The inline script and style blocks are allowed by SHA-256 hash only,
+       so any edit to either one needs the hashes regenerated (see CLAUDE.md). -->
+  <meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'sha256-zc5hyKeZiaJ9FwsduGaD9P6pcsD4CfAKlz2Sd+pJJIE='; style-src 'sha256-Q2LB68X88S+6wu9wGa9WhqwoqyG9ZxRhh9SVcSwhm7s=' https://fonts.googleapis.com; font-src https://fonts.gstatic.com; img-src 'self' data:; connect-src 'self'; form-action 'none'; base-uri 'none'; object-src 'none'; frame-src 'none'; worker-src 'none'; manifest-src 'none'; media-src 'none'; upgrade-insecure-requests; require-trusted-types-for 'script'; trusted-types 'none'" />
+  <meta name="referrer" content="strict-origin-when-cross-origin" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta name="description" content="Horizon Wealth Planning offers personalised retirement, investment and insurance planning to help you prosper tomorrow." />
-  <title>Horizon Wealth Planning | Plan Today. Prosper Tomorrow.</title>
 
-  <!-- Google Fonts -->
+  <!-- SEO -->
+  <title>Financial Planner in Singapore | Horizon Wealth Planning</title>
+  <meta name="description" content="Independent financial planners in Singapore. Check your retirement number in 60 seconds, get the free retirement checklist and book a no-obligation review." />
+  <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1" />
+  <link rel="canonical" href="https://alfredang.github.io/financialplanning/" />
+  <meta name="theme-color" content="#F8F6F6" media="(prefers-color-scheme: light)" />
+  <meta name="theme-color" content="#140D0F" media="(prefers-color-scheme: dark)" />
+  <meta name="color-scheme" content="light dark" />
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 40 40'%3E%3Crect width='40' height='40' rx='8' fill='%23B0102B'/%3E%3Cpath d='M9 26a11 11 0 0 1 22 0z' fill='%23fff'/%3E%3Cpath d='M6 29h28' stroke='%23fff' stroke-width='2.5' stroke-linecap='round'/%3E%3C/svg%3E" />
+
+  <!-- Open Graph / social sharing -->
+  <meta property="og:type" content="website" />
+  <meta property="og:site_name" content="Horizon Wealth Planning" />
+  <meta property="og:locale" content="en_SG" />
+  <meta property="og:title" content="Know your retirement number | Horizon Wealth Planning" />
+  <meta property="og:description" content="Free 60-second retirement check and a 15-point retirement checklist from independent financial planners in Singapore." />
+  <meta property="og:url" content="https://alfredang.github.io/financialplanning/" />
+  <meta property="og:image" content="https://alfredang.github.io/financialplanning/og-image.png" />
+  <meta property="og:image:width" content="1440" />
+  <meta property="og:image:height" content="900" />
+  <meta property="og:image:alt" content="Horizon Wealth Planning homepage with the retirement number calculator" />
+  <meta name="twitter:card" content="summary_large_image" />
+
+  <!-- Structured data (a data block, not executed, so CSP script-src does not apply) -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "FinancialService",
+        "@id": "https://alfredang.github.io/financialplanning/#org",
+        "name": "Horizon Wealth Planning",
+        "url": "https://alfredang.github.io/financialplanning/",
+        "image": "https://alfredang.github.io/financialplanning/og-image.png",
+        "description": "Independent financial planning in Singapore: retirement, investment, insurance, estate and tax planning for individuals and families.",
+        "telephone": "+65 6234 5678",
+        "email": "hello@horizonwealth.example",
+        "address": {
+          "@type": "PostalAddress",
+          "streetAddress": "Level 18, Horizon Tower, 88 Market Street",
+          "addressLocality": "Singapore",
+          "postalCode": "048948",
+          "addressCountry": "SG"
+        },
+        "areaServed": { "@type": "Country", "name": "Singapore" },
+        "openingHoursSpecification": [
+          { "@type": "OpeningHoursSpecification", "dayOfWeek": ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"], "opens": "09:00", "closes": "18:00" },
+          { "@type": "OpeningHoursSpecification", "dayOfWeek": "Saturday", "opens": "10:00", "closes": "14:00" }
+        ],
+        "knowsAbout": ["Retirement planning", "CPF", "SRS", "Investment planning", "Insurance planning", "Estate planning", "Tax planning"],
+        "hasOfferCatalog": {
+          "@type": "OfferCatalog",
+          "name": "Financial planning services",
+          "itemListElement": [
+            { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Retirement planning" } },
+            { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Investment planning" } },
+            { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Insurance and protection planning" } },
+            { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Estate planning" } },
+            { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Tax planning" } }
+          ]
+        }
+      },
+      {
+        "@type": "WebSite",
+        "@id": "https://alfredang.github.io/financialplanning/#website",
+        "url": "https://alfredang.github.io/financialplanning/",
+        "name": "Horizon Wealth Planning",
+        "inLanguage": "en-SG",
+        "publisher": { "@id": "https://alfredang.github.io/financialplanning/#org" }
+      },
+      {
+        "@type": "FAQPage",
+        "@id": "https://alfredang.github.io/financialplanning/#faq",
+        "mainEntity": [
+          { "@type": "Question", "name": "How much does the first consultation cost?", "acceptedAnswer": { "@type": "Answer", "text": "Nothing. The first 45-minute review is free and there is no obligation. If you decide to work with us, we set out our fees in writing before you commit to anything." } },
+          { "@type": "Question", "name": "Do I need a lot of money to see a financial planner?", "acceptedAnswer": { "@type": "Answer", "text": "No. Many of our clients start in their twenties and thirties with modest savings. The earlier you plan, the less you need to set aside each month." } },
+          { "@type": "Question", "name": "What happens in the first meeting?", "acceptedAnswer": { "@type": "Answer", "text": "We talk through your goals, your current savings, CPF, insurance and any worries you have. You leave with a clear picture of where you stand. We do not sell products in the first meeting." } },
+          { "@type": "Question", "name": "How accurate is the retirement calculator?", "acceptedAnswer": { "@type": "Answer", "text": "It is an illustration based on fixed assumptions: 5% yearly growth, 2.5% inflation and income needed until age 90. Real returns vary, and it does not model CPF LIFE payouts separately. Use it as a starting point, not a plan." } },
+          { "@type": "Question", "name": "Can you help with CPF and SRS decisions?", "acceptedAnswer": { "@type": "Answer", "text": "Yes. We look at CPF top-ups, CPF LIFE options and whether SRS contributions make sense for your tax bracket as part of your overall retirement plan." } },
+          { "@type": "Question", "name": "How do you handle my personal data?", "acceptedAnswer": { "@type": "Answer", "text": "We only use your details to reply to you and to send what you asked for. We handle personal data in line with Singapore's PDPA, never sell it, and you can unsubscribe or ask us to delete it at any time." } }
+        ]
+      }
+    ]
+  }
+  </script>
+
+  <!-- Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Playfair+Display:wght@600;700&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Condensed:wght@500;600;700&family=IBM+Plex+Sans:ital,wght@0,400;0,500;0,600;1,400&display=swap" rel="stylesheet" referrerpolicy="no-referrer" />
 
   <style>
     /* =========================================================
-       1. DESIGN TOKENS (CSS custom properties)
+       1. DESIGN TOKENS (light is the default; dark via system or toggle)
        ========================================================= */
     :root {
+      color-scheme: light;
+
       /* Colors */
-      --navy: #0B2545;
-      --navy-light: #13315C;
-      --navy-dark: #071A31;
-      --gold: #C9A227;
-      --gold-dark: #A8861C;
-      --gold-soft: rgba(201, 162, 39, 0.12);
-      --bg: #F7F9FC;
-      --white: #FFFFFF;
-      --text: #1F2A37;
-      --muted: #5B6778;
-      --border: #D5DCE6;
-      --error: #D93025;
-      --error-soft: #FDECEA;
-      --success: #1E8E5A;
+      --red: #B0102B;
+      --red-strong: #8A0C21;
+      --red-soft: #FBECEE;
+      --on-red: #FFFFFF;
+      --ink: #221A1C;
+      --muted: #5E5356;
+      --bg: #F8F6F6;
+      --surface: #FFFFFF;
+      --surface-2: #F1ECEC;
+      --line: #E4DADB;
+      --line-strong: #C9BBBE;
+      --error: #B3261E;
+      --error-soft: #FCEEEE;
+      --success: #1D7A4E;
+      --success-soft: #E8F4EE;
+      --header-bg: rgba(248, 246, 246, 0.92);
+      --backdrop: rgba(34, 26, 28, 0.55);
+      --shadow: 0 1px 2px rgba(34, 26, 28, 0.06), 0 10px 30px rgba(34, 26, 28, 0.07);
+      --select-arrow: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%23221A1C' stroke-width='2' fill='none' stroke-linecap='round'/%3E%3C/svg%3E");
 
       /* Spacing scale */
       --space-1: 0.25rem;
@@ -43,16 +138,62 @@
       --space-8: 5rem;
 
       /* Misc */
+      --radius-sm: 6px;
       --radius: 10px;
-      --radius-lg: 16px;
-      --shadow: 0 6px 24px rgba(11, 37, 69, 0.08);
-      --shadow-lg: 0 14px 40px rgba(11, 37, 69, 0.16);
+      --radius-lg: 18px;
       --container: 1200px;
       --nav-h: 72px;
-      --transition: 0.3s ease;
+      --transition: 0.2s ease;
 
-      --font-heading: "Playfair Display", Georgia, serif;
-      --font-body: "Inter", system-ui, -apple-system, "Segoe UI", sans-serif;
+      --font-display: "IBM Plex Sans Condensed", "Arial Narrow", system-ui, sans-serif;
+      --font-body: "IBM Plex Sans", system-ui, -apple-system, "Segoe UI", sans-serif;
+    }
+
+    @media (prefers-color-scheme: dark) {
+      :root:not([data-theme="light"]) {
+        color-scheme: dark;
+        --red: #FF6B80;
+        --red-strong: #FF95A4;
+        --red-soft: #3A1A20;
+        --on-red: #1A0A0D;
+        --ink: #F4ECED;
+        --muted: #BCAEB1;
+        --bg: #140D0F;
+        --surface: #1E1517;
+        --surface-2: #281D20;
+        --line: #3A2C2F;
+        --line-strong: #5A474C;
+        --error: #FF8A80;
+        --error-soft: #3A1A1A;
+        --success: #6FD3A0;
+        --success-soft: #16291F;
+        --header-bg: rgba(20, 13, 15, 0.9);
+        --backdrop: rgba(0, 0, 0, 0.7);
+        --shadow: 0 1px 2px rgba(0, 0, 0, 0.4), 0 10px 30px rgba(0, 0, 0, 0.35);
+        --select-arrow: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%23F4ECED' stroke-width='2' fill='none' stroke-linecap='round'/%3E%3C/svg%3E");
+      }
+    }
+    :root[data-theme="dark"] {
+      color-scheme: dark;
+      --red: #FF6B80;
+      --red-strong: #FF95A4;
+      --red-soft: #3A1A20;
+      --on-red: #1A0A0D;
+      --ink: #F4ECED;
+      --muted: #BCAEB1;
+      --bg: #140D0F;
+      --surface: #1E1517;
+      --surface-2: #281D20;
+      --line: #3A2C2F;
+      --line-strong: #5A474C;
+      --error: #FF8A80;
+      --error-soft: #3A1A1A;
+      --success: #6FD3A0;
+      --success-soft: #16291F;
+      --header-bg: rgba(20, 13, 15, 0.9);
+      --backdrop: rgba(0, 0, 0, 0.7);
+      --shadow: 0 1px 2px rgba(0, 0, 0, 0.4), 0 10px 30px rgba(0, 0, 0, 0.35);
+      --select-arrow: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%23F4ECED' stroke-width='2' fill='none' stroke-linecap='round'/%3E%3C/svg%3E");
     }
 
     /* =========================================================
@@ -64,31 +205,38 @@
       scroll-behavior: smooth;
       scroll-padding-top: var(--nav-h);
     }
+    /* Clickjacking fallback: hide the page if it is loaded inside a frame */
+    html.framed body { display: none; }
 
     body {
       font-family: var(--font-body);
       font-size: 1rem;
       line-height: 1.65;
-      color: var(--text);
+      color: var(--ink);
       background: var(--bg);
       -webkit-font-smoothing: antialiased;
       overflow-x: hidden;
+      transition: background-color var(--transition), color var(--transition);
     }
 
     h1, h2, h3, h4 {
-      font-family: var(--font-heading);
-      line-height: 1.2;
-      color: var(--navy);
+      font-family: var(--font-display);
+      font-weight: 600;
+      line-height: 1.1;
+      color: var(--ink);
+      text-wrap: balance;
     }
 
-    img { max-width: 100%; display: block; }
-    a { color: inherit; text-decoration: none; }
-    ul { list-style: none; }
+    p { text-wrap: pretty; }
+    img, svg { display: block; max-width: 100%; }
+    a { color: inherit; }
+    ul, ol { list-style: none; }
     button, input, select, textarea { font: inherit; color: inherit; }
     button { cursor: pointer; }
+    [hidden] { display: none !important; }
 
     :focus-visible {
-      outline: 3px solid var(--gold);
+      outline: 3px solid var(--red);
       outline-offset: 3px;
     }
 
@@ -99,8 +247,9 @@
 
     .skip-link {
       position: absolute; left: var(--space-4); top: -60px; z-index: 200;
-      background: var(--gold); color: var(--navy); padding: var(--space-2) var(--space-4);
-      border-radius: var(--radius); font-weight: 600; transition: top var(--transition);
+      background: var(--red); color: var(--on-red); padding: var(--space-2) var(--space-4);
+      border-radius: var(--radius); font-weight: 600; text-decoration: none;
+      transition: top var(--transition);
     }
     .skip-link:focus { top: var(--space-4); }
 
@@ -115,39 +264,14 @@
     }
 
     .section { padding: var(--space-8) 0; }
+    .section-alt { background: var(--surface); border-block: 1px solid var(--line); }
 
-    .section-header { text-align: center; margin-bottom: var(--space-7); }
+    .section-head { max-width: 680px; margin-bottom: var(--space-7); }
+    .section-title { font-size: clamp(2rem, 5.5vw, 3rem); margin-bottom: var(--space-3); }
+    .section-intro { color: var(--muted); font-size: 1.075rem; max-width: 60ch; }
 
-    .eyebrow {
-      display: inline-block;
-      font-size: 0.8rem;
-      font-weight: 600;
-      letter-spacing: 0.14em;
-      text-transform: uppercase;
-      color: var(--gold-dark);
-      margin-bottom: var(--space-2);
-    }
-
-    .section-title {
-      font-size: clamp(1.9rem, 5vw, 2.6rem);
-      position: relative;
-      padding-bottom: var(--space-4);
-    }
-    .section-title::after {
-      content: "";
-      position: absolute;
-      left: 50%; bottom: 0;
-      width: 64px; height: 3px;
-      background: var(--gold);
-      transform: translateX(-50%);
-      border-radius: 2px;
-    }
-
-    .section-intro {
-      max-width: 620px;
-      margin: var(--space-4) auto 0;
-      color: var(--muted);
-    }
+    .text-link { color: var(--red); font-weight: 600; text-underline-offset: 3px; }
+    .text-link:hover { color: var(--red-strong); }
 
     /* Buttons */
     .btn {
@@ -155,46 +279,112 @@
       align-items: center;
       justify-content: center;
       gap: var(--space-2);
-      padding: 0.9rem 1.8rem;
-      border-radius: 999px;
+      min-height: 48px;
+      padding: 0.8rem 1.5rem;
+      border-radius: var(--radius-sm);
       font-weight: 600;
       font-size: 1rem;
+      line-height: 1.2;
+      text-decoration: none;
       border: 2px solid transparent;
-      transition: background var(--transition), color var(--transition),
-                  border-color var(--transition), transform var(--transition),
-                  box-shadow var(--transition);
+      transition: background-color var(--transition), color var(--transition), border-color var(--transition);
     }
-    .btn:hover { transform: translateY(-2px); }
+    .btn-primary { background: var(--red); color: var(--on-red); }
+    .btn-primary:hover { background: var(--red-strong); }
+    .btn-secondary { background: transparent; color: var(--ink); border-color: var(--line-strong); }
+    .btn-secondary:hover { border-color: var(--ink); }
+    .btn-block { width: 100%; }
+    .btn[disabled] { opacity: 0.8; cursor: not-allowed; }
 
-    .btn-gold {
-      background: var(--gold);
-      color: var(--navy);
-      box-shadow: 0 8px 20px rgba(201, 162, 39, 0.35);
+    .spinner {
+      display: none;
+      width: 18px; height: 18px;
+      border: 3px solid currentColor;
+      border-right-color: transparent;
+      border-radius: 50%;
+      animation: spin 0.8s linear infinite;
     }
-    .btn-gold:hover { background: #D7B23A; box-shadow: 0 12px 28px rgba(201, 162, 39, 0.45); }
+    .loading .spinner { display: inline-block; }
+    @keyframes spin { to { transform: rotate(360deg); } }
 
-    .btn-outline {
-      background: transparent;
-      color: var(--white);
-      border-color: rgba(255, 255, 255, 0.75);
-    }
-    .btn-outline:hover { background: var(--white); color: var(--navy); border-color: var(--white); }
-
-    .btn-navy { background: var(--navy); color: var(--white); }
-    .btn-navy:hover { background: var(--navy-light); box-shadow: var(--shadow-lg); }
-
-    .btn[disabled] { opacity: 0.85; cursor: not-allowed; transform: none; }
-
-    /* Fade-in on scroll */
+    /* Fade-in on scroll (used sparingly) */
     .fade-in {
       opacity: 0;
-      transform: translateY(28px);
-      transition: opacity 0.8s ease, transform 0.8s ease;
+      transform: translateY(20px);
+      transition: opacity 0.7s ease, transform 0.7s ease;
     }
     .fade-in.visible { opacity: 1; transform: none; }
-    .delay-1 { transition-delay: 0.15s; }
-    .delay-2 { transition-delay: 0.3s; }
-    .delay-3 { transition-delay: 0.45s; }
+    .delay-1 { transition-delay: 0.12s; }
+    .delay-2 { transition-delay: 0.24s; }
+    .delay-3 { transition-delay: 0.36s; }
+
+    /* Shared form fields */
+    .field { display: flex; flex-direction: column; }
+    .field-full { grid-column: 1 / -1; }
+    .field label, .field legend {
+      font-weight: 500;
+      font-size: 0.925rem;
+      margin-bottom: var(--space-2);
+    }
+    .req { color: var(--error); margin-left: 2px; }
+
+    .input,
+    .field input[type="text"],
+    .field input[type="email"],
+    .field input[type="tel"],
+    .field select,
+    .field textarea {
+      width: 100%;
+      min-height: 48px;
+      padding: 0.75rem 1rem;
+      border: 1.5px solid var(--line-strong);
+      border-radius: var(--radius-sm);
+      background: var(--surface);
+      color: var(--ink);
+      transition: border-color var(--transition), box-shadow var(--transition);
+    }
+    .input::placeholder, .field ::placeholder { color: var(--muted); opacity: 0.8; }
+    .field textarea { resize: vertical; min-height: 120px; }
+    .field select {
+      appearance: none;
+      background-image: var(--select-arrow);
+      background-repeat: no-repeat;
+      background-position: right 1rem center;
+      padding-right: 2.5rem;
+    }
+    .input:focus, .field input:focus, .field select:focus, .field textarea:focus {
+      outline: none;
+      border-color: var(--red);
+      box-shadow: 0 0 0 3px var(--red-soft);
+    }
+
+    .error-msg {
+      display: block;
+      min-height: 1.2em;
+      margin-top: var(--space-1);
+      font-size: 0.85rem;
+      color: var(--error);
+    }
+
+    /* Mini lead form (calculator gate, checklist, exit dialog) */
+    .lead-form { display: grid; gap: var(--space-3); }
+    .lead-form .form-msg { font-size: 0.875rem; min-height: 1.3em; }
+    .form-msg.error { color: var(--error); }
+    .form-msg.success { color: var(--success); }
+    .input.invalid { border-color: var(--error); background: var(--error-soft); }
+    .fine-print { font-size: 0.8rem; color: var(--muted); }
+
+    /* Honeypot: hidden from people, visible to naive bots */
+    .hp-field {
+      position: absolute !important;
+      left: -10000px;
+      width: 1px; height: 1px;
+      overflow: hidden;
+    }
+
+    .check-list { display: grid; gap: var(--space-2); }
+    .check-list li { display: flex; gap: var(--space-2); align-items: flex-start; }
+    .check-list svg { width: 20px; height: 20px; flex-shrink: 0; margin-top: 3px; color: var(--red); }
 
     /* =========================================================
        4. HEADER / NAVIGATION
@@ -204,52 +394,59 @@
       top: 0;
       z-index: 100;
       height: var(--nav-h);
-      background: rgba(11, 37, 69, 0.97);
-      transition: box-shadow var(--transition), background var(--transition);
+      background: var(--header-bg);
+      backdrop-filter: saturate(1.4) blur(10px);
+      -webkit-backdrop-filter: saturate(1.4) blur(10px);
+      border-bottom: 1px solid transparent;
+      transition: border-color var(--transition), background-color var(--transition);
     }
-    .site-header.scrolled {
-      background: var(--navy);
-      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.25);
-    }
+    .site-header.scrolled { border-bottom-color: var(--line); }
 
     .nav {
       height: 100%;
       display: flex;
       align-items: center;
       justify-content: space-between;
+      gap: var(--space-4);
     }
 
     .logo {
-      font-family: var(--font-heading);
-      font-size: 1.35rem;
-      font-weight: 700;
-      color: var(--white);
       display: flex;
       align-items: center;
       gap: var(--space-2);
-      line-height: 1.1;
+      font-family: var(--font-display);
+      font-size: 1.3rem;
+      font-weight: 700;
+      line-height: 1;
+      white-space: nowrap;
+      text-decoration: none;
+      color: var(--ink);
     }
-    .logo-mark {
-      width: 34px; height: 34px;
-      flex-shrink: 0;
-    }
-    .logo span { color: var(--gold); }
+    .logo-mark { width: 34px; height: 34px; flex-shrink: 0; color: var(--red); }
+    .logo-sub { font-weight: 500; color: var(--muted); }
 
-    /* Hamburger */
-    .nav-toggle {
+    .nav-actions { display: flex; align-items: center; gap: var(--space-1); }
+
+    .icon-btn {
       width: 44px; height: 44px;
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      align-items: center;
-      gap: 5px;
+      display: grid;
+      place-items: center;
       background: transparent;
-      border: none;
-      border-radius: 8px;
+      border: 1px solid transparent;
+      border-radius: var(--radius-sm);
+      color: var(--ink);
+      transition: border-color var(--transition);
     }
+    .icon-btn:hover { border-color: var(--line-strong); }
+    .icon-btn svg { width: 22px; height: 22px; }
+
+    .theme-toggle[aria-pressed="true"] .icon-moon,
+    .theme-toggle[aria-pressed="false"] .icon-sun { display: none; }
+
+    .nav-toggle { display: flex; flex-direction: column; gap: 5px; place-items: center; justify-content: center; align-items: center; }
     .nav-toggle .bar {
-      width: 24px; height: 2px;
-      background: var(--white);
+      width: 22px; height: 2px;
+      background: currentColor;
       border-radius: 2px;
       transition: transform var(--transition), opacity var(--transition);
     }
@@ -262,115 +459,240 @@
       position: absolute;
       top: var(--nav-h);
       left: 0; right: 0;
-      background: var(--navy);
+      background: var(--surface);
+      border-bottom: 1px solid var(--line);
       display: flex;
       flex-direction: column;
       padding: 0 var(--space-4);
       max-height: 0;
       overflow: hidden;
       visibility: hidden;
-      transition: max-height 0.35s ease, padding 0.35s ease, visibility 0.35s;
-      box-shadow: 0 12px 20px rgba(0, 0, 0, 0.2);
+      transition: max-height 0.3s ease, padding 0.3s ease, visibility 0.3s;
     }
     .nav-menu.open {
-      max-height: 320px;
-      padding: var(--space-3) var(--space-4) var(--space-5);
+      max-height: 520px;
+      padding: var(--space-2) var(--space-4) var(--space-5);
       visibility: visible;
     }
-    .nav-menu a {
+    .nav-menu a:not(.btn) {
       display: block;
       padding: var(--space-3) 0;
-      color: rgba(255, 255, 255, 0.88);
       font-weight: 500;
-      border-bottom: 1px solid rgba(255, 255, 255, 0.08);
-      transition: color var(--transition);
+      text-decoration: none;
+      border-bottom: 1px solid var(--line);
     }
-    .nav-menu a:hover, .nav-menu a.active { color: var(--gold); }
-    .nav-menu .nav-cta {
-      margin-top: var(--space-4);
-      border: none;
-      color: var(--navy);
-      text-align: center;
-      padding: 0.7rem 1.4rem;
-    }
-    .nav-menu .nav-cta:hover { color: var(--navy); }
+    .nav-menu a:not(.btn):hover, .nav-menu a.active { color: var(--red); }
+    .nav-menu .nav-cta { margin-top: var(--space-4); width: 100%; }
 
     /* =========================================================
-       5. HERO
+       5. HERO & RETIREMENT CALCULATOR (primary lead magnet)
        ========================================================= */
-    .hero {
-      position: relative;
-      min-height: 100vh;
-      min-height: 100svh;
-      margin-top: calc(var(--nav-h) * -1);
-      padding: calc(var(--nav-h) + var(--space-7)) 0 var(--space-7);
-      display: flex;
-      align-items: center;
-      color: var(--white);
-      background:
-        linear-gradient(135deg, rgba(11, 37, 69, 0.94) 0%, rgba(11, 37, 69, 0.78) 55%, rgba(19, 49, 92, 0.65) 100%),
-        url("https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?auto=format&fit=crop&w=1920&q=80") center / cover no-repeat;
-    }
+    .hero { padding: var(--space-7) 0 var(--space-8); }
 
-    .hero-content { max-width: 780px; }
-
-    .hero .eyebrow { color: var(--gold); }
+    .hero-grid { display: grid; gap: var(--space-7); align-items: start; }
 
     .hero h1 {
-      color: var(--white);
-      font-size: clamp(2.5rem, 8vw, 4.4rem);
+      font-size: clamp(2.5rem, 6.5vw, 4rem);
+      font-weight: 700;
+      line-height: 1;
+      letter-spacing: -0.015em;
       margin-bottom: var(--space-5);
     }
-    .hero h1 em { font-style: normal; color: var(--gold); }
 
     .hero-sub {
-      font-size: clamp(1.05rem, 2.5vw, 1.25rem);
-      color: rgba(255, 255, 255, 0.85);
-      max-width: 620px;
+      font-size: clamp(1.05rem, 2.5vw, 1.2rem);
+      color: var(--muted);
+      max-width: 54ch;
       margin-bottom: var(--space-6);
     }
 
-    .hero-actions {
-      display: flex;
-      flex-direction: column;
-      gap: var(--space-3);
-      margin-bottom: var(--space-7);
+    .hero-actions { display: flex; flex-direction: column; gap: var(--space-3); margin-bottom: var(--space-6); }
+
+    .hero .check-list { color: var(--muted); font-size: 0.95rem; }
+
+    .calc-card {
+      background: var(--surface);
+      border: 1px solid var(--line);
+      border-radius: var(--radius-lg);
+      box-shadow: var(--shadow);
+      padding: var(--space-5);
+    }
+    .calc-card h2 { font-size: 1.75rem; margin-bottom: var(--space-1); }
+    .calc-card > p { color: var(--muted); font-size: 0.925rem; margin-bottom: var(--space-5); }
+
+    .calc-form { display: grid; gap: var(--space-3); }
+    .range-field { display: grid; gap: var(--space-1); }
+    .range-top { display: flex; justify-content: space-between; align-items: baseline; gap: var(--space-3); }
+    .range-top label { font-size: 0.925rem; font-weight: 500; }
+    .range-top output {
+      font-family: var(--font-display);
+      font-size: 1.15rem;
+      font-weight: 600;
+      font-variant-numeric: tabular-nums;
+    }
+    .range-field input[type="range"] {
+      width: 100%;
+      height: 32px;
+      accent-color: var(--red);
+      cursor: pointer;
     }
 
-    .stats {
+    .calc-result {
       display: grid;
       grid-template-columns: 1fr;
       gap: var(--space-4);
-      padding-top: var(--space-6);
-      border-top: 1px solid rgba(255, 255, 255, 0.18);
+      margin-top: var(--space-5);
+      padding-top: var(--space-5);
+      border-top: 1px solid var(--line);
     }
-    .stat-number {
-      display: block;
-      font-family: var(--font-heading);
-      font-size: clamp(2rem, 5vw, 2.8rem);
+
+    .gauge { width: 100%; max-width: 320px; margin: 0 auto; }
+    .gauge-sun { fill: var(--red); transition: transform 0.6s cubic-bezier(0.22, 0.61, 0.36, 1); }
+    .gauge-rays { stroke: var(--red); stroke-width: 3; stroke-linecap: round; opacity: 0; transition: opacity 0.4s ease; }
+    .gauge.is-full .gauge-rays { opacity: 1; }
+    .gauge-horizon { stroke: var(--ink); stroke-width: 3; stroke-linecap: round; }
+    .gauge-ground { stroke: var(--line-strong); stroke-width: 2; stroke-linecap: round; }
+
+    .score-row { display: flex; align-items: baseline; gap: var(--space-3); flex-wrap: wrap; }
+    .score {
+      font-family: var(--font-display);
+      font-size: 3.5rem;
       font-weight: 700;
-      color: var(--gold);
-      line-height: 1.1;
+      line-height: 1;
+      color: var(--red);
+      font-variant-numeric: tabular-nums;
     }
-    .stat-label {
-      font-size: 0.9rem;
-      letter-spacing: 0.04em;
-      color: rgba(255, 255, 255, 0.8);
+    .score-status { font-weight: 600; }
+    .score-caption { font-size: 0.875rem; color: var(--muted); }
+
+    .calc-figures { grid-column: 1 / -1; display: grid; gap: var(--space-2); font-size: 0.95rem; }
+    .calc-figures div { display: flex; justify-content: space-between; gap: var(--space-3); border-bottom: 1px dashed var(--line); padding-bottom: var(--space-2); }
+    .calc-figures dt { color: var(--muted); }
+    .calc-figures dd { font-weight: 600; font-variant-numeric: tabular-nums; text-align: right; }
+
+    .calc-gate {
+      margin-top: var(--space-5);
+      padding: var(--space-4);
+      background: var(--red-soft);
+      border-radius: var(--radius);
     }
+    .calc-gate h3 { font-size: 1.25rem; margin-bottom: var(--space-1); }
+    .calc-gate > p { font-size: 0.925rem; margin-bottom: var(--space-3); }
+
+    .calc-report { margin-top: var(--space-5); }
+    .calc-report h3 { font-size: 1.25rem; margin-bottom: var(--space-3); }
+    .report-table { width: 100%; border-collapse: collapse; font-size: 0.925rem; font-variant-numeric: tabular-nums; margin-bottom: var(--space-4); }
+    .report-table th, .report-table td { text-align: left; padding: var(--space-2) 0; border-bottom: 1px solid var(--line); }
+    .report-table th:last-child, .report-table td:last-child { text-align: right; }
+    .report-table thead th { font-weight: 600; color: var(--muted); font-size: 0.85rem; }
+    .report-table tr.is-target td { font-weight: 600; color: var(--red); }
+
+    .calc-assumptions { margin-top: var(--space-4); }
 
     /* =========================================================
-       6. TESTIMONIALS CAROUSEL
+       6. STATS BAND
        ========================================================= */
-    .testimonials { background: var(--white); }
-
-    .carousel {
-      --per-view: 1;
-      position: relative;
+    .stats-band { background: var(--surface); border-block: 1px solid var(--line); padding: var(--space-6) 0; }
+    .stats { display: grid; grid-template-columns: 1fr; gap: var(--space-5); }
+    .stats li { display: flex; flex-direction: column; }
+    .stat-number {
+      font-family: var(--font-display);
+      font-size: clamp(2.2rem, 5vw, 3rem);
+      font-weight: 700;
+      color: var(--red);
+      line-height: 1.05;
+      font-variant-numeric: tabular-nums;
     }
+    .stat-label { color: var(--muted); }
+
+    /* =========================================================
+       7. SERVICES
+       ========================================================= */
+    .services-list { display: grid; grid-template-columns: 1fr; gap: 0 var(--space-6); }
+    .service { padding: var(--space-5) 0; border-top: 1px solid var(--line-strong); }
+    .service svg { width: 28px; height: 28px; color: var(--red); margin-bottom: var(--space-3); }
+    .service h3 { font-size: 1.45rem; margin-bottom: var(--space-2); }
+    .service p { color: var(--muted); }
+
+    /* =========================================================
+       8. PROCESS (a genuine sequence, so it is numbered)
+       ========================================================= */
+    .steps { display: grid; gap: var(--space-6); counter-reset: step; }
+    .step { counter-increment: step; display: grid; grid-template-columns: auto 1fr; gap: var(--space-4); }
+    .step::before {
+      content: counter(step);
+      font-family: var(--font-display);
+      font-size: 3.5rem;
+      font-weight: 700;
+      line-height: 0.9;
+      color: var(--red);
+      min-width: 1.2ch;
+    }
+    .step h3 { font-size: 1.4rem; margin-bottom: var(--space-2); }
+    .step p { color: var(--muted); }
+
+    /* =========================================================
+       9. CHECKLIST LEAD MAGNET
+       ========================================================= */
+    .checklist-grid { display: grid; gap: var(--space-7); align-items: start; }
+
+    .sheet {
+      background: var(--surface);
+      border: 1px solid var(--line);
+      border-radius: var(--radius-lg);
+      box-shadow: var(--shadow);
+      padding: var(--space-6) var(--space-5);
+    }
+    .sheet-title { font-size: 1.6rem; margin-bottom: var(--space-1); }
+    .sheet-sub { color: var(--muted); font-size: 0.9rem; margin-bottom: var(--space-5); }
+    .sheet h3:not(.sheet-title) {
+      font-size: 1.15rem;
+      padding-bottom: var(--space-2);
+      margin: var(--space-5) 0 var(--space-3);
+      border-bottom: 2px solid var(--red);
+    }
+    .sheet-sub + h3 { margin-top: 0; }
+    .tick-list { display: grid; gap: var(--space-3); }
+    .tick-list li { display: grid; grid-template-columns: 20px 1fr; gap: var(--space-3); align-items: start; }
+    .tick-list li::before {
+      content: "";
+      width: 18px; height: 18px;
+      margin-top: 4px;
+      border: 2px solid var(--line-strong);
+      border-radius: 4px;
+    }
+
+    .checklist-locked-wrap { position: relative; }
+    .checklist-locked { filter: blur(5px); user-select: none; transition: filter 0.4s ease; }
+    .checklist-lock {
+      position: absolute;
+      inset: 0;
+      display: grid;
+      place-items: center;
+      padding: var(--space-4);
+      text-align: center;
+      background: linear-gradient(to bottom, transparent 10%, var(--surface) 80%);
+      align-items: end;
+    }
+    .checklist-lock p { font-weight: 600; max-width: 30ch; }
+    .checklist-lock svg { width: 28px; height: 28px; margin: 0 auto var(--space-2); color: var(--red); }
+    .is-unlocked .checklist-locked { filter: none; user-select: auto; }
+    .is-unlocked .checklist-lock { display: none; }
+
+    .offer h2 { font-size: clamp(2rem, 5vw, 2.75rem); margin-bottom: var(--space-3); }
+    .offer > p { color: var(--muted); margin-bottom: var(--space-5); }
+    .offer .check-list { margin-bottom: var(--space-6); }
+    .unlocked-panel { display: grid; gap: var(--space-3); }
+    .unlocked-panel .actions { display: flex; flex-direction: column; gap: var(--space-3); }
+
+    /* =========================================================
+       10. TESTIMONIALS CAROUSEL
+       ========================================================= */
+    .carousel { --per-view: 1; position: relative; }
 
     .carousel-viewport {
       overflow: hidden;
-      padding: var(--space-3) 0 var(--space-5);
+      padding: var(--space-2) 0 var(--space-5);
       touch-action: pan-y;
     }
 
@@ -382,7 +704,7 @@
 
     .carousel-slide {
       flex: 0 0 calc(100% / var(--per-view));
-      padding: 0 var(--space-3);
+      padding: 0 var(--space-2);
     }
 
     .testimonial-card {
@@ -390,44 +712,36 @@
       display: flex;
       flex-direction: column;
       background: var(--bg);
-      border: 1px solid #E6EBF2;
+      border: 1px solid var(--line);
       border-radius: var(--radius-lg);
       padding: var(--space-6) var(--space-5);
-      transition: transform var(--transition), box-shadow var(--transition), border-color var(--transition);
     }
-    .testimonial-card:hover {
-      transform: translateY(-6px);
-      box-shadow: var(--shadow-lg);
-      border-color: var(--gold);
-    }
-
-    .quote-icon { width: 38px; height: 38px; color: var(--gold); margin-bottom: var(--space-3); }
 
     .stars { display: flex; gap: 3px; margin-bottom: var(--space-4); }
-    .stars svg { width: 18px; height: 18px; fill: var(--gold); }
+    .stars svg { width: 18px; height: 18px; fill: var(--red); }
 
-    .testimonial-card blockquote {
-      flex: 1;
-      color: var(--text);
-      font-size: 1rem;
-      margin-bottom: var(--space-5);
-    }
+    .testimonial-card blockquote { flex: 1; margin-bottom: var(--space-5); }
 
     .client {
       display: flex;
       align-items: center;
       gap: var(--space-3);
       padding-top: var(--space-4);
-      border-top: 1px solid #E6EBF2;
+      border-top: 1px solid var(--line);
     }
-    .client img {
-      width: 56px; height: 56px;
+    .avatar {
+      width: 48px; height: 48px;
+      flex-shrink: 0;
+      display: grid;
+      place-items: center;
       border-radius: 50%;
-      object-fit: cover;
-      border: 3px solid var(--gold);
-      background: var(--border);
+      background: var(--red-soft);
+      color: var(--red);
+      font-family: var(--font-display);
+      font-weight: 700;
+      font-size: 1.05rem;
     }
-    .client-name { font-weight: 600; color: var(--navy); line-height: 1.3; }
+    .client-name { font-weight: 600; line-height: 1.3; }
     .client-role { font-size: 0.875rem; color: var(--muted); }
 
     .carousel-controls {
@@ -441,130 +755,94 @@
     .carousel-btn {
       width: 46px; height: 46px;
       border-radius: 50%;
-      border: 2px solid var(--navy);
-      background: var(--white);
-      color: var(--navy);
+      border: 2px solid var(--ink);
+      background: var(--surface);
+      color: var(--ink);
       display: grid;
       place-items: center;
-      transition: background var(--transition), color var(--transition), transform var(--transition);
+      transition: background-color var(--transition), color var(--transition);
     }
-    .carousel-btn:hover { background: var(--navy); color: var(--white); transform: scale(1.06); }
+    .carousel-btn:hover { background: var(--ink); color: var(--surface); }
     .carousel-btn svg { width: 20px; height: 20px; }
 
-    .carousel-dots { display: flex; gap: var(--space-2); }
+    .carousel-dots { display: flex; gap: var(--space-1); }
     .carousel-dot {
-      width: 11px; height: 11px;
-      border-radius: 999px;
+      width: 24px; height: 24px;
       border: none;
-      background: var(--border);
-      transition: background var(--transition), width var(--transition);
-    }
-    .carousel-dot:hover { background: var(--gold-dark); }
-    .carousel-dot[aria-current="true"] { background: var(--gold); width: 28px; }
-
-    /* =========================================================
-       7. CONTACT / ENQUIRY FORM
-       ========================================================= */
-    .contact-grid {
-      display: grid;
-      grid-template-columns: 1fr;
-      gap: var(--space-6);
-    }
-
-    .contact-info {
-      background: var(--navy);
-      color: var(--white);
-      border-radius: var(--radius-lg);
-      padding: var(--space-6) var(--space-5);
-      position: relative;
-      overflow: hidden;
-    }
-    .contact-info::after {
-      content: "";
-      position: absolute;
-      width: 260px; height: 260px;
-      right: -90px; bottom: -90px;
-      border-radius: 50%;
-      border: 40px solid rgba(201, 162, 39, 0.12);
-      pointer-events: none;
-    }
-    .contact-info h3 { color: var(--white); font-size: 1.6rem; margin-bottom: var(--space-3); }
-    .contact-info > p { color: rgba(255, 255, 255, 0.78); margin-bottom: var(--space-6); }
-
-    .info-list { display: grid; gap: var(--space-5); position: relative; z-index: 1; }
-    .info-item { display: flex; gap: var(--space-4); align-items: flex-start; }
-    .info-icon {
-      flex-shrink: 0;
-      width: 46px; height: 46px;
-      border-radius: 12px;
-      background: rgba(201, 162, 39, 0.16);
-      color: var(--gold);
+      background: transparent;
       display: grid;
       place-items: center;
-      transition: background var(--transition), color var(--transition);
     }
-    .info-item:hover .info-icon { background: var(--gold); color: var(--navy); }
-    .info-icon svg { width: 22px; height: 22px; }
-    .info-item h4 {
-      font-family: var(--font-body);
-      font-size: 0.8rem;
-      letter-spacing: 0.1em;
-      text-transform: uppercase;
-      color: var(--gold);
-      margin-bottom: 2px;
+    .carousel-dot::before {
+      content: "";
+      width: 10px; height: 10px;
+      border-radius: 999px;
+      background: var(--line-strong);
+      transition: background-color var(--transition), width var(--transition);
     }
-    .info-item p, .info-item a { color: rgba(255, 255, 255, 0.9); }
-    .info-item a:hover { color: var(--gold); }
+    .carousel-dot[aria-current="true"]::before { background: var(--red); width: 22px; }
+
+    .testimonial-note { margin-top: var(--space-4); text-align: center; }
+
+    /* =========================================================
+       11. FAQ
+       ========================================================= */
+    .faq-list { max-width: 820px; border-top: 1px solid var(--line-strong); }
+    .faq-item { border-bottom: 1px solid var(--line-strong); }
+    .faq-item summary {
+      list-style: none;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: var(--space-4);
+      padding: var(--space-5) 0;
+      cursor: pointer;
+      font-family: var(--font-display);
+      font-size: 1.3rem;
+      font-weight: 600;
+      line-height: 1.25;
+    }
+    .faq-item summary::-webkit-details-marker { display: none; }
+    .faq-item summary::after {
+      content: "";
+      width: 14px; height: 14px;
+      flex-shrink: 0;
+      border-right: 2.5px solid var(--red);
+      border-bottom: 2.5px solid var(--red);
+      transform: rotate(45deg) translate(-3px, -3px);
+      transition: transform var(--transition);
+    }
+    .faq-item[open] summary::after { transform: rotate(225deg) translate(-3px, -3px); }
+    .faq-item p { color: var(--muted); padding-bottom: var(--space-5); max-width: 68ch; }
+
+    /* =========================================================
+       12. CONTACT / ENQUIRY FORM
+       ========================================================= */
+    .contact-grid { display: grid; grid-template-columns: 1fr; gap: var(--space-6); }
+
+    .contact-info {
+      background: var(--red);
+      color: var(--on-red);
+      border-radius: var(--radius-lg);
+      padding: var(--space-6) var(--space-5);
+    }
+    .contact-info h3 { color: var(--on-red); font-size: 1.75rem; margin-bottom: var(--space-2); }
+    .contact-info > p { margin-bottom: var(--space-6); opacity: 0.9; }
+
+    .info-list { display: grid; gap: var(--space-5); }
+    .info-item { display: flex; gap: var(--space-4); align-items: flex-start; }
+    .info-icon svg { width: 24px; height: 24px; margin-top: 2px; }
+    .info-item h4 { font-family: var(--font-body); font-size: 0.9rem; font-weight: 600; color: var(--on-red); opacity: 0.85; }
+    .info-item a { text-underline-offset: 3px; }
 
     .form-card {
-      background: var(--white);
+      background: var(--surface);
+      border: 1px solid var(--line);
       border-radius: var(--radius-lg);
-      box-shadow: var(--shadow);
       padding: var(--space-6) var(--space-5);
     }
 
-    .form-grid {
-      display: grid;
-      grid-template-columns: 1fr;
-      gap: var(--space-4) var(--space-5);
-    }
-    .field { display: flex; flex-direction: column; }
-    .field-full { grid-column: 1 / -1; }
-
-    .field label, .field legend {
-      font-weight: 500;
-      font-size: 0.925rem;
-      color: var(--navy);
-      margin-bottom: var(--space-2);
-    }
-    .req { color: var(--error); margin-left: 2px; }
-
-    .field input[type="text"],
-    .field input[type="email"],
-    .field input[type="tel"],
-    .field select,
-    .field textarea {
-      width: 100%;
-      padding: 0.8rem 1rem;
-      border: 1.5px solid var(--border);
-      border-radius: var(--radius);
-      background: var(--white);
-      transition: border-color var(--transition), box-shadow var(--transition);
-    }
-    .field textarea { resize: vertical; min-height: 120px; }
-    .field select {
-      appearance: none;
-      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%230B2545' stroke-width='2' fill='none' stroke-linecap='round'/%3E%3C/svg%3E");
-      background-repeat: no-repeat;
-      background-position: right 1rem center;
-      padding-right: 2.5rem;
-    }
-    .field input:hover, .field select:hover, .field textarea:hover { border-color: #AEB9C8; }
-    .field input:focus, .field select:focus, .field textarea:focus {
-      outline: none;
-      border-color: var(--navy);
-      box-shadow: 0 0 0 3px rgba(11, 37, 69, 0.12);
-    }
+    .form-grid { display: grid; grid-template-columns: 1fr; gap: var(--space-3) var(--space-5); }
 
     fieldset.field { border: none; }
     .radio-group { display: flex; flex-wrap: wrap; gap: var(--space-2) var(--space-5); }
@@ -573,13 +851,12 @@
       align-items: center;
       gap: var(--space-2);
       cursor: pointer;
-      font-weight: 400 !important;
-      color: var(--text) !important;
-      margin-bottom: 0 !important;
+      min-height: 44px;
     }
+    .field .radio-option, .field .checkbox-option { font-weight: 400; margin-bottom: 0; }
     .radio-option input, .checkbox-option input {
-      width: 18px; height: 18px;
-      accent-color: var(--navy);
+      width: 20px; height: 20px;
+      accent-color: var(--red);
       flex-shrink: 0;
     }
     .checkbox-option { align-items: flex-start; font-size: 0.9rem; }
@@ -600,208 +877,165 @@
       outline-offset: 6px;
       border-radius: 4px;
     }
-    .error-msg {
-      display: block;
-      min-height: 1.2em;
-      margin-top: var(--space-1);
-      font-size: 0.82rem;
-      color: var(--error);
-    }
 
-    .form-footer { margin-top: var(--space-5); }
+    .form-footer { margin-top: var(--space-4); }
     .submit-btn { width: 100%; min-height: 54px; }
-
-    .spinner {
-      display: none;
-      width: 20px; height: 20px;
-      border: 3px solid rgba(255, 255, 255, 0.35);
-      border-top-color: var(--white);
-      border-radius: 50%;
-      animation: spin 0.8s linear infinite;
-    }
-    .submit-btn.loading .spinner { display: inline-block; }
-    @keyframes spin { to { transform: rotate(360deg); } }
-
-    .form-note { margin-top: var(--space-3); font-size: 0.8rem; color: var(--muted); text-align: center; }
+    .form-note { margin-top: var(--space-3); font-size: 0.85rem; color: var(--muted); text-align: center; }
 
     /* Success state */
-    .form-success {
-      text-align: center;
-      padding: var(--space-7) var(--space-4);
-      animation: pop 0.5s ease;
-    }
+    .form-success { text-align: center; padding: var(--space-7) var(--space-4); animation: pop 0.4s ease; }
     .form-success:focus { outline: none; }
     .success-icon {
-      width: 76px; height: 76px;
+      width: 72px; height: 72px;
       margin: 0 auto var(--space-5);
       border-radius: 50%;
-      background: rgba(30, 142, 90, 0.12);
+      background: var(--success-soft);
       color: var(--success);
       display: grid;
       place-items: center;
     }
-    .success-icon svg { width: 38px; height: 38px; }
-    .form-success h3 { font-size: 1.8rem; margin-bottom: var(--space-3); }
+    .success-icon svg { width: 36px; height: 36px; }
+    .form-success h3 { font-size: 1.9rem; margin-bottom: var(--space-3); }
     .form-success p { color: var(--muted); max-width: 440px; margin: 0 auto; }
     @keyframes pop {
-      from { opacity: 0; transform: scale(0.95); }
+      from { opacity: 0; transform: scale(0.97); }
       to { opacity: 1; transform: scale(1); }
     }
 
     /* =========================================================
-       8. FOOTER
+       13. FOOTER
        ========================================================= */
     .site-footer {
-      background: var(--navy);
-      color: rgba(255, 255, 255, 0.75);
+      background: var(--surface);
+      border-top: 1px solid var(--line);
       padding-top: var(--space-8);
+      font-size: 0.95rem;
     }
 
-    .footer-grid {
-      display: grid;
-      grid-template-columns: 1fr;
-      gap: var(--space-6);
-      padding-bottom: var(--space-7);
-    }
+    .footer-grid { display: grid; grid-template-columns: 1fr; gap: var(--space-6); padding-bottom: var(--space-7); }
 
-    .footer-col h3 {
-      font-family: var(--font-body);
-      color: var(--white);
-      font-size: 1rem;
-      font-weight: 600;
-      letter-spacing: 0.06em;
-      text-transform: uppercase;
-      margin-bottom: var(--space-4);
-      position: relative;
-      padding-bottom: var(--space-2);
-    }
-    .footer-col h3::after {
-      content: "";
-      position: absolute;
-      left: 0; bottom: 0;
-      width: 32px; height: 2px;
-      background: var(--gold);
-    }
-
-    .footer-about p { margin: var(--space-4) 0 var(--space-5); font-size: 0.95rem; }
+    .footer-col h3 { font-family: var(--font-body); font-size: 1rem; font-weight: 600; margin-bottom: var(--space-3); }
+    .footer-about p { margin: var(--space-4) 0 var(--space-5); color: var(--muted); }
 
     .footer-links li + li { margin-top: var(--space-2); }
-    .footer-links a {
-      font-size: 0.95rem;
-      transition: color var(--transition), padding-left var(--transition);
-    }
-    .footer-links a:hover { color: var(--gold); padding-left: 6px; }
-    .footer-links li { font-size: 0.95rem; }
+    .footer-links a { color: var(--muted); text-decoration: none; }
+    .footer-links a:hover { color: var(--red); text-decoration: underline; }
 
-    .socials { display: flex; gap: var(--space-3); }
+    .socials { display: flex; gap: var(--space-2); }
     .socials a {
-      width: 40px; height: 40px;
+      width: 44px; height: 44px;
       border-radius: 50%;
-      border: 1px solid rgba(255, 255, 255, 0.22);
+      border: 1px solid var(--line-strong);
       display: grid;
       place-items: center;
-      color: var(--white);
-      transition: background var(--transition), color var(--transition), border-color var(--transition), transform var(--transition);
+      transition: background-color var(--transition), color var(--transition), border-color var(--transition);
     }
-    .socials a:hover { background: var(--gold); color: var(--navy); border-color: var(--gold); transform: translateY(-3px); }
+    .socials a:hover { background: var(--red); color: var(--on-red); border-color: var(--red); }
     .socials svg { width: 18px; height: 18px; fill: currentColor; }
 
-    .newsletter p { font-size: 0.95rem; margin-bottom: var(--space-4); }
+    .newsletter p { color: var(--muted); margin-bottom: var(--space-3); }
     .newsletter-form { display: flex; flex-direction: column; gap: var(--space-2); }
-    .newsletter-form input {
-      width: 100%;
-      padding: 0.8rem 1rem;
-      border-radius: var(--radius);
-      border: 1.5px solid rgba(255, 255, 255, 0.2);
-      background: rgba(255, 255, 255, 0.06);
-      color: var(--white);
-      transition: border-color var(--transition), background var(--transition);
+    .newsletter-msg { font-size: 0.875rem; min-height: 1.3em; }
+    .newsletter-msg.error { color: var(--error); }
+    .newsletter-msg.success { color: var(--success); }
+
+    .privacy {
+      border-top: 1px solid var(--line);
+      padding: var(--space-5) 0;
+      color: var(--muted);
+      font-size: 0.875rem;
     }
-    .newsletter-form input::placeholder { color: rgba(255, 255, 255, 0.5); }
-    .newsletter-form input:focus { outline: none; border-color: var(--gold); background: rgba(255, 255, 255, 0.1); }
-    .newsletter-form input.invalid { border-color: #FF7B72; }
-    .newsletter-form .btn { padding: 0.8rem 1.4rem; border-radius: var(--radius); }
-    .newsletter-msg { font-size: 0.85rem; min-height: 1.3em; }
-    .newsletter-msg.error { color: #FF9B94; }
-    .newsletter-msg.success { color: #7ED6A8; }
+    .privacy h3 { font-family: var(--font-body); font-size: 0.95rem; font-weight: 600; color: var(--ink); margin-bottom: var(--space-2); }
+    .privacy p { max-width: 90ch; }
 
     .footer-bottom {
-      border-top: 1px solid rgba(255, 255, 255, 0.12);
-      padding: var(--space-5) 0;
+      border-top: 1px solid var(--line);
+      padding: var(--space-5) 0 var(--space-8);
       font-size: 0.85rem;
-      text-align: center;
+      color: var(--muted);
       display: flex;
       flex-direction: column;
       gap: var(--space-2);
     }
-    .disclaimer { color: rgba(255, 255, 255, 0.55); font-size: 0.8rem; }
 
-    /* Back to top */
+    /* =========================================================
+       14. OVERLAYS: exit-intent dialog, sticky CTA, back to top
+       ========================================================= */
+    .exit-dialog {
+      width: min(92vw, 460px);
+      margin: auto;
+      border: 1px solid var(--line);
+      border-radius: var(--radius-lg);
+      background: var(--surface);
+      color: var(--ink);
+      padding: var(--space-6) var(--space-5) var(--space-5);
+      box-shadow: var(--shadow);
+    }
+    .exit-dialog::backdrop { background: var(--backdrop); }
+    .exit-dialog h2 { font-size: 1.9rem; margin-bottom: var(--space-2); padding-right: var(--space-6); }
+    .exit-dialog > p { color: var(--muted); margin-bottom: var(--space-4); }
+    .dialog-close { position: absolute; top: var(--space-2); right: var(--space-2); }
+
+    .sticky-cta {
+      position: fixed;
+      left: 0; right: 0; bottom: 0;
+      z-index: 95;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: var(--space-2);
+      padding: var(--space-2) var(--space-4) calc(var(--space-2) + env(safe-area-inset-bottom));
+      background: var(--surface);
+      border-top: 1px solid var(--line);
+      transform: translateY(110%);
+      transition: transform 0.3s ease;
+    }
+    .sticky-cta.show { transform: none; }
+    .sticky-cta .btn { padding: 0.6rem 0.75rem; font-size: 0.95rem; }
+
     .back-to-top {
       position: fixed;
       right: var(--space-4);
-      bottom: var(--space-4);
+      bottom: calc(var(--space-4) + 72px);
       z-index: 90;
-      width: 48px; height: 48px;
-      border-radius: 50%;
-      border: none;
-      background: var(--gold);
-      color: var(--navy);
-      display: grid;
-      place-items: center;
-      box-shadow: var(--shadow-lg);
       opacity: 0;
       visibility: hidden;
-      transform: translateY(16px);
-      transition: opacity var(--transition), visibility var(--transition), transform var(--transition), background var(--transition);
+      background: var(--surface);
+      border-color: var(--line-strong);
+      transition: opacity var(--transition), visibility var(--transition);
     }
-    .back-to-top.show { opacity: 1; visibility: visible; transform: none; }
-    .back-to-top:hover { background: #D7B23A; transform: translateY(-3px); }
-    .back-to-top svg { width: 22px; height: 22px; }
+    .back-to-top.show { opacity: 1; visibility: visible; }
 
     /* =========================================================
-       9. RESPONSIVE BREAKPOINTS (mobile-first)
+       15. PRINT (checklist "save as PDF")
+       ========================================================= */
+    @media print {
+      body.printing-checklist > *:not(main),
+      body.printing-checklist main > *:not(#checklist),
+      body.printing-checklist .offer { display: none !important; }
+      body.printing-checklist .sheet { box-shadow: none; border: none; padding: 0; }
+      body.printing-checklist .section { padding: 0; }
+    }
+
+    /* =========================================================
+       16. RESPONSIVE BREAKPOINTS (mobile-first)
        ========================================================= */
 
     /* ---- Tablet: 768px and up ---- */
     @media (min-width: 768px) {
       .container { padding: 0 var(--space-6); }
 
-      .nav-toggle { display: none; }
-      .nav-menu {
-        position: static;
-        flex-direction: row;
-        align-items: center;
-        gap: var(--space-6);
-        max-height: none;
-        overflow: visible;
-        visibility: visible;
-        padding: 0;
-        background: transparent;
-        box-shadow: none;
-      }
-      .nav-menu.open { padding: 0; }
-      .nav-menu a {
-        border: none;
-        padding: var(--space-2) 0;
-        position: relative;
-      }
-      .nav-menu a:not(.nav-cta)::after {
-        content: "";
-        position: absolute;
-        left: 0; bottom: 0;
-        width: 100%; height: 2px;
-        background: var(--gold);
-        transform: scaleX(0);
-        transform-origin: left;
-        transition: transform var(--transition);
-      }
-      .nav-menu a:not(.nav-cta):hover::after,
-      .nav-menu a.active::after { transform: scaleX(1); }
-      .nav-menu .nav-cta { margin-top: 0; }
-
       .hero-actions { flex-direction: row; }
+      .calc-card { padding: var(--space-6); }
+      .calc-result { grid-template-columns: 1fr 1fr; align-items: center; }
+
       .stats { grid-template-columns: repeat(3, 1fr); gap: var(--space-6); }
+
+      .services-list { grid-template-columns: repeat(2, 1fr); }
+      .steps { grid-template-columns: repeat(3, 1fr); }
+      .step { grid-template-columns: 1fr; }
+
+      .sheet { padding: var(--space-7) var(--space-6); }
+      .unlocked-panel .actions { flex-direction: row; flex-wrap: wrap; }
 
       .form-grid { grid-template-columns: 1fr 1fr; }
       .form-card { padding: var(--space-7) var(--space-6); }
@@ -809,17 +1043,47 @@
 
       .footer-grid { grid-template-columns: repeat(2, 1fr); }
       .newsletter-form { flex-direction: row; flex-wrap: wrap; }
-      .newsletter-form input { flex: 1 1 180px; width: auto; }
+      .newsletter-form .input { flex: 1 1 180px; width: auto; }
       .newsletter-msg { flex-basis: 100%; }
+      .footer-bottom { flex-direction: row; justify-content: space-between; padding-bottom: var(--space-5); }
 
-      .footer-bottom { flex-direction: row; justify-content: space-between; text-align: left; }
-
+      .sticky-cta { display: none; }
       .back-to-top { right: var(--space-6); bottom: var(--space-6); }
     }
 
     /* ---- Desktop: 1024px and up ---- */
     @media (min-width: 1024px) {
       .section { padding: 6.5rem 0; }
+
+      .nav-toggle { display: none; }
+      .nav-menu {
+        position: static;
+        flex-direction: row;
+        align-items: center;
+        gap: var(--space-5);
+        max-height: none;
+        overflow: visible;
+        visibility: visible;
+        padding: 0;
+        margin-left: auto;
+        background: transparent;
+        border: none;
+      }
+      .nav-menu.open { padding: 0; }
+      .nav-menu a:not(.btn) { border: none; padding: var(--space-2) 0; font-size: 0.95rem; }
+      .nav-menu a.active { box-shadow: inset 0 -2px 0 var(--red); }
+      .nav-menu .nav-cta { margin-top: 0; width: auto; }
+      .nav-actions { order: 3; }
+
+      .hero { padding: var(--space-8) 0; }
+      .hero-grid { grid-template-columns: 1.05fr 1fr; gap: var(--space-8); }
+      .hero-copy { position: sticky; top: calc(var(--nav-h) + var(--space-6)); }
+
+      .services-list { grid-template-columns: repeat(3, 1fr); }
+
+      .checklist-grid { grid-template-columns: 1.1fr 1fr; gap: var(--space-8); }
+      .checklist-grid .sheet { order: -1; }
+      .offer { position: sticky; top: calc(var(--nav-h) + var(--space-6)); }
 
       .carousel { --per-view: 3; }
 
@@ -840,6 +1104,903 @@
       .fade-in { opacity: 1; transform: none; }
     }
   </style>
+
+  <script>
+    (function () {
+      "use strict";
+
+      /* =========================================================
+         0. SECURITY & THEME BOOTSTRAP (runs before first paint)
+         ========================================================= */
+
+      // Clickjacking defence. GitHub Pages cannot send frame-ancestors / X-Frame-Options headers,
+      // and CSP frame-ancestors is ignored in a <meta> tag, so refuse to render inside a frame.
+      if (window.self !== window.top) {
+        document.documentElement.classList.add("framed");
+        try { window.top.location.replace(window.self.location.href); } catch (e) { /* cross-origin: stay hidden */ }
+      }
+
+      var THEME_KEY = "hw-theme";
+      var UNLOCK_KEY = "hw-checklist-unlocked";
+      var root = document.documentElement;
+      var darkQuery = window.matchMedia("(prefers-color-scheme: dark)");
+      var reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+      // Browser storage only holds non-personal preferences, and can throw in private modes
+      function store(key, value) {
+        try {
+          if (value === null) localStorage.removeItem(key); else localStorage.setItem(key, value);
+        } catch (e) { /* ignore */ }
+      }
+      function recall(key) {
+        try { return localStorage.getItem(key); } catch (e) { return null; }
+      }
+
+      var storedTheme = recall(THEME_KEY);
+      if (storedTheme === "light" || storedTheme === "dark") root.setAttribute("data-theme", storedTheme);
+
+      function effectiveTheme() {
+        var t = root.getAttribute("data-theme");
+        if (t === "light" || t === "dark") return t;
+        return darkQuery.matches ? "dark" : "light";
+      }
+
+      document.addEventListener("DOMContentLoaded", init);
+
+      function init() {
+        var EMAIL_RE = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/;
+        var CONTROL_RE = /[\u0000-\u0008\u000B\u000C\u000E-\u001F\u007F]/g;
+        var NAME_RE = /^[\p{L}\p{M}][\p{L}\p{M} .'’-]{1,79}$/u;
+        var MIN_FILL_MS = 2500;
+        var COOLDOWN_MS = 30000;
+        var pageLoadedAt = Date.now();
+        var lastSubmitAt = {};
+
+        /* ---------------------------------------------------------
+           Shared lead-capture helpers
+           --------------------------------------------------------- */
+
+        // Strip control characters and cap length. Client-side only: the backend must re-validate.
+        function clean(value, max) {
+          return String(value || "").replace(CONTROL_RE, "").trim().slice(0, max);
+        }
+
+        function isValidEmail(v) {
+          return v.length <= 254 && EMAIL_RE.test(v);
+        }
+
+        // Honeypot filled in, or submitted faster than a person could type
+        function looksLikeBot(form) {
+          var hp = form.querySelector(".hp-field input");
+          return Boolean(hp && hp.value) || Date.now() - pageLoadedAt < MIN_FILL_MS;
+        }
+
+        function coolingDown(key) {
+          var now = Date.now();
+          if (lastSubmitAt[key] && now - lastSubmitAt[key] < COOLDOWN_MS) return true;
+          lastSubmitAt[key] = now;
+          return false;
+        }
+
+        // Campaign attribution from UTM parameters, allow-listed and length-capped
+        var attribution = (function () {
+          var out = {};
+          var params;
+          try { params = new URLSearchParams(window.location.search); } catch (e) { return out; }
+          ["utm_source", "utm_medium", "utm_campaign", "utm_term", "utm_content"].forEach(function (key) {
+            var v = clean(params.get(key), 100);
+            if (v && /^[\w.+\- ]+$/.test(v)) out[key] = v;
+          });
+          try { if (document.referrer) out.referrer = new URL(document.referrer).hostname; } catch (e) { /* ignore */ }
+          return out;
+        })();
+
+        // Single integration point for every lead. There is no backend yet: replace the timeout with a
+        // fetch() POST to your CRM or email tool, and add its origin to connect-src in the CSP.
+        function submitLead(kind, fields) {
+          var payload = {
+            kind: kind,
+            fields: fields,
+            attribution: attribution,
+            page: window.location.origin + window.location.pathname,
+            submittedAt: new Date().toISOString()
+          };
+          return new Promise(function (resolve) {
+            setTimeout(function () {
+              console.log("Lead captured (" + kind + "):\n" + JSON.stringify(payload, null, 2));
+              resolve();
+            }, 1200);
+          });
+        }
+
+        function setBusy(btn, busy, busyText) {
+          var label = btn.querySelector(".btn-text");
+          if (!btn.dataset.label) btn.dataset.label = label.textContent;
+          btn.disabled = busy;
+          btn.classList.toggle("loading", busy);
+          btn.setAttribute("aria-busy", String(busy));
+          label.textContent = busy ? busyText : btn.dataset.label;
+        }
+
+        function formatMoney(n) {
+          return "S$" + Math.round(n).toLocaleString("en-SG");
+        }
+
+        /* =========================================================
+           1. NAVIGATION: hamburger toggle, theme toggle, active link
+           ========================================================= */
+        var header = document.getElementById("site-header");
+        var navToggle = document.getElementById("nav-toggle");
+        var navMenu = document.getElementById("nav-menu");
+        var themeToggle = document.getElementById("theme-toggle");
+        var themeMetas = document.querySelectorAll('meta[name="theme-color"]');
+
+        function setMenu(open) {
+          navMenu.classList.toggle("open", open);
+          navToggle.setAttribute("aria-expanded", String(open));
+          navToggle.setAttribute("aria-label", open ? "Close menu" : "Open menu");
+        }
+
+        navToggle.addEventListener("click", function () {
+          setMenu(navToggle.getAttribute("aria-expanded") !== "true");
+        });
+
+        navMenu.querySelectorAll("a").forEach(function (link) {
+          link.addEventListener("click", function () { setMenu(false); });
+        });
+
+        document.addEventListener("keydown", function (e) {
+          if (e.key === "Escape" && navMenu.classList.contains("open")) {
+            setMenu(false);
+            navToggle.focus();
+          }
+        });
+
+        window.addEventListener("resize", function () {
+          if (window.innerWidth >= 1024) setMenu(false);
+        });
+
+        function syncThemeUI() {
+          var dark = effectiveTheme() === "dark";
+          themeToggle.setAttribute("aria-pressed", String(dark));
+          themeMetas.forEach(function (m) { m.setAttribute("content", dark ? "#140D0F" : "#F8F6F6"); });
+        }
+
+        themeToggle.addEventListener("click", function () {
+          var next = effectiveTheme() === "dark" ? "light" : "dark";
+          root.setAttribute("data-theme", next);
+          store(THEME_KEY, next);
+          syncThemeUI();
+        });
+
+        // Follow the OS setting until the visitor makes a choice
+        darkQuery.addEventListener("change", function () {
+          if (!recall(THEME_KEY)) { root.removeAttribute("data-theme"); syncThemeUI(); }
+        });
+        syncThemeUI();
+
+        var navLinks = document.querySelectorAll(".nav-link");
+        var sectionObserver = new IntersectionObserver(function (entries) {
+          entries.forEach(function (entry) {
+            if (!entry.isIntersecting) return;
+            navLinks.forEach(function (link) {
+              var active = link.getAttribute("href") === "#" + entry.target.id;
+              link.classList.toggle("active", active);
+              if (active) link.setAttribute("aria-current", "true");
+              else link.removeAttribute("aria-current");
+            });
+          });
+        }, { rootMargin: "-45% 0px -50% 0px" });
+        ["home", "services", "process", "checklist", "testimonials", "faq", "contact"].forEach(function (id) {
+          sectionObserver.observe(document.getElementById(id));
+        });
+
+        /* =========================================================
+           2. SCROLL HANDLER: header border, back-to-top, sticky CTA
+           ========================================================= */
+        var backToTop = document.getElementById("back-to-top");
+        var stickyCta = document.getElementById("sticky-cta");
+        var contactSection = document.getElementById("contact");
+        var ticking = false;
+
+        function onScroll() {
+          var y = window.scrollY || window.pageYOffset;
+          var contactTop = contactSection.getBoundingClientRect().top;
+          header.classList.toggle("scrolled", y > 10);
+          backToTop.classList.toggle("show", y > 600);
+          // Show the mobile CTA bar after the hero, hide it once the enquiry form is on screen
+          stickyCta.classList.toggle("show", y > 700 && contactTop > window.innerHeight * 0.6);
+          ticking = false;
+        }
+
+        window.addEventListener("scroll", function () {
+          if (!ticking) {
+            window.requestAnimationFrame(onScroll);
+            ticking = true;
+          }
+        }, { passive: true });
+        onScroll();
+
+        backToTop.addEventListener("click", function () {
+          window.scrollTo({ top: 0, behavior: reduceMotion ? "auto" : "smooth" });
+          document.querySelector(".logo").focus({ preventScroll: true });
+        });
+
+        /* =========================================================
+           3. FADE-IN ON SCROLL (IntersectionObserver)
+           ========================================================= */
+        var fadeObserver = new IntersectionObserver(function (entries, obs) {
+          entries.forEach(function (entry) {
+            if (entry.isIntersecting) {
+              entry.target.classList.add("visible");
+              obs.unobserve(entry.target);
+            }
+          });
+        }, { threshold: 0.15, rootMargin: "0px 0px -40px 0px" });
+        document.querySelectorAll(".fade-in").forEach(function (el) { fadeObserver.observe(el); });
+
+        /* =========================================================
+           4. ANIMATED STAT COUNTERS
+           ========================================================= */
+        var counters = document.querySelectorAll(".stat-number");
+
+        function formatCounter(el, value) {
+          el.textContent = (el.dataset.prefix || "") + Math.round(value).toLocaleString("en-US") + (el.dataset.suffix || "");
+        }
+
+        function animateCounter(el) {
+          var target = parseInt(el.dataset.target, 10);
+          if (reduceMotion) { formatCounter(el, target); return; }
+          var duration = 1800;
+          var start = null;
+          function step(ts) {
+            if (!start) start = ts;
+            var progress = Math.min((ts - start) / duration, 1);
+            formatCounter(el, target * (1 - Math.pow(1 - progress, 3)));
+            if (progress < 1) window.requestAnimationFrame(step);
+          }
+          window.requestAnimationFrame(step);
+        }
+
+        var statsObserver = new IntersectionObserver(function (entries, obs) {
+          entries.forEach(function (entry) {
+            if (entry.isIntersecting) {
+              counters.forEach(animateCounter);
+              obs.disconnect();
+            }
+          });
+        }, { threshold: 0.4 });
+        statsObserver.observe(document.getElementById("stats"));
+
+        /* =========================================================
+           5. RETIREMENT CALCULATOR (primary lead magnet)
+           ========================================================= */
+        var GROWTH = 0.05;          // nominal yearly growth before retirement
+        var INFLATION = 0.025;
+        var RETIRED_GROWTH = 0.035; // more cautious growth once retired
+        var LIFE_TO = 90;
+        var realGrowth = (1 + GROWTH) / (1 + INFLATION) - 1;
+        var realRetiredGrowth = (1 + RETIRED_GROWTH) / (1 + INFLATION) - 1;
+
+        var calcForm = document.getElementById("calc-form");
+        var calcInputs = {
+          age: document.getElementById("calc-age"),
+          retire: document.getElementById("calc-retire"),
+          savings: document.getElementById("calc-savings"),
+          monthly: document.getElementById("calc-monthly"),
+          income: document.getElementById("calc-income")
+        };
+        var moneyFields = { savings: true, monthly: true, income: true };
+        var gauge = document.getElementById("gauge");
+        var gaugeSun = document.getElementById("gauge-sun");
+        var scoreEl = document.getElementById("score");
+        var scoreStatus = document.getElementById("score-status");
+        var figPot = document.getElementById("fig-pot");
+        var figNeed = document.getElementById("fig-need");
+        var figExtra = document.getElementById("fig-extra");
+        var calcLive = document.getElementById("calc-live");
+        var reportWrap = document.getElementById("calc-report");
+        var reportBody = document.getElementById("report-body");
+        var reportUnlocked = false;
+        var lastResult = null;
+
+        function readInputs() {
+          var v = {};
+          Object.keys(calcInputs).forEach(function (k) { v[k] = Number(calcInputs[k].value) || 0; });
+          return v;
+        }
+
+        function growthFactor(years) { return Math.pow(1 + realGrowth, years); }
+
+        // All figures are in today's dollars (real terms)
+        function project(v) {
+          var years = Math.max(1, v.retire - v.age);
+          var contribFactor = (growthFactor(years) - 1) / realGrowth;
+          var pot = v.savings * growthFactor(years) + v.monthly * 12 * contribFactor;
+          var retiredYears = Math.max(1, LIFE_TO - v.retire);
+          var need = v.income * 12 * (1 - Math.pow(1 + realRetiredGrowth, -retiredYears)) / realRetiredGrowth;
+          var score = need > 0 ? Math.min(100, Math.round(pot / need * 100)) : 100;
+          var extra = Math.max(0, need - pot) / (12 * contribFactor);
+          return { years: years, pot: pot, need: need, score: score, extra: extra };
+        }
+
+        function potAt(v, yearsFromNow) {
+          return v.savings * growthFactor(yearsFromNow) + v.monthly * 12 * (growthFactor(yearsFromNow) - 1) / realGrowth;
+        }
+
+        function statusFor(score) {
+          if (score >= 85) return "On track";
+          if (score >= 50) return "Getting there";
+          return "Needs attention";
+        }
+
+        function renderOutputs() {
+          Object.keys(calcInputs).forEach(function (k) {
+            var input = calcInputs[k];
+            var text = moneyFields[k] ? formatMoney(input.value) : input.value;
+            document.getElementById(input.id + "-out").textContent = text;
+            input.setAttribute("aria-valuetext", text);
+          });
+        }
+
+        function renderReport(v) {
+          var rows = [];
+          for (var yr = 5; yr < v.retire - v.age; yr += 5) rows.push(yr);
+          rows.push(v.retire - v.age);
+          var cells = rows.map(function (yr) {
+            var tr = document.createElement("tr");
+            var tdAge = document.createElement("td");
+            var tdPot = document.createElement("td");
+            tdAge.textContent = "Age " + (v.age + yr);
+            tdPot.textContent = formatMoney(potAt(v, yr));
+            tr.append(tdAge, tdPot);
+            return tr;
+          });
+          var target = document.createElement("tr");
+          target.className = "is-target";
+          var tdLabel = document.createElement("td");
+          var tdNeed = document.createElement("td");
+          tdLabel.textContent = "Needed at " + v.retire;
+          tdNeed.textContent = formatMoney(lastResult.need);
+          target.append(tdLabel, tdNeed);
+          cells.push(target);
+          reportBody.replaceChildren.apply(reportBody, cells);
+        }
+
+        function updateCalc(announce) {
+          // Retirement age must stay after current age
+          var age = Number(calcInputs.age.value);
+          calcInputs.retire.min = String(Math.max(45, age + 1));
+          if (Number(calcInputs.retire.value) <= age) calcInputs.retire.value = String(age + 1);
+
+          var v = readInputs();
+          var r = project(v);
+          lastResult = r;
+          lastResult.inputs = v;
+          renderOutputs();
+
+          scoreEl.textContent = r.score + "%";
+          scoreStatus.textContent = statusFor(r.score);
+          figPot.textContent = formatMoney(r.pot);
+          figNeed.textContent = formatMoney(r.need);
+          figExtra.textContent = r.extra > 0 ? formatMoney(r.extra) : "Nothing, you are on track";
+
+          // The sun rises over the horizon as the score grows (0% = below the line, 100% = fully risen)
+          gaugeSun.style.transform = "translateY(" + ((1 - r.score / 100) * 86).toFixed(1) + "px)";
+          gauge.classList.toggle("is-full", r.score >= 100);
+          gauge.setAttribute("aria-label", "Retirement readiness " + r.score + "%: " + statusFor(r.score));
+
+          if (reportUnlocked) renderReport(v);
+          if (announce) {
+            calcLive.textContent = "Readiness " + r.score + "%, " + statusFor(r.score) +
+              ". Projected savings " + formatMoney(r.pot) + ", needed " + formatMoney(r.need) + ".";
+          }
+        }
+
+        calcForm.addEventListener("input", function () { updateCalc(false); });
+        calcForm.addEventListener("change", function () { updateCalc(true); });
+        calcForm.addEventListener("submit", function (e) { e.preventDefault(); });
+        updateCalc(false);
+
+        // Gate: the headline result is free, the full breakdown needs an email
+        var calcGateForm = document.getElementById("calc-gate-form");
+        var calcGate = document.getElementById("calc-gate");
+        var calcName = document.getElementById("calc-name");
+        var calcEmail = document.getElementById("calc-email");
+        var calcMsg = document.getElementById("calc-gate-msg");
+        var calcBtn = calcGateForm.querySelector("button[type=submit]");
+
+        function fieldError(input, msgEl, message) {
+          input.classList.toggle("invalid", Boolean(message));
+          input.setAttribute("aria-invalid", String(Boolean(message)));
+          msgEl.className = "form-msg" + (message ? " error" : "");
+          msgEl.textContent = message;
+          if (message) input.focus();
+          return !message;
+        }
+
+        function showReport() {
+          reportUnlocked = true;
+          calcGate.hidden = true;
+          reportWrap.hidden = false;
+          renderReport(lastResult.inputs);
+        }
+
+        calcGateForm.addEventListener("submit", function (e) {
+          e.preventDefault();
+          var name = clean(calcName.value, 80);
+          var email = clean(calcEmail.value, 254);
+          calcName.classList.remove("invalid");
+          if (!name || !NAME_RE.test(name)) { fieldError(calcName, calcMsg, "Please enter your first name (letters only)."); return; }
+          calcName.setAttribute("aria-invalid", "false");
+          if (!isValidEmail(email)) { fieldError(calcEmail, calcMsg, "Please enter a valid email address, like name@example.com."); return; }
+          fieldError(calcEmail, calcMsg, "");
+
+          if (looksLikeBot(calcGateForm)) { showReport(); return; }
+          if (coolingDown("calc")) { calcMsg.className = "form-msg error"; calcMsg.textContent = "You just sent this. Please wait a moment and try again."; return; }
+
+          setBusy(calcBtn, true, "Sending…");
+          var r = lastResult;
+          submitLead("retirement-report", {
+            firstName: name,
+            email: email,
+            age: r.inputs.age,
+            retireAge: r.inputs.retire,
+            score: r.score
+          }).then(function () {
+            setBusy(calcBtn, false);
+            showReport();
+            unlockChecklist(false);
+            document.getElementById("report-title").focus();
+          });
+        });
+
+        // Hand the result to the enquiry form so the adviser has context
+        document.getElementById("report-cta").addEventListener("click", function () {
+          var r = lastResult;
+          var enquiry = document.getElementById("enquiry-form");
+          enquiry.interest.value = "Retirement Planning";
+          if (!enquiry.message.value.trim()) {
+            enquiry.message.value = "My retirement check: " + r.score + "% ready (" + statusFor(r.score) + "). Age " +
+              r.inputs.age + ", hoping to retire at " + r.inputs.retire + " on " + formatMoney(r.inputs.income) +
+              " a month. Projected " + formatMoney(r.pot) + " vs " + formatMoney(r.need) + " needed.";
+          }
+          if (calcName.value && !enquiry.fullName.value) enquiry.fullName.value = clean(calcName.value, 80);
+          if (calcEmail.value && !enquiry.email.value) enquiry.email.value = clean(calcEmail.value, 254);
+        });
+
+        /* =========================================================
+           6. CHECKLIST LEAD MAGNET (partial gate)
+           ========================================================= */
+        var checklistSection = document.getElementById("checklist");
+        var lockedList = document.getElementById("checklist-locked");
+        var checklistForm = document.getElementById("checklist-form");
+        var checklistEmail = document.getElementById("checklist-email");
+        var checklistMsg = document.getElementById("checklist-msg");
+        var checklistBtn = checklistForm.querySelector("button[type=submit]");
+        var unlockedPanel = document.getElementById("unlocked-panel");
+
+        function unlockChecklist(persist) {
+          checklistSection.classList.add("is-unlocked");
+          lockedList.removeAttribute("inert");
+          lockedList.removeAttribute("aria-hidden");
+          checklistForm.hidden = true;
+          unlockedPanel.hidden = false;
+          if (persist !== false) store(UNLOCK_KEY, "1");
+        }
+
+        if (recall(UNLOCK_KEY) === "1") unlockChecklist(false);
+
+        checklistForm.addEventListener("submit", function (e) {
+          e.preventDefault();
+          var email = clean(checklistEmail.value, 254);
+          if (!fieldError(checklistEmail, checklistMsg, isValidEmail(email) ? "" : "Please enter a valid email address, like name@example.com.")) return;
+          if (looksLikeBot(checklistForm)) { unlockChecklist(); return; }
+          if (coolingDown("checklist")) { checklistMsg.className = "form-msg error"; checklistMsg.textContent = "You just sent this. Please wait a moment and try again."; return; }
+
+          setBusy(checklistBtn, true, "Unlocking…");
+          submitLead("retirement-checklist", { email: email }).then(function () {
+            setBusy(checklistBtn, false);
+            unlockChecklist();
+            document.getElementById("unlocked-title").focus();
+          });
+        });
+
+        document.getElementById("print-checklist").addEventListener("click", function () {
+          document.body.classList.add("printing-checklist");
+          window.print();
+        });
+        window.addEventListener("afterprint", function () {
+          document.body.classList.remove("printing-checklist");
+        });
+
+        /* =========================================================
+           7. TESTIMONIAL CAROUSEL
+           ========================================================= */
+        var carousel = document.getElementById("carousel");
+        var track = document.getElementById("carousel-track");
+        var slides = Array.prototype.slice.call(track.children);
+        var dotsWrap = document.getElementById("carousel-dots");
+        var prevBtn = document.getElementById("carousel-prev");
+        var nextBtn = document.getElementById("carousel-next");
+        var AUTOPLAY_MS = 6000;
+        var index = 0;
+        var perView = getPerView();
+        var timer = null;
+        var isHovered = false;
+        var hasFocus = false;
+
+        function getPerView() {
+          return window.matchMedia("(min-width: 1024px)").matches ? 3 : 1;
+        }
+
+        function maxIndex() {
+          return Math.max(0, slides.length - perView);
+        }
+
+        function buildDots() {
+          dotsWrap.replaceChildren();
+          for (var i = 0; i <= maxIndex(); i++) {
+            var dot = document.createElement("button");
+            dot.type = "button";
+            dot.className = "carousel-dot";
+            dot.setAttribute("aria-label", "Go to slide " + (i + 1));
+            dot.dataset.index = i;
+            dot.addEventListener("click", function () {
+              goTo(parseInt(this.dataset.index, 10));
+              restart();
+            });
+            dotsWrap.appendChild(dot);
+          }
+        }
+
+        function update() {
+          track.style.transform = "translateX(-" + (index * 100 / perView) + "%)";
+
+          slides.forEach(function (slide, i) {
+            var visible = i >= index && i < index + perView;
+            slide.setAttribute("aria-hidden", String(!visible));
+            if (visible) slide.removeAttribute("inert");
+            else slide.setAttribute("inert", "");
+          });
+
+          Array.prototype.forEach.call(dotsWrap.children, function (dot, i) {
+            dot.setAttribute("aria-current", i === index ? "true" : "false");
+          });
+        }
+
+        function goTo(i) {
+          var max = maxIndex();
+          if (i > max) i = 0;
+          if (i < 0) i = max;
+          index = i;
+          update();
+        }
+
+        function next() { goTo(index + 1); }
+        function prev() { goTo(index - 1); }
+
+        function start() {
+          if (timer || reduceMotion || isHovered || hasFocus || document.hidden) return;
+          track.setAttribute("aria-live", "off");
+          timer = setInterval(next, AUTOPLAY_MS);
+        }
+        function stop() {
+          clearInterval(timer);
+          timer = null;
+        }
+        function restart() { stop(); start(); }
+
+        nextBtn.addEventListener("click", function () { next(); restart(); });
+        prevBtn.addEventListener("click", function () { prev(); restart(); });
+
+        carousel.addEventListener("mouseenter", function () { isHovered = true; stop(); });
+        carousel.addEventListener("mouseleave", function () { isHovered = false; start(); });
+
+        carousel.addEventListener("focusin", function () {
+          hasFocus = true;
+          stop();
+          track.setAttribute("aria-live", "polite");
+        });
+        carousel.addEventListener("focusout", function (e) {
+          if (!carousel.contains(e.relatedTarget)) {
+            hasFocus = false;
+            start();
+          }
+        });
+
+        carousel.addEventListener("keydown", function (e) {
+          if (e.key === "ArrowRight") { e.preventDefault(); next(); }
+          if (e.key === "ArrowLeft") { e.preventDefault(); prev(); }
+        });
+
+        var touchStartX = 0;
+        var touchStartY = 0;
+        carousel.addEventListener("touchstart", function (e) {
+          touchStartX = e.changedTouches[0].clientX;
+          touchStartY = e.changedTouches[0].clientY;
+          stop();
+        }, { passive: true });
+        carousel.addEventListener("touchend", function (e) {
+          var dx = e.changedTouches[0].clientX - touchStartX;
+          var dy = e.changedTouches[0].clientY - touchStartY;
+          if (Math.abs(dx) > 50 && Math.abs(dx) > Math.abs(dy)) {
+            if (dx < 0) next(); else prev();
+          }
+          start();
+        }, { passive: true });
+
+        document.addEventListener("visibilitychange", function () {
+          if (document.hidden) stop(); else start();
+        });
+
+        var resizeTimer;
+        window.addEventListener("resize", function () {
+          clearTimeout(resizeTimer);
+          resizeTimer = setTimeout(function () {
+            var pv = getPerView();
+            if (pv !== perView) {
+              perView = pv;
+              if (index > maxIndex()) index = maxIndex();
+              buildDots();
+              update();
+            }
+          }, 150);
+        });
+
+        buildDots();
+        update();
+        start();
+
+        /* =========================================================
+           8. ENQUIRY FORM VALIDATION & SUBMISSION
+           ========================================================= */
+        var form = document.getElementById("enquiry-form");
+        var formCard = document.getElementById("form-card");
+        var submitBtn = document.getElementById("submit-btn");
+        var submitted = false;
+
+        // Each validator returns an error string ("" = valid)
+        var validators = {
+          fullName: function () {
+            var v = clean(form.fullName.value, 80);
+            if (!v) return "Please enter your full name.";
+            if (!NAME_RE.test(v)) return "Please use letters, spaces, apostrophes or hyphens only (2 to 80 characters).";
+            return "";
+          },
+          email: function () {
+            var v = clean(form.email.value, 254);
+            if (!v) return "Please enter your email address.";
+            if (!isValidEmail(v)) return "Please enter a valid email address (e.g. name@example.com).";
+            return "";
+          },
+          phone: function () {
+            var raw = clean(form.phone.value, 20);
+            if (!raw) return "Please enter your phone number.";
+            var digits = raw.replace(/[\s\-+()]/g, "");
+            if (!/^\d+$/.test(digits)) return "Phone number may contain digits only.";
+            if (digits.length < 8 || digits.length > 15) return "Phone number must be 8 to 15 digits.";
+            return "";
+          },
+          ageRange: function () {
+            return form.ageRange.value ? "" : "Please select your age range.";
+          },
+          interest: function () {
+            return form.interest.value ? "" : "Please select an area of interest.";
+          },
+          contactMethod: function () {
+            return form.querySelector('input[name="contactMethod"]:checked') ? "" : "Please choose a preferred contact method.";
+          },
+          message: function () {
+            var v = form.message.value;
+            if (v.length > 1000) return "Please keep your message under 1,000 characters.";
+            if ((v.match(/https?:\/\//gi) || []).length > 1) return "Please include no more than one link.";
+            return "";
+          },
+          consent: function () {
+            return form.consent.checked ? "" : "Please agree to be contacted so we can respond to your enquiry.";
+          }
+        };
+
+        // Allow-lists for the select and radio values, so tampered values are rejected
+        var ALLOWED = {
+          ageRange: ["18-24", "25-34", "35-44", "45-54", "55-64", "65+"],
+          interest: ["Retirement Planning", "Investment", "Insurance", "Estate Planning", "Tax Planning"],
+          contactMethod: ["Email", "Phone", "WhatsApp"]
+        };
+
+        function getFieldWrapper(name) {
+          if (name === "contactMethod") return document.getElementById("contactMethod-field");
+          return form.elements[name].closest(".field");
+        }
+
+        function setFieldState(name, message) {
+          var wrapper = getFieldWrapper(name);
+          var errorEl = document.getElementById(name + "-error");
+          var invalid = Boolean(message);
+          wrapper.classList.toggle("invalid", invalid);
+          errorEl.textContent = message;
+
+          if (name === "contactMethod") {
+            form.querySelectorAll('input[name="contactMethod"]').forEach(function (r) {
+              r.setAttribute("aria-invalid", String(invalid));
+            });
+          } else {
+            form.elements[name].setAttribute("aria-invalid", String(invalid));
+          }
+        }
+
+        function validateField(name) {
+          var msg = validators[name]();
+          setFieldState(name, msg);
+          return !msg;
+        }
+
+        Object.keys(validators).forEach(function (name) {
+          var els = name === "contactMethod"
+            ? form.querySelectorAll('input[name="contactMethod"]')
+            : [form.elements[name]];
+
+          Array.prototype.forEach.call(els, function (el) {
+            el.addEventListener("blur", function () {
+              if (name === "contactMethod" && !submitted) return;
+              if (el.value || submitted || el.type === "checkbox") validateField(name);
+            });
+            el.addEventListener(el.tagName === "SELECT" || el.type === "radio" || el.type === "checkbox" ? "change" : "input", function () {
+              if (submitted || getFieldWrapper(name).classList.contains("invalid")) validateField(name);
+            });
+          });
+        });
+
+        form.addEventListener("submit", function (e) {
+          e.preventDefault();
+          submitted = true;
+
+          var firstInvalid = null;
+          Object.keys(validators).forEach(function (name) {
+            var ok = validateField(name);
+            if (!ok && !firstInvalid) firstInvalid = name;
+          });
+
+          if (firstInvalid) {
+            var focusEl = firstInvalid === "contactMethod"
+              ? form.querySelector('input[name="contactMethod"]')
+              : form.elements[firstInvalid];
+            focusEl.focus();
+            return;
+          }
+
+          var method = form.querySelector('input[name="contactMethod"]:checked').value;
+          var data = {
+            fullName: clean(form.fullName.value, 80),
+            email: clean(form.email.value, 254),
+            phone: clean(form.phone.value, 20).replace(/[\s\-()]/g, ""),
+            ageRange: form.ageRange.value,
+            areaOfInterest: form.interest.value,
+            preferredContactMethod: method,
+            message: form.message.value.replace(CONTROL_RE, "").trim().slice(0, 1000),
+            consent: form.consent.checked
+          };
+
+          if (ALLOWED.ageRange.indexOf(data.ageRange) === -1 ||
+              ALLOWED.interest.indexOf(data.areaOfInterest) === -1 ||
+              ALLOWED.contactMethod.indexOf(method) === -1) {
+            setFieldState("interest", "Please choose one of the listed options.");
+            return;
+          }
+
+          // Bots get a fake success so they learn nothing
+          if (looksLikeBot(form)) { showSuccess(data.fullName); return; }
+          if (coolingDown("enquiry")) return;
+
+          setBusy(submitBtn, true, "Sending…");
+          submitLead("enquiry", data).then(function () { showSuccess(data.fullName); });
+        });
+
+        function showSuccess(name) {
+          var wrap = document.getElementById("enquiry-success-tpl").content.firstElementChild.cloneNode(true);
+          // textContent keeps user input out of the HTML parser
+          wrap.querySelector("h3").textContent = "Thank you, " + name.split(" ")[0] + "!";
+          formCard.replaceChildren(wrap);
+          wrap.focus();
+        }
+
+        /* =========================================================
+           9. NEWSLETTER SIGNUP
+           ========================================================= */
+        var newsletterForm = document.getElementById("newsletter-form");
+        var newsletterInput = document.getElementById("newsletter-email");
+        var newsletterMsg = document.getElementById("newsletter-msg");
+
+        newsletterForm.addEventListener("submit", function (e) {
+          e.preventDefault();
+          var v = clean(newsletterInput.value, 254);
+          var error = !v ? "Please enter your email address."
+                    : !isValidEmail(v) ? "Please enter a valid email address."
+                    : "";
+
+          newsletterMsg.classList.remove("error", "success");
+          if (error) {
+            newsletterInput.classList.add("invalid");
+            newsletterInput.setAttribute("aria-invalid", "true");
+            newsletterMsg.classList.add("error");
+            newsletterMsg.textContent = error;
+            newsletterInput.focus();
+            return;
+          }
+
+          newsletterInput.classList.remove("invalid");
+          newsletterInput.setAttribute("aria-invalid", "false");
+          if (!looksLikeBot(newsletterForm) && !coolingDown("newsletter")) submitLead("newsletter", { email: v });
+          newsletterMsg.classList.add("success");
+          newsletterMsg.textContent = "Thanks for subscribing! Check your inbox to confirm.";
+          newsletterForm.reset();
+        });
+
+        newsletterInput.addEventListener("input", function () {
+          if (newsletterInput.classList.contains("invalid") && isValidEmail(newsletterInput.value.trim())) {
+            newsletterInput.classList.remove("invalid");
+            newsletterInput.setAttribute("aria-invalid", "false");
+            newsletterMsg.textContent = "";
+          }
+        });
+
+        /* =========================================================
+           10. EXIT-INTENT OFFER (desktop, once per session)
+           ========================================================= */
+        var exitDialog = document.getElementById("exit-dialog");
+        var exitForm = document.getElementById("exit-form");
+        var exitEmail = document.getElementById("exit-email");
+        var exitMsg = document.getElementById("exit-msg");
+        var exitBtn = exitForm.querySelector("button[type=submit]");
+        var EXIT_KEY = "hw-exit-shown";
+
+        function exitAlreadyShown() {
+          try { return sessionStorage.getItem(EXIT_KEY) === "1"; } catch (e) { return true; }
+        }
+
+        function maybeShowExit(e) {
+          if (e.clientY > 0 || e.relatedTarget) return;
+          if (Date.now() - pageLoadedAt < 8000) return;
+          if (exitAlreadyShown() || checklistSection.classList.contains("is-unlocked")) return;
+          if (formCard.querySelector(".form-success") || typeof exitDialog.showModal !== "function") return;
+          try { sessionStorage.setItem(EXIT_KEY, "1"); } catch (err) { /* ignore */ }
+          exitDialog.showModal();
+        }
+
+        if (window.matchMedia("(hover: hover) and (pointer: fine)").matches) {
+          document.addEventListener("mouseout", maybeShowExit);
+        }
+
+        document.getElementById("exit-close").addEventListener("click", function () { exitDialog.close(); });
+        exitDialog.addEventListener("click", function (e) {
+          if (e.target === exitDialog) exitDialog.close();  // click on backdrop
+        });
+
+        exitForm.addEventListener("submit", function (e) {
+          e.preventDefault();
+          var email = clean(exitEmail.value, 254);
+          if (!fieldError(exitEmail, exitMsg, isValidEmail(email) ? "" : "Please enter a valid email address.")) return;
+          if (looksLikeBot(exitForm)) { exitDialog.close(); return; }
+          if (coolingDown("exit")) return;
+
+          setBusy(exitBtn, true, "Unlocking…");
+          submitLead("retirement-checklist-exit", { email: email }).then(function () {
+            setBusy(exitBtn, false);
+            unlockChecklist();
+            exitDialog.close();
+            checklistSection.scrollIntoView({ behavior: reduceMotion ? "auto" : "smooth" });
+            document.getElementById("unlocked-title").focus({ preventScroll: true });
+          });
+        });
+
+        /* =========================================================
+           11. FOOTER YEAR
+           ========================================================= */
+        document.getElementById("year").textContent = new Date().getFullYear();
+      }
+    })();
+  </script>
 </head>
 <body>
 
@@ -850,27 +2011,35 @@
        ========================================================= -->
   <header class="site-header" id="site-header">
     <nav class="nav container" aria-label="Main navigation">
-      <a href="#home" class="logo" aria-label="Horizon Wealth Planning, back to home">
+      <a href="#home" class="logo" aria-label="Horizon Wealth Planning, back to top">
         <svg class="logo-mark" viewBox="0 0 40 40" aria-hidden="true">
-          <circle cx="20" cy="20" r="18" fill="none" stroke="#C9A227" stroke-width="2"/>
-          <path d="M6 26h28" stroke="#C9A227" stroke-width="2" stroke-linecap="round"/>
-          <path d="M11 26a9 9 0 0 1 18 0" fill="#C9A227"/>
-          <path d="M20 9v4M11.5 12.5l2.5 2.5M28.5 12.5L26 15" stroke="#C9A227" stroke-width="2" stroke-linecap="round"/>
+          <circle cx="20" cy="20" r="18" fill="none" stroke="currentColor" stroke-width="2"/>
+          <path d="M6 26h28" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+          <path d="M11 26a9 9 0 0 1 18 0" fill="currentColor"/>
+          <path d="M20 9v4M11.5 12.5l2.5 2.5M28.5 12.5L26 15" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
         </svg>
-        <div>Horizon <span>Wealth Planning</span></div>
+        <span>Horizon <span class="logo-sub">Wealth Planning</span></span>
       </a>
 
-      <button class="nav-toggle" id="nav-toggle" aria-controls="nav-menu" aria-expanded="false" aria-label="Open menu">
-        <span class="bar"></span>
-        <span class="bar"></span>
-        <span class="bar"></span>
-      </button>
+      <div class="nav-actions">
+        <button class="icon-btn theme-toggle" id="theme-toggle" type="button" aria-pressed="false" aria-label="Dark theme">
+          <svg class="icon-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8z"/></svg>
+          <svg class="icon-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="4.5"/><path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"/></svg>
+        </button>
+        <button class="icon-btn nav-toggle" id="nav-toggle" type="button" aria-controls="nav-menu" aria-expanded="false" aria-label="Open menu">
+          <span class="bar"></span>
+          <span class="bar"></span>
+          <span class="bar"></span>
+        </button>
+      </div>
 
       <ul class="nav-menu" id="nav-menu">
-        <li><a href="#home" class="nav-link">Home</a></li>
-        <li><a href="#testimonials" class="nav-link">Testimonials</a></li>
-        <li><a href="#contact" class="nav-link">Contact</a></li>
-        <li><a href="#contact" class="btn btn-gold nav-cta">Free Consultation</a></li>
+        <li><a href="#services" class="nav-link">Services</a></li>
+        <li><a href="#process" class="nav-link">How it works</a></li>
+        <li><a href="#checklist" class="nav-link">Free checklist</a></li>
+        <li><a href="#testimonials" class="nav-link">Client stories</a></li>
+        <li><a href="#faq" class="nav-link">FAQ</a></li>
+        <li><a href="#contact" class="btn btn-primary nav-cta">Book a free review</a></li>
       </ul>
     </nav>
   </header>
@@ -878,60 +2047,310 @@
   <main id="main">
 
     <!-- =========================================================
-         HERO SECTION
+         HERO & RETIREMENT CALCULATOR
          ========================================================= -->
     <section class="hero" id="home" aria-labelledby="hero-title">
-      <div class="container">
-        <div class="hero-content">
-          <span class="eyebrow fade-in">Independent Financial Advisers</span>
-          <h1 id="hero-title" class="fade-in delay-1">Plan Today. <em>Prosper Tomorrow.</em></h1>
-          <p class="hero-sub fade-in delay-2">
-            Personalised retirement, investment and insurance planning designed around your goals, so you can live confidently today and secure the future you deserve.
+      <div class="container hero-grid">
+        <div class="hero-copy">
+          <h1 id="hero-title">Financial planning that starts with your retirement number.</h1>
+          <p class="hero-sub">
+            Horizon Wealth Planning is an independent financial planning practice in Singapore. Find out in 60 seconds whether your savings, CPF and monthly habits will pay for the retirement you want, then get a plan to close the gap.
           </p>
-          <div class="hero-actions fade-in delay-3">
-            <a href="#contact" class="btn btn-gold">Book a Free Consultation</a>
-            <a href="#testimonials" class="btn btn-outline">Learn More</a>
+          <div class="hero-actions">
+            <a href="#contact" class="btn btn-primary">Book a free review</a>
+            <a href="#checklist" class="btn btn-secondary">Get the free checklist</a>
           </div>
-
-          <ul class="stats fade-in" id="stats" aria-label="Firm highlights">
-            <li>
-              <span class="stat-number" data-target="15" data-suffix="+" aria-hidden="true">0+</span>
-              <span class="sr-only">15+</span>
-              <span class="stat-label">Years Experience</span>
-            </li>
-            <li>
-              <span class="stat-number" data-target="1200" data-suffix="+" aria-hidden="true">0+</span>
-              <span class="sr-only">1,200+</span>
-              <span class="stat-label">Clients Served</span>
-            </li>
-            <li>
-              <span class="stat-number" data-target="500" data-prefix="$" data-suffix="M" aria-hidden="true">$0M</span>
-              <span class="sr-only">$500M</span>
-              <span class="stat-label">Assets Advised</span>
-            </li>
+          <ul class="check-list">
+            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6L9 17l-5-5"/></svg>First consultation free, with no obligation to buy anything</li>
+            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6L9 17l-5-5"/></svg>Not tied to any single insurer or fund house</li>
+            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6L9 17l-5-5"/></svg>Fees explained in writing before you commit</li>
           </ul>
         </div>
+
+        <section class="calc-card" id="calculator" aria-labelledby="calc-title">
+          <h2 id="calc-title">Check your retirement number</h2>
+          <p>Move the sliders and your result updates instantly. Nothing is sent anywhere unless you ask for the full report.</p>
+
+          <form id="calc-form" class="calc-form" novalidate aria-label="Retirement calculator">
+            <div class="range-field">
+              <div class="range-top"><label for="calc-age">Your age</label><output id="calc-age-out" for="calc-age">35</output></div>
+              <input type="range" id="calc-age" name="age" min="20" max="70" step="1" value="35" />
+            </div>
+            <div class="range-field">
+              <div class="range-top"><label for="calc-retire">Age you want to retire</label><output id="calc-retire-out" for="calc-retire">62</output></div>
+              <input type="range" id="calc-retire" name="retire" min="45" max="75" step="1" value="62" />
+            </div>
+            <div class="range-field">
+              <div class="range-top"><label for="calc-savings">Savings and investments so far (include CPF)</label><output id="calc-savings-out" for="calc-savings">S$150,000</output></div>
+              <input type="range" id="calc-savings" name="savings" min="0" max="2000000" step="5000" value="150000" />
+            </div>
+            <div class="range-field">
+              <div class="range-top"><label for="calc-monthly">Amount you save each month</label><output id="calc-monthly-out" for="calc-monthly">S$1,000</output></div>
+              <input type="range" id="calc-monthly" name="monthly" min="0" max="10000" step="100" value="1000" />
+            </div>
+            <div class="range-field">
+              <div class="range-top"><label for="calc-income">Monthly income you want in retirement</label><output id="calc-income-out" for="calc-income">S$4,000</output></div>
+              <input type="range" id="calc-income" name="income" min="1000" max="20000" step="250" value="4000" />
+            </div>
+          </form>
+
+          <div class="calc-result">
+            <svg class="gauge" id="gauge" viewBox="0 0 320 150" role="img" aria-label="Retirement readiness">
+              <defs><clipPath id="sky"><rect x="0" y="0" width="320" height="118"/></clipPath></defs>
+              <g clip-path="url(#sky)">
+                <g class="gauge-sun" id="gauge-sun">
+                  <g class="gauge-rays">
+                    <path d="M160 18v-12M112 36l-9-8M208 36l9-8M96 70h-13M224 70h13"/>
+                  </g>
+                  <circle cx="160" cy="70" r="34"/>
+                </g>
+              </g>
+              <line class="gauge-horizon" x1="16" y1="118" x2="304" y2="118"/>
+              <line class="gauge-ground" x1="64" y1="131" x2="256" y2="131"/>
+              <line class="gauge-ground" x1="112" y1="143" x2="208" y2="143"/>
+            </svg>
+            <div>
+              <div class="score-row">
+                <span class="score" id="score">0%</span>
+                <span class="score-status" id="score-status">Needs attention</span>
+              </div>
+              <p class="score-caption">of the savings you need, in today's dollars</p>
+            </div>
+            <dl class="calc-figures">
+              <div><dt>Projected at retirement</dt><dd id="fig-pot">S$0</dd></div>
+              <div><dt>You'll need about</dt><dd id="fig-need">S$0</dd></div>
+              <div><dt>Extra to save each month</dt><dd id="fig-extra">S$0</dd></div>
+            </dl>
+            <p class="sr-only" id="calc-live" aria-live="polite"></p>
+          </div>
+
+          <div class="calc-gate" id="calc-gate">
+            <h3>Get your full retirement report</h3>
+            <p>See your projected savings at every milestone, plus the 15-point retirement checklist. Free, by email.</p>
+            <form class="lead-form" id="calc-gate-form" novalidate aria-label="Get your retirement report">
+              <label for="calc-name" class="sr-only">First name</label>
+              <input class="input" type="text" id="calc-name" name="firstName" autocomplete="given-name" placeholder="First name" maxlength="80" required aria-describedby="calc-gate-msg" />
+              <label for="calc-email" class="sr-only">Email address</label>
+              <input class="input" type="email" id="calc-email" name="email" autocomplete="email" placeholder="Email address" maxlength="254" required aria-describedby="calc-gate-msg" />
+              <div class="hp-field" aria-hidden="true">
+                <label for="calc-hp">Leave this field empty</label>
+                <input type="text" id="calc-hp" name="website" tabindex="-1" autocomplete="off" />
+              </div>
+              <button type="submit" class="btn btn-primary btn-block"><span class="spinner" aria-hidden="true"></span><span class="btn-text">Email me my report</span></button>
+              <p class="form-msg" id="calc-gate-msg" aria-live="polite"></p>
+              <p class="fine-print">No spam. Unsubscribe with one click. See our <a class="text-link" href="#privacy">privacy notice</a>.</p>
+            </form>
+          </div>
+
+          <div class="calc-report" id="calc-report" hidden>
+            <h3 id="report-title" tabindex="-1">Your savings, milestone by milestone</h3>
+            <table class="report-table">
+              <caption class="sr-only">Projected savings by age, in today's dollars</caption>
+              <thead><tr><th scope="col">When</th><th scope="col">Projected savings</th></tr></thead>
+              <tbody id="report-body"></tbody>
+            </table>
+            <a href="#contact" class="btn btn-primary btn-block" id="report-cta">Book a free review of this result</a>
+          </div>
+
+          <p class="fine-print calc-assumptions">Illustration only, not financial advice. Assumes 5% yearly growth before retirement, 3.5% after, 2.5% inflation, and income needed until age 90. It does not model CPF LIFE payouts separately. Actual returns vary.</p>
+        </section>
+      </div>
+    </section>
+
+    <!-- =========================================================
+         STATS BAND
+         ========================================================= -->
+    <section class="stats-band" aria-label="Firm highlights">
+      <div class="container">
+        <ul class="stats fade-in" id="stats">
+          <li>
+            <span class="stat-number" data-target="15" data-suffix="+" aria-hidden="true">0+</span>
+            <span class="sr-only">15+</span>
+            <span class="stat-label">Years advising Singapore families</span>
+          </li>
+          <li>
+            <span class="stat-number" data-target="1200" data-suffix="+" aria-hidden="true">0+</span>
+            <span class="sr-only">1,200+</span>
+            <span class="stat-label">Clients with a written plan</span>
+          </li>
+          <li>
+            <span class="stat-number" data-target="500" data-prefix="S$" data-suffix="M" aria-hidden="true">S$0M</span>
+            <span class="sr-only">S$500M</span>
+            <span class="stat-label">Assets advised</span>
+          </li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- =========================================================
+         SERVICES
+         ========================================================= -->
+    <section class="section" id="services" aria-labelledby="services-title">
+      <div class="container">
+        <div class="section-head">
+          <h2 class="section-title" id="services-title">Financial planning services in Singapore</h2>
+          <p class="section-intro">One adviser looks at your whole financial picture, so your retirement, investments, insurance and estate plans work together instead of against each other.</p>
+        </div>
+
+        <ul class="services-list">
+          <li class="service">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 18h18M6 18a6 6 0 0 1 12 0M12 5v3M5.6 8.6l2 2M18.4 8.6l-2 2"/></svg>
+            <h3>Retirement planning</h3>
+            <p>Work out how much you need, when you can stop working and how to turn CPF, SRS and savings into a dependable monthly income.</p>
+          </li>
+          <li class="service">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 17l6-6 4 4 8-8M15 7h6v6"/></svg>
+            <h3>Investment planning</h3>
+            <p>A diversified portfolio matched to your goals and risk comfort, with fees you can see. We explain every recommendation in plain English.</p>
+          </li>
+          <li class="service">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3l8 3v6c0 5-3.5 8-8 9-4.5-1-8-4-8-9V6z"/></svg>
+            <h3>Insurance and protection</h3>
+            <p>A review of your hospitalisation, life, critical illness and disability cover to find gaps and remove policies that overlap.</p>
+          </li>
+          <li class="service">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 3h8l4 4v14H7zM15 3v4h4M10 12h6M10 16h6"/></svg>
+            <h3>Estate planning</h3>
+            <p>Wills, CPF nominations and a Lasting Power of Attorney, so the people you love are looked after and your wishes are clear.</p>
+          </li>
+          <li class="service">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="4" y="3" width="16" height="18" rx="2"/><path d="M8 7h8M8 11h2M12 11h2M16 11v6M8 15h2M12 15h2"/></svg>
+            <h3>Tax planning</h3>
+            <p>Use reliefs such as SRS contributions and CPF top-ups where they make sense for your income, so more of your money keeps working for you.</p>
+          </li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- =========================================================
+         PROCESS
+         ========================================================= -->
+    <section class="section section-alt" id="process" aria-labelledby="process-title">
+      <div class="container">
+        <div class="section-head">
+          <h2 class="section-title" id="process-title">How working with us works</h2>
+          <p class="section-intro">Three steps, no jargon and no pressure. You decide at every stage whether to continue.</p>
+        </div>
+        <ol class="steps">
+          <li class="step fade-in">
+            <div>
+              <h3>Free 45-minute review</h3>
+              <p>We talk about your goals, savings, CPF and insurance. You leave knowing where you stand, even if you never work with us.</p>
+            </div>
+          </li>
+          <li class="step fade-in delay-1">
+            <div>
+              <h3>Your written plan</h3>
+              <p>Within two weeks you get a clear plan with the numbers behind it, what we recommend and exactly what it costs.</p>
+            </div>
+          </li>
+          <li class="step fade-in delay-2">
+            <div>
+              <h3>Reviews as life changes</h3>
+              <p>We check in every year, and whenever something big happens: a new job, a child, a property purchase or a change in health.</p>
+            </div>
+          </li>
+        </ol>
+      </div>
+    </section>
+
+    <!-- =========================================================
+         CHECKLIST LEAD MAGNET
+         ========================================================= -->
+    <section class="section" id="checklist" aria-labelledby="checklist-title">
+      <div class="container checklist-grid">
+
+        <div class="offer">
+          <h2 id="checklist-title">Free retirement checklist for Singapore</h2>
+          <p>The 15 things our advisers check first when someone asks "am I on track?". Most people find at least three they have not done yet.</p>
+          <ul class="check-list">
+            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6L9 17l-5-5"/></svg>CPF, SRS and retirement income checks</li>
+            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6L9 17l-5-5"/></svg>Investment and fee review in five steps</li>
+            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6L9 17l-5-5"/></svg>Insurance, will, CPF nomination and LPA</li>
+            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6L9 17l-5-5"/></svg>Takes about 10 minutes, printable as a PDF</li>
+          </ul>
+
+          <form class="lead-form" id="checklist-form" novalidate aria-label="Unlock the retirement checklist">
+            <label for="checklist-email">Email address</label>
+            <input class="input" type="email" id="checklist-email" name="email" autocomplete="email" placeholder="you@example.com" maxlength="254" required aria-describedby="checklist-msg" />
+            <div class="hp-field" aria-hidden="true">
+              <label for="checklist-hp">Leave this field empty</label>
+              <input type="text" id="checklist-hp" name="website" tabindex="-1" autocomplete="off" />
+            </div>
+            <button type="submit" class="btn btn-primary btn-block"><span class="spinner" aria-hidden="true"></span><span class="btn-text">Unlock the full checklist</span></button>
+            <p class="form-msg" id="checklist-msg" aria-live="polite"></p>
+            <p class="fine-print">Free. We'll also send a short monthly newsletter you can leave anytime. See our <a class="text-link" href="#privacy">privacy notice</a>.</p>
+          </form>
+
+          <div class="unlocked-panel" id="unlocked-panel" hidden>
+            <h3 id="unlocked-title" tabindex="-1">Your checklist is unlocked</h3>
+            <p>We've also emailed you a copy. Next step: talk it through with an adviser, free.</p>
+            <div class="actions">
+              <a href="#contact" class="btn btn-primary">Book a free review</a>
+              <button type="button" class="btn btn-secondary" id="print-checklist">Print or save as PDF</button>
+            </div>
+          </div>
+        </div>
+
+        <article class="sheet" aria-labelledby="sheet-title">
+          <h3 class="sheet-title" id="sheet-title">The retirement readiness checklist</h3>
+          <p class="sheet-sub">15 checks for Singaporeans in their 30s, 40s and 50s. Horizon Wealth Planning.</p>
+
+          <h3>Your retirement income</h3>
+          <ul class="tick-list">
+            <li>Write down the monthly income you want in retirement, in today's dollars.</li>
+            <li>Check your CPF statement and estimated CPF LIFE payouts on the CPF website.</li>
+            <li>Decide whether topping up your CPF Retirement Account makes sense for you.</li>
+            <li>See whether SRS contributions could lower your income tax this year.</li>
+            <li>Keep six months of expenses in an emergency fund you can reach quickly.</li>
+          </ul>
+
+          <div class="checklist-locked-wrap">
+            <div class="checklist-locked" id="checklist-locked" inert aria-hidden="true">
+              <h3>Your investments</h3>
+              <ul class="tick-list">
+                <li>List every investment account you own and what you pay in fees each year.</li>
+                <li>Check your mix of shares, bonds and cash still suits the years left before you retire.</li>
+                <li>Gather old policies and accounts you have lost track of.</li>
+                <li>Plan how you will turn savings into a steady monthly income.</li>
+                <li>Clear high-interest debt, such as credit cards, before you stop working.</li>
+              </ul>
+              <h3>Protection and paperwork</h3>
+              <ul class="tick-list">
+                <li>Review your hospital cover: MediShield Life and any Integrated Shield plan.</li>
+                <li>Check your critical illness and disability cover against your income.</li>
+                <li>Make a will, or update it after marriage, divorce or children.</li>
+                <li>Make a CPF nomination so your CPF savings go to the people you choose.</li>
+                <li>Set up a Lasting Power of Attorney (LPA) while you are well.</li>
+              </ul>
+            </div>
+            <div class="checklist-lock">
+              <div>
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="4" y="11" width="16" height="10" rx="2"/><path d="M8 11V7a4 4 0 0 1 8 0v4"/></svg>
+                <p>10 more checks unlock when you enter your email.</p>
+              </div>
+            </div>
+          </div>
+        </article>
       </div>
     </section>
 
     <!-- =========================================================
          TESTIMONIALS SECTION
          ========================================================= -->
-    <section class="section testimonials" id="testimonials" aria-labelledby="testimonials-title">
+    <section class="section section-alt" id="testimonials" aria-labelledby="testimonials-title">
       <div class="container">
-        <div class="section-header fade-in">
-          <span class="eyebrow">Testimonials</span>
-          <h2 class="section-title" id="testimonials-title">What Our Clients Say</h2>
-          <p class="section-intro">Real stories from the families and professionals who trust us with their financial future.</p>
+        <div class="section-head">
+          <h2 class="section-title" id="testimonials-title">What our clients say</h2>
+          <p class="section-intro">Stories from the families and professionals who trust us with their financial future.</p>
         </div>
 
-        <div class="carousel fade-in" id="carousel" role="region" aria-roledescription="carousel" aria-label="Client testimonials" tabindex="0">
+        <div class="carousel" id="carousel" role="region" aria-roledescription="carousel" aria-label="Client testimonials" tabindex="0">
           <div class="carousel-viewport">
             <ul class="carousel-track" id="carousel-track" aria-live="off">
 
               <li class="carousel-slide" role="group" aria-roledescription="slide" aria-label="1 of 6">
                 <article class="testimonial-card">
-                  <svg class="quote-icon" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M9.6 5C5.9 6.4 3.5 9.6 3.5 13.6V19h6.1v-6H6.5c.1-2.5 1.6-4.4 4-5.4L9.6 5zm10.9 0c-3.7 1.4-6.1 4.6-6.1 8.6V19h6.1v-6h-3.1c.1-2.5 1.6-4.4 4-5.4L20.5 5z"/></svg>
                   <div class="stars" role="img" aria-label="Rated 5 out of 5 stars">
                     <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2l3.1 6.3 6.9 1-5 4.9 1.2 6.8L12 17.8 5.8 21l1.2-6.8-5-4.9 6.9-1z"/></svg>
                     <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2l3.1 6.3 6.9 1-5 4.9 1.2 6.8L12 17.8 5.8 21l1.2-6.8-5-4.9 6.9-1z"/></svg>
@@ -941,7 +2360,7 @@
                   </div>
                   <blockquote>"Horizon turned our vague retirement dreams into a clear, step-by-step plan. For the first time, my wife and I actually know when we can stop working, and it's sooner than we thought."</blockquote>
                   <div class="client">
-                    <img src="https://i.pravatar.cc/120?img=12" alt="Portrait of David Tan" width="56" height="56" loading="lazy" />
+                    <span class="avatar" aria-hidden="true">DT</span>
                     <div>
                       <p class="client-name">David Tan</p>
                       <p class="client-role">Operations Director</p>
@@ -952,7 +2371,6 @@
 
               <li class="carousel-slide" role="group" aria-roledescription="slide" aria-label="2 of 6">
                 <article class="testimonial-card">
-                  <svg class="quote-icon" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M9.6 5C5.9 6.4 3.5 9.6 3.5 13.6V19h6.1v-6H6.5c.1-2.5 1.6-4.4 4-5.4L9.6 5zm10.9 0c-3.7 1.4-6.1 4.6-6.1 8.6V19h6.1v-6h-3.1c.1-2.5 1.6-4.4 4-5.4L20.5 5z"/></svg>
                   <div class="stars" role="img" aria-label="Rated 5 out of 5 stars">
                     <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2l3.1 6.3 6.9 1-5 4.9 1.2 6.8L12 17.8 5.8 21l1.2-6.8-5-4.9 6.9-1z"/></svg>
                     <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2l3.1 6.3 6.9 1-5 4.9 1.2 6.8L12 17.8 5.8 21l1.2-6.8-5-4.9 6.9-1z"/></svg>
@@ -962,7 +2380,7 @@
                   </div>
                   <blockquote>"As a busy doctor I never had time to think about insurance properly. They reviewed everything, removed overlapping policies and closed real gaps in my coverage, saving me money every month."</blockquote>
                   <div class="client">
-                    <img src="https://i.pravatar.cc/120?img=47" alt="Portrait of Dr. Priya Nair" width="56" height="56" loading="lazy" />
+                    <span class="avatar" aria-hidden="true">PN</span>
                     <div>
                       <p class="client-name">Dr. Priya Nair</p>
                       <p class="client-role">Paediatrician</p>
@@ -973,7 +2391,6 @@
 
               <li class="carousel-slide" role="group" aria-roledescription="slide" aria-label="3 of 6">
                 <article class="testimonial-card">
-                  <svg class="quote-icon" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M9.6 5C5.9 6.4 3.5 9.6 3.5 13.6V19h6.1v-6H6.5c.1-2.5 1.6-4.4 4-5.4L9.6 5zm10.9 0c-3.7 1.4-6.1 4.6-6.1 8.6V19h6.1v-6h-3.1c.1-2.5 1.6-4.4 4-5.4L20.5 5z"/></svg>
                   <div class="stars" role="img" aria-label="Rated 5 out of 5 stars">
                     <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2l3.1 6.3 6.9 1-5 4.9 1.2 6.8L12 17.8 5.8 21l1.2-6.8-5-4.9 6.9-1z"/></svg>
                     <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2l3.1 6.3 6.9 1-5 4.9 1.2 6.8L12 17.8 5.8 21l1.2-6.8-5-4.9 6.9-1z"/></svg>
@@ -983,7 +2400,7 @@
                   </div>
                   <blockquote>"I sold my business last year and felt overwhelmed. The team built a tax-efficient investment strategy and explained every decision in plain English. I sleep much better now."</blockquote>
                   <div class="client">
-                    <img src="https://i.pravatar.cc/120?img=33" alt="Portrait of Marcus Lim" width="56" height="56" loading="lazy" />
+                    <span class="avatar" aria-hidden="true">ML</span>
                     <div>
                       <p class="client-name">Marcus Lim</p>
                       <p class="client-role">Entrepreneur</p>
@@ -994,7 +2411,6 @@
 
               <li class="carousel-slide" role="group" aria-roledescription="slide" aria-label="4 of 6">
                 <article class="testimonial-card">
-                  <svg class="quote-icon" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M9.6 5C5.9 6.4 3.5 9.6 3.5 13.6V19h6.1v-6H6.5c.1-2.5 1.6-4.4 4-5.4L9.6 5zm10.9 0c-3.7 1.4-6.1 4.6-6.1 8.6V19h6.1v-6h-3.1c.1-2.5 1.6-4.4 4-5.4L20.5 5z"/></svg>
                   <div class="stars" role="img" aria-label="Rated 5 out of 5 stars">
                     <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2l3.1 6.3 6.9 1-5 4.9 1.2 6.8L12 17.8 5.8 21l1.2-6.8-5-4.9 6.9-1z"/></svg>
                     <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2l3.1 6.3 6.9 1-5 4.9 1.2 6.8L12 17.8 5.8 21l1.2-6.8-5-4.9 6.9-1z"/></svg>
@@ -1004,7 +2420,7 @@
                   </div>
                   <blockquote>"They helped us set up an education fund for both our kids and a proper estate plan. Friendly, patient and never pushy. It genuinely feels like they're on our side."</blockquote>
                   <div class="client">
-                    <img src="https://i.pravatar.cc/120?img=45" alt="Portrait of Sarah Williams" width="56" height="56" loading="lazy" />
+                    <span class="avatar" aria-hidden="true">SW</span>
                     <div>
                       <p class="client-name">Sarah Williams</p>
                       <p class="client-role">Secondary School Teacher</p>
@@ -1015,7 +2431,6 @@
 
               <li class="carousel-slide" role="group" aria-roledescription="slide" aria-label="5 of 6">
                 <article class="testimonial-card">
-                  <svg class="quote-icon" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M9.6 5C5.9 6.4 3.5 9.6 3.5 13.6V19h6.1v-6H6.5c.1-2.5 1.6-4.4 4-5.4L9.6 5zm10.9 0c-3.7 1.4-6.1 4.6-6.1 8.6V19h6.1v-6h-3.1c.1-2.5 1.6-4.4 4-5.4L20.5 5z"/></svg>
                   <div class="stars" role="img" aria-label="Rated 5 out of 5 stars">
                     <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2l3.1 6.3 6.9 1-5 4.9 1.2 6.8L12 17.8 5.8 21l1.2-6.8-5-4.9 6.9-1z"/></svg>
                     <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2l3.1 6.3 6.9 1-5 4.9 1.2 6.8L12 17.8 5.8 21l1.2-6.8-5-4.9 6.9-1z"/></svg>
@@ -1025,7 +2440,7 @@
                   </div>
                   <blockquote>"Starting my career, I thought financial planning was only for rich people. Horizon showed me how small, consistent steps now will make a huge difference. Highly recommended!"</blockquote>
                   <div class="client">
-                    <img src="https://i.pravatar.cc/120?img=15" alt="Portrait of Jason Wong" width="56" height="56" loading="lazy" />
+                    <span class="avatar" aria-hidden="true">JW</span>
                     <div>
                       <p class="client-name">Jason Wong</p>
                       <p class="client-role">Software Engineer</p>
@@ -1036,7 +2451,6 @@
 
               <li class="carousel-slide" role="group" aria-roledescription="slide" aria-label="6 of 6">
                 <article class="testimonial-card">
-                  <svg class="quote-icon" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M9.6 5C5.9 6.4 3.5 9.6 3.5 13.6V19h6.1v-6H6.5c.1-2.5 1.6-4.4 4-5.4L9.6 5zm10.9 0c-3.7 1.4-6.1 4.6-6.1 8.6V19h6.1v-6h-3.1c.1-2.5 1.6-4.4 4-5.4L20.5 5z"/></svg>
                   <div class="stars" role="img" aria-label="Rated 5 out of 5 stars">
                     <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2l3.1 6.3 6.9 1-5 4.9 1.2 6.8L12 17.8 5.8 21l1.2-6.8-5-4.9 6.9-1z"/></svg>
                     <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2l3.1 6.3 6.9 1-5 4.9 1.2 6.8L12 17.8 5.8 21l1.2-6.8-5-4.9 6.9-1z"/></svg>
@@ -1046,7 +2460,7 @@
                   </div>
                   <blockquote>"After retiring, our biggest worry was running out of money. Horizon structured a sustainable income plan that lets us travel and enjoy the grandchildren without the anxiety."</blockquote>
                   <div class="client">
-                    <img src="https://i.pravatar.cc/120?img=58" alt="Portrait of Robert and Linda Chen" width="56" height="56" loading="lazy" />
+                    <span class="avatar" aria-hidden="true">RC</span>
                     <div>
                       <p class="client-name">Robert &amp; Linda Chen</p>
                       <p class="client-role">Retirees</p>
@@ -1059,14 +2473,52 @@
           </div>
 
           <div class="carousel-controls">
-            <button class="carousel-btn" id="carousel-prev" aria-controls="carousel-track" aria-label="Previous testimonials">
+            <button class="carousel-btn" id="carousel-prev" type="button" aria-controls="carousel-track" aria-label="Previous testimonials">
               <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 18l-6-6 6-6"/></svg>
             </button>
             <div class="carousel-dots" id="carousel-dots" role="group" aria-label="Choose testimonial slide"></div>
-            <button class="carousel-btn" id="carousel-next" aria-controls="carousel-track" aria-label="Next testimonials">
+            <button class="carousel-btn" id="carousel-next" type="button" aria-controls="carousel-track" aria-label="Next testimonials">
               <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 18l6-6-6-6"/></svg>
             </button>
           </div>
+        </div>
+        <p class="fine-print testimonial-note">Testimonials reflect individual experiences and are not a guarantee of future results.</p>
+      </div>
+    </section>
+
+    <!-- =========================================================
+         FAQ (text must stay in sync with the FAQPage JSON-LD in <head>)
+         ========================================================= -->
+    <section class="section" id="faq" aria-labelledby="faq-title">
+      <div class="container">
+        <div class="section-head">
+          <h2 class="section-title" id="faq-title">Questions people ask before booking</h2>
+        </div>
+        <div class="faq-list">
+          <details class="faq-item">
+            <summary>How much does the first consultation cost?</summary>
+            <p>Nothing. The first 45-minute review is free and there is no obligation. If you decide to work with us, we set out our fees in writing before you commit to anything.</p>
+          </details>
+          <details class="faq-item">
+            <summary>Do I need a lot of money to see a financial planner?</summary>
+            <p>No. Many of our clients start in their twenties and thirties with modest savings. The earlier you plan, the less you need to set aside each month.</p>
+          </details>
+          <details class="faq-item">
+            <summary>What happens in the first meeting?</summary>
+            <p>We talk through your goals, your current savings, CPF, insurance and any worries you have. You leave with a clear picture of where you stand. We do not sell products in the first meeting.</p>
+          </details>
+          <details class="faq-item">
+            <summary>How accurate is the retirement calculator?</summary>
+            <p>It is an illustration based on fixed assumptions: 5% yearly growth, 2.5% inflation and income needed until age 90. Real returns vary, and it does not model CPF LIFE payouts separately. Use it as a starting point, not a plan.</p>
+          </details>
+          <details class="faq-item">
+            <summary>Can you help with CPF and SRS decisions?</summary>
+            <p>Yes. We look at CPF top-ups, CPF LIFE options and whether SRS contributions make sense for your tax bracket as part of your overall retirement plan.</p>
+          </details>
+          <details class="faq-item">
+            <summary>How do you handle my personal data?</summary>
+            <p>We only use your details to reply to you and to send what you asked for. We handle personal data in line with Singapore's PDPA, never sell it, and you can unsubscribe or ask us to delete it at any time.</p>
+          </details>
         </div>
       </div>
     </section>
@@ -1074,19 +2526,17 @@
     <!-- =========================================================
          ENQUIRY / CONTACT SECTION
          ========================================================= -->
-    <section class="section" id="contact" aria-labelledby="contact-title">
+    <section class="section section-alt" id="contact" aria-labelledby="contact-title">
       <div class="container">
-        <div class="section-header fade-in">
-          <span class="eyebrow">Get In Touch</span>
-          <h2 class="section-title" id="contact-title">Start Your Financial Journey</h2>
-          <p class="section-intro">Book a complimentary, no-obligation consultation. Tell us a little about yourself and an adviser will be in touch within one business day.</p>
+        <div class="section-head">
+          <h2 class="section-title" id="contact-title">Book your free financial review</h2>
+          <p class="section-intro">Tell us a little about yourself and an adviser will be in touch within one business day to arrange a time that suits you.</p>
         </div>
 
         <div class="contact-grid">
-          <!-- Contact information -->
-          <aside class="contact-info fade-in" aria-label="Contact information">
-            <h3>Let's Talk</h3>
-            <p>Prefer to reach us directly? We'd love to hear from you.</p>
+          <aside class="contact-info" aria-label="Contact information">
+            <h3>Prefer to talk now?</h3>
+            <p>Call, email or visit us in the CBD.</p>
             <ul class="info-list">
               <li class="info-item">
                 <span class="info-icon" aria-hidden="true">
@@ -1120,65 +2570,65 @@
                   <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg>
                 </span>
                 <div>
-                  <h4>Office Hours</h4>
-                  <p>Mon – Fri: 9:00am – 6:00pm<br />Sat: 10:00am – 2:00pm (by appointment)</p>
+                  <h4>Office hours</h4>
+                  <p>Mon to Fri: 9:00am to 6:00pm<br />Sat: 10:00am to 2:00pm (by appointment)</p>
                 </div>
               </li>
             </ul>
           </aside>
 
-          <!-- Enquiry form -->
-          <div class="form-card fade-in delay-1" id="form-card">
-            <form id="enquiry-form" novalidate aria-label="Enquiry form">
+          <div class="form-card" id="form-card">
+            <noscript><p>Please enable JavaScript to use this form, or email us at hello@horizonwealth.example.</p></noscript>
+            <form id="enquiry-form" method="post" novalidate aria-label="Enquiry form">
               <div class="form-grid">
 
                 <div class="field">
-                  <label for="fullName">Full Name<span class="req" aria-hidden="true">*</span></label>
-                  <input type="text" id="fullName" name="fullName" autocomplete="name" placeholder="e.g. Jane Tan" required aria-required="true" aria-describedby="fullName-error" />
+                  <label for="fullName">Full name<span class="req" aria-hidden="true">*</span></label>
+                  <input type="text" id="fullName" name="fullName" autocomplete="name" placeholder="e.g. Jane Tan" maxlength="80" required aria-required="true" aria-describedby="fullName-error" />
                   <small class="error-msg" id="fullName-error" aria-live="polite"></small>
                 </div>
 
                 <div class="field">
                   <label for="email">Email<span class="req" aria-hidden="true">*</span></label>
-                  <input type="email" id="email" name="email" autocomplete="email" placeholder="you@example.com" required aria-required="true" aria-describedby="email-error" />
+                  <input type="email" id="email" name="email" autocomplete="email" placeholder="you@example.com" maxlength="254" required aria-required="true" aria-describedby="email-error" />
                   <small class="error-msg" id="email-error" aria-live="polite"></small>
                 </div>
 
                 <div class="field">
                   <label for="phone">Phone<span class="req" aria-hidden="true">*</span></label>
-                  <input type="tel" id="phone" name="phone" autocomplete="tel" inputmode="numeric" placeholder="e.g. 91234567" required aria-required="true" aria-describedby="phone-error" />
+                  <input type="tel" id="phone" name="phone" autocomplete="tel" inputmode="tel" placeholder="e.g. 9123 4567" maxlength="20" required aria-required="true" aria-describedby="phone-error" />
                   <small class="error-msg" id="phone-error" aria-live="polite"></small>
                 </div>
 
                 <div class="field">
-                  <label for="ageRange">Age Range<span class="req" aria-hidden="true">*</span></label>
+                  <label for="ageRange">Age range<span class="req" aria-hidden="true">*</span></label>
                   <select id="ageRange" name="ageRange" required aria-required="true" aria-describedby="ageRange-error">
                     <option value="">Select your age range</option>
-                    <option value="18-24">18 – 24</option>
-                    <option value="25-34">25 – 34</option>
-                    <option value="35-44">35 – 44</option>
-                    <option value="45-54">45 – 54</option>
-                    <option value="55-64">55 – 64</option>
+                    <option value="18-24">18 to 24</option>
+                    <option value="25-34">25 to 34</option>
+                    <option value="35-44">35 to 44</option>
+                    <option value="45-54">45 to 54</option>
+                    <option value="55-64">55 to 64</option>
                     <option value="65+">65+</option>
                   </select>
                   <small class="error-msg" id="ageRange-error" aria-live="polite"></small>
                 </div>
 
                 <div class="field field-full">
-                  <label for="interest">Area of Interest<span class="req" aria-hidden="true">*</span></label>
+                  <label for="interest">What would you like help with?<span class="req" aria-hidden="true">*</span></label>
                   <select id="interest" name="interest" required aria-required="true" aria-describedby="interest-error">
-                    <option value="">Select an area of interest</option>
-                    <option value="Retirement Planning">Retirement Planning</option>
-                    <option value="Investment">Investment</option>
-                    <option value="Insurance">Insurance</option>
-                    <option value="Estate Planning">Estate Planning</option>
-                    <option value="Tax Planning">Tax Planning</option>
+                    <option value="">Select an area</option>
+                    <option value="Retirement Planning">Retirement planning</option>
+                    <option value="Investment">Investment planning</option>
+                    <option value="Insurance">Insurance and protection</option>
+                    <option value="Estate Planning">Estate planning</option>
+                    <option value="Tax Planning">Tax planning</option>
                   </select>
                   <small class="error-msg" id="interest-error" aria-live="polite"></small>
                 </div>
 
                 <fieldset class="field field-full" id="contactMethod-field" aria-describedby="contactMethod-error">
-                  <legend>Preferred Contact Method<span class="req" aria-hidden="true">*</span></legend>
+                  <legend>Preferred contact method<span class="req" aria-hidden="true">*</span></legend>
                   <div class="radio-group">
                     <label class="radio-option"><input type="radio" name="contactMethod" value="Email" /> Email</label>
                     <label class="radio-option"><input type="radio" name="contactMethod" value="Phone" /> Phone</label>
@@ -1189,14 +2639,19 @@
 
                 <div class="field field-full">
                   <label for="message">Message</label>
-                  <textarea id="message" name="message" rows="5" placeholder="Tell us about your goals or any questions you have…" aria-describedby="message-error"></textarea>
+                  <textarea id="message" name="message" rows="5" maxlength="1000" placeholder="Tell us about your goals or any questions you have…" aria-describedby="message-error"></textarea>
                   <small class="error-msg" id="message-error" aria-live="polite"></small>
+                </div>
+
+                <div class="hp-field" aria-hidden="true">
+                  <label for="enquiry-hp">Leave this field empty</label>
+                  <input type="text" id="enquiry-hp" name="website" tabindex="-1" autocomplete="off" />
                 </div>
 
                 <div class="field field-full">
                   <label class="checkbox-option" for="consent">
                     <input type="checkbox" id="consent" name="consent" required aria-required="true" aria-describedby="consent-error" />
-                    <span>I agree to be contacted by Horizon Wealth Planning regarding my enquiry and understand my data will be handled in line with the privacy policy.<span class="req" aria-hidden="true">*</span></span>
+                    <span>I agree to be contacted by Horizon Wealth Planning about my enquiry and understand my data will be handled in line with the <a class="text-link" href="#privacy">privacy notice</a>.<span class="req" aria-hidden="true">*</span></span>
                   </label>
                   <small class="error-msg" id="consent-error" aria-live="polite"></small>
                 </div>
@@ -1204,13 +2659,23 @@
               </div>
 
               <div class="form-footer">
-                <button type="submit" class="btn btn-navy submit-btn" id="submit-btn">
+                <button type="submit" class="btn btn-primary submit-btn" id="submit-btn">
                   <span class="spinner" aria-hidden="true"></span>
-                  <span class="btn-text">Send Enquiry</span>
+                  <span class="btn-text">Request my free review</span>
                 </button>
-                <p class="form-note">Fields marked <span class="req">*</span> are required. We never share your details.</p>
+                <p class="form-note">Fields marked <span class="req">*</span> are required. We never share or sell your details.</p>
               </div>
             </form>
+
+            <template id="enquiry-success-tpl">
+              <div class="form-success" role="status" tabindex="-1">
+                <div class="success-icon" aria-hidden="true">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg>
+                </div>
+                <h3></h3>
+                <p>Your request has been received. An adviser will be in touch within one business day to arrange your free review.</p>
+              </div>
+            </template>
           </div>
         </div>
       </div>
@@ -1225,18 +2690,17 @@
     <div class="container">
       <div class="footer-grid">
 
-        <!-- Column 1: Logo & description -->
         <div class="footer-col footer-about">
-          <a href="#home" class="logo" aria-label="Horizon Wealth Planning, back to home">
+          <a href="#home" class="logo" aria-label="Horizon Wealth Planning, back to top">
             <svg class="logo-mark" viewBox="0 0 40 40" aria-hidden="true">
-              <circle cx="20" cy="20" r="18" fill="none" stroke="#C9A227" stroke-width="2"/>
-              <path d="M6 26h28" stroke="#C9A227" stroke-width="2" stroke-linecap="round"/>
-              <path d="M11 26a9 9 0 0 1 18 0" fill="#C9A227"/>
-              <path d="M20 9v4M11.5 12.5l2.5 2.5M28.5 12.5L26 15" stroke="#C9A227" stroke-width="2" stroke-linecap="round"/>
+              <circle cx="20" cy="20" r="18" fill="none" stroke="currentColor" stroke-width="2"/>
+              <path d="M6 26h28" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+              <path d="M11 26a9 9 0 0 1 18 0" fill="currentColor"/>
+              <path d="M20 9v4M11.5 12.5l2.5 2.5M28.5 12.5L26 15" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
             </svg>
-            <div>Horizon <span>Wealth Planning</span></div>
+            <span>Horizon <span class="logo-sub">Wealth Planning</span></span>
           </a>
-          <p>Independent, fee-transparent financial planning for individuals and families. We help you grow, protect and pass on your wealth with confidence.</p>
+          <p>Independent, fee-transparent financial planning for individuals and families in Singapore. We help you grow, protect and pass on your wealth with confidence.</p>
           <div class="socials">
             <a href="#" aria-label="Horizon Wealth Planning on Facebook">
               <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M13.5 21v-7.5h2.5l.4-3h-2.9V8.6c0-.9.3-1.5 1.5-1.5h1.5V4.4c-.3 0-1.2-.1-2.2-.1-2.2 0-3.7 1.3-3.7 3.8v2.4H8v3h2.6V21h2.9z"/></svg>
@@ -1253,533 +2717,86 @@
           </div>
         </div>
 
-        <!-- Column 2: Quick links -->
-        <nav class="footer-col" aria-label="Footer quick links">
-          <h3>Quick Links</h3>
+        <nav class="footer-col" aria-label="Footer links">
+          <h3>Explore</h3>
           <ul class="footer-links">
-            <li><a href="#home">Home</a></li>
-            <li><a href="#testimonials">Testimonials</a></li>
-            <li><a href="#contact">Contact</a></li>
-            <li><a href="#contact">Book a Consultation</a></li>
+            <li><a href="#calculator">Retirement calculator</a></li>
+            <li><a href="#checklist">Retirement checklist</a></li>
+            <li><a href="#process">How it works</a></li>
+            <li><a href="#faq">FAQ</a></li>
+            <li><a href="#contact">Book a free review</a></li>
           </ul>
         </nav>
 
-        <!-- Column 3: Services -->
         <div class="footer-col">
           <h3>Services</h3>
           <ul class="footer-links">
-            <li>Retirement Planning</li>
-            <li>Investment Management</li>
-            <li>Insurance Planning</li>
-            <li>Estate Planning</li>
-            <li>Tax Planning</li>
+            <li><a href="#services">Retirement planning</a></li>
+            <li><a href="#services">Investment planning</a></li>
+            <li><a href="#services">Insurance and protection</a></li>
+            <li><a href="#services">Estate planning</a></li>
+            <li><a href="#services">Tax planning</a></li>
           </ul>
         </div>
 
-        <!-- Column 4: Newsletter -->
         <div class="footer-col newsletter">
-          <h3>Newsletter</h3>
-          <p>Get monthly insights on markets, retirement and smart money habits. No spam, ever.</p>
-          <form class="newsletter-form" id="newsletter-form" novalidate>
+          <h3>Monthly money notes</h3>
+          <p>One short email a month on CPF, markets and retirement habits. No spam, ever.</p>
+          <form class="newsletter-form" id="newsletter-form" novalidate aria-label="Newsletter signup">
             <label for="newsletter-email" class="sr-only">Email address</label>
-            <input type="email" id="newsletter-email" name="newsletterEmail" placeholder="Your email address" autocomplete="email" aria-describedby="newsletter-msg" />
-            <button type="submit" class="btn btn-gold">Subscribe</button>
+            <input class="input" type="email" id="newsletter-email" name="newsletterEmail" placeholder="Your email address" autocomplete="email" maxlength="254" aria-describedby="newsletter-msg" />
+            <div class="hp-field" aria-hidden="true">
+              <label for="newsletter-hp">Leave this field empty</label>
+              <input type="text" id="newsletter-hp" name="website" tabindex="-1" autocomplete="off" />
+            </div>
+            <button type="submit" class="btn btn-primary">Subscribe</button>
             <p class="newsletter-msg" id="newsletter-msg" aria-live="polite"></p>
           </form>
         </div>
 
       </div>
 
-      <!-- Bottom bar -->
+      <section class="privacy" id="privacy" aria-labelledby="privacy-title">
+        <h3 id="privacy-title">Privacy notice</h3>
+        <p>We collect only the details you choose to give us in our forms, and use them to reply to you, send what you requested and, if you agree, our newsletter. We handle personal data in line with Singapore's Personal Data Protection Act (PDPA), never sell it, and do not use advertising trackers on this site. To see, correct or delete your data, or to withdraw consent, email hello@horizonwealth.example.</p>
+      </section>
+
       <div class="footer-bottom">
-        <p>&copy; <span id="year">2025</span> Horizon Wealth Planning. All rights reserved.</p>
-        <p class="disclaimer">This website is for informational purposes only and does not constitute financial advice.</p>
+        <p>&copy; <span id="year">2026</span> Horizon Wealth Planning. All rights reserved.</p>
+        <p>The information on this website is general in nature and does not take into account your specific objectives, financial situation or needs. It is not financial advice.</p>
       </div>
     </div>
   </footer>
 
+  <!-- Exit-intent offer -->
+  <dialog class="exit-dialog" id="exit-dialog" aria-labelledby="exit-title">
+    <button type="button" class="icon-btn dialog-close" id="exit-close" aria-label="Close">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18"/></svg>
+    </button>
+    <h2 id="exit-title">Take the retirement checklist with you</h2>
+    <p>15 checks our advisers use to see if someone is on track. Free, and it takes about 10 minutes.</p>
+    <form class="lead-form" id="exit-form" novalidate aria-label="Get the retirement checklist">
+      <label for="exit-email" class="sr-only">Email address</label>
+      <input class="input" type="email" id="exit-email" name="email" autocomplete="email" placeholder="you@example.com" maxlength="254" required aria-describedby="exit-msg" />
+      <div class="hp-field" aria-hidden="true">
+        <label for="exit-hp">Leave this field empty</label>
+        <input type="text" id="exit-hp" name="website" tabindex="-1" autocomplete="off" />
+      </div>
+      <button type="submit" class="btn btn-primary btn-block"><span class="spinner" aria-hidden="true"></span><span class="btn-text">Send me the checklist</span></button>
+      <p class="form-msg" id="exit-msg" aria-live="polite"></p>
+    </form>
+  </dialog>
+
+  <!-- Mobile sticky call to action -->
+  <div class="sticky-cta" id="sticky-cta">
+    <a href="#calculator" class="btn btn-secondary">Check my number</a>
+    <a href="#contact" class="btn btn-primary">Free review</a>
+  </div>
+
   <!-- Back to top button -->
-  <button class="back-to-top" id="back-to-top" aria-label="Back to top">
+  <button class="icon-btn back-to-top" id="back-to-top" type="button" aria-label="Back to top">
     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M18 15l-6-6-6 6"/></svg>
   </button>
 
-  <script>
-    (function () {
-      "use strict";
-
-      var EMAIL_RE = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/;
-      var reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-
-      /* =========================================================
-         1. NAVIGATION: hamburger toggle & scrolled header
-         ========================================================= */
-      var header = document.getElementById("site-header");
-      var navToggle = document.getElementById("nav-toggle");
-      var navMenu = document.getElementById("nav-menu");
-
-      function setMenu(open) {
-        navMenu.classList.toggle("open", open);
-        navToggle.setAttribute("aria-expanded", String(open));
-        navToggle.setAttribute("aria-label", open ? "Close menu" : "Open menu");
-      }
-
-      navToggle.addEventListener("click", function () {
-        setMenu(navToggle.getAttribute("aria-expanded") !== "true");
-      });
-
-      // Close menu when a link is clicked
-      navMenu.querySelectorAll("a").forEach(function (link) {
-        link.addEventListener("click", function () { setMenu(false); });
-      });
-
-      // Close menu on Escape
-      document.addEventListener("keydown", function (e) {
-        if (e.key === "Escape" && navMenu.classList.contains("open")) {
-          setMenu(false);
-          navToggle.focus();
-        }
-      });
-
-      // Reset menu state when resizing up to desktop
-      window.addEventListener("resize", function () {
-        if (window.innerWidth >= 768) setMenu(false);
-      });
-
-      // Highlight the nav link for the section in view
-      var navLinks = document.querySelectorAll(".nav-link");
-      var sectionObserver = new IntersectionObserver(function (entries) {
-        entries.forEach(function (entry) {
-          if (!entry.isIntersecting) return;
-          navLinks.forEach(function (link) {
-            var active = link.getAttribute("href") === "#" + entry.target.id;
-            link.classList.toggle("active", active);
-            if (active) link.setAttribute("aria-current", "true");
-            else link.removeAttribute("aria-current");
-          });
-        });
-      }, { rootMargin: "-45% 0px -50% 0px" });
-      ["home", "testimonials", "contact"].forEach(function (id) {
-        sectionObserver.observe(document.getElementById(id));
-      });
-
-      /* =========================================================
-         2. SCROLL HANDLER: header shadow & back-to-top
-         ========================================================= */
-      var backToTop = document.getElementById("back-to-top");
-      var ticking = false;
-
-      function onScroll() {
-        var y = window.scrollY || window.pageYOffset;
-        header.classList.toggle("scrolled", y > 10);
-        backToTop.classList.toggle("show", y > 400);
-        ticking = false;
-      }
-
-      window.addEventListener("scroll", function () {
-        if (!ticking) {
-          window.requestAnimationFrame(onScroll);
-          ticking = true;
-        }
-      }, { passive: true });
-      onScroll();
-
-      backToTop.addEventListener("click", function () {
-        window.scrollTo({ top: 0, behavior: reduceMotion ? "auto" : "smooth" });
-        document.querySelector(".logo").focus({ preventScroll: true });
-      });
-
-      /* =========================================================
-         3. FADE-IN ON SCROLL (IntersectionObserver)
-         ========================================================= */
-      var fadeEls = document.querySelectorAll(".fade-in");
-      var fadeObserver = new IntersectionObserver(function (entries, obs) {
-        entries.forEach(function (entry) {
-          if (entry.isIntersecting) {
-            entry.target.classList.add("visible");
-            obs.unobserve(entry.target);
-          }
-        });
-      }, { threshold: 0.15, rootMargin: "0px 0px -40px 0px" });
-      fadeEls.forEach(function (el) { fadeObserver.observe(el); });
-
-      /* =========================================================
-         4. ANIMATED STAT COUNTERS
-         ========================================================= */
-      var counters = document.querySelectorAll(".stat-number");
-
-      function formatCounter(el, value) {
-        var prefix = el.dataset.prefix || "";
-        var suffix = el.dataset.suffix || "";
-        el.textContent = prefix + Math.round(value).toLocaleString("en-US") + suffix;
-      }
-
-      function animateCounter(el) {
-        var target = parseInt(el.dataset.target, 10);
-        if (reduceMotion) { formatCounter(el, target); return; }
-        var duration = 2000;
-        var start = null;
-        function step(ts) {
-          if (!start) start = ts;
-          var progress = Math.min((ts - start) / duration, 1);
-          var eased = 1 - Math.pow(1 - progress, 3); // easeOutCubic
-          formatCounter(el, target * eased);
-          if (progress < 1) window.requestAnimationFrame(step);
-        }
-        window.requestAnimationFrame(step);
-      }
-
-      var statsObserver = new IntersectionObserver(function (entries, obs) {
-        entries.forEach(function (entry) {
-          if (entry.isIntersecting) {
-            counters.forEach(animateCounter);
-            obs.disconnect();
-          }
-        });
-      }, { threshold: 0.4 });
-      statsObserver.observe(document.getElementById("stats"));
-
-      /* =========================================================
-         5. TESTIMONIAL CAROUSEL
-         ========================================================= */
-      var carousel = document.getElementById("carousel");
-      var track = document.getElementById("carousel-track");
-      var slides = Array.prototype.slice.call(track.children);
-      var dotsWrap = document.getElementById("carousel-dots");
-      var prevBtn = document.getElementById("carousel-prev");
-      var nextBtn = document.getElementById("carousel-next");
-      var AUTOPLAY_MS = 5000;
-      var index = 0;
-      var perView = getPerView();
-      var timer = null;
-      var isHovered = false;
-      var hasFocus = false;
-
-      function getPerView() {
-        return window.matchMedia("(min-width: 1024px)").matches ? 3 : 1;
-      }
-
-      function maxIndex() {
-        return Math.max(0, slides.length - perView);
-      }
-
-      function buildDots() {
-        dotsWrap.innerHTML = "";
-        for (var i = 0; i <= maxIndex(); i++) {
-          var dot = document.createElement("button");
-          dot.type = "button";
-          dot.className = "carousel-dot";
-          dot.setAttribute("aria-label", "Go to slide " + (i + 1));
-          dot.dataset.index = i;
-          dot.addEventListener("click", function () {
-            goTo(parseInt(this.dataset.index, 10));
-            restart();
-          });
-          dotsWrap.appendChild(dot);
-        }
-      }
-
-      function update() {
-        track.style.transform = "translateX(-" + (index * 100 / perView) + "%)";
-
-        // Visible slides are exposed; hidden slides are removed from tab order & AT
-        slides.forEach(function (slide, i) {
-          var visible = i >= index && i < index + perView;
-          slide.setAttribute("aria-hidden", String(!visible));
-          if (visible) slide.removeAttribute("inert");
-          else slide.setAttribute("inert", "");
-        });
-
-        Array.prototype.forEach.call(dotsWrap.children, function (dot, i) {
-          dot.setAttribute("aria-current", i === index ? "true" : "false");
-        });
-      }
-
-      function goTo(i) {
-        var max = maxIndex();
-        if (i > max) i = 0;          // wrap forward
-        if (i < 0) i = max;          // wrap backward
-        index = i;
-        update();
-      }
-
-      function next() { goTo(index + 1); }
-      function prev() { goTo(index - 1); }
-
-      function start() {
-        if (timer || reduceMotion || isHovered || hasFocus || document.hidden) return;
-        track.setAttribute("aria-live", "off");
-        timer = setInterval(next, AUTOPLAY_MS);
-      }
-      function stop() {
-        clearInterval(timer);
-        timer = null;
-      }
-      function restart() { stop(); start(); }
-
-      nextBtn.addEventListener("click", function () { next(); restart(); });
-      prevBtn.addEventListener("click", function () { prev(); restart(); });
-
-      // Pause on hover
-      carousel.addEventListener("mouseenter", function () { isHovered = true; stop(); });
-      carousel.addEventListener("mouseleave", function () { isHovered = false; start(); });
-
-      // Pause while keyboard focus is inside; announce changes politely
-      carousel.addEventListener("focusin", function () {
-        hasFocus = true;
-        stop();
-        track.setAttribute("aria-live", "polite");
-      });
-      carousel.addEventListener("focusout", function (e) {
-        if (!carousel.contains(e.relatedTarget)) {
-          hasFocus = false;
-          start();
-        }
-      });
-
-      // Keyboard arrows
-      carousel.addEventListener("keydown", function (e) {
-        if (e.key === "ArrowRight") { e.preventDefault(); next(); }
-        if (e.key === "ArrowLeft") { e.preventDefault(); prev(); }
-      });
-
-      // Swipe support
-      var touchStartX = 0;
-      var touchStartY = 0;
-      carousel.addEventListener("touchstart", function (e) {
-        touchStartX = e.changedTouches[0].clientX;
-        touchStartY = e.changedTouches[0].clientY;
-        stop();
-      }, { passive: true });
-      carousel.addEventListener("touchend", function (e) {
-        var dx = e.changedTouches[0].clientX - touchStartX;
-        var dy = e.changedTouches[0].clientY - touchStartY;
-        if (Math.abs(dx) > 50 && Math.abs(dx) > Math.abs(dy)) {
-          if (dx < 0) next(); else prev();
-        }
-        start();
-      }, { passive: true });
-
-      // Pause when tab is hidden
-      document.addEventListener("visibilitychange", function () {
-        if (document.hidden) stop(); else start();
-      });
-
-      // Recalculate on resize (1 ↔ 3 cards)
-      var resizeTimer;
-      window.addEventListener("resize", function () {
-        clearTimeout(resizeTimer);
-        resizeTimer = setTimeout(function () {
-          var pv = getPerView();
-          if (pv !== perView) {
-            perView = pv;
-            if (index > maxIndex()) index = maxIndex();
-            buildDots();
-            update();
-          }
-        }, 150);
-      });
-
-      buildDots();
-      update();
-      start();
-
-      /* =========================================================
-         6. ENQUIRY FORM VALIDATION & SUBMISSION
-         ========================================================= */
-      var form = document.getElementById("enquiry-form");
-      var formCard = document.getElementById("form-card");
-      var submitBtn = document.getElementById("submit-btn");
-      var submitted = false;
-
-      // Each validator returns an error string ("" = valid)
-      var validators = {
-        fullName: function () {
-          var v = form.fullName.value.trim();
-          if (!v) return "Please enter your full name.";
-          if (v.length < 2) return "Name must be at least 2 characters.";
-          return "";
-        },
-        email: function () {
-          var v = form.email.value.trim();
-          if (!v) return "Please enter your email address.";
-          if (!EMAIL_RE.test(v)) return "Please enter a valid email address (e.g. name@example.com).";
-          return "";
-        },
-        phone: function () {
-          var raw = form.phone.value.trim();
-          if (!raw) return "Please enter your phone number.";
-          var digits = raw.replace(/[\s\-+()]/g, "");
-          if (!/^\d+$/.test(digits)) return "Phone number may contain digits only.";
-          if (digits.length < 8 || digits.length > 15) return "Phone number must be 8–15 digits.";
-          return "";
-        },
-        ageRange: function () {
-          return form.ageRange.value ? "" : "Please select your age range.";
-        },
-        interest: function () {
-          return form.interest.value ? "" : "Please select an area of interest.";
-        },
-        contactMethod: function () {
-          return form.querySelector('input[name="contactMethod"]:checked') ? "" : "Please choose a preferred contact method.";
-        },
-        consent: function () {
-          return form.consent.checked ? "" : "Please agree to be contacted so we can respond to your enquiry.";
-        }
-      };
-
-      function getFieldWrapper(name) {
-        if (name === "contactMethod") return document.getElementById("contactMethod-field");
-        return form.elements[name].closest(".field");
-      }
-
-      function setFieldState(name, message) {
-        var wrapper = getFieldWrapper(name);
-        var errorEl = document.getElementById(name + "-error");
-        var invalid = Boolean(message);
-        wrapper.classList.toggle("invalid", invalid);
-        errorEl.textContent = message;
-
-        if (name === "contactMethod") {
-          form.querySelectorAll('input[name="contactMethod"]').forEach(function (r) {
-            r.setAttribute("aria-invalid", String(invalid));
-          });
-        } else {
-          form.elements[name].setAttribute("aria-invalid", String(invalid));
-        }
-      }
-
-      function validateField(name) {
-        var msg = validators[name]();
-        setFieldState(name, msg);
-        return !msg;
-      }
-
-      // Live validation: on blur always, on input/change once user has tried submitting
-      Object.keys(validators).forEach(function (name) {
-        var els = name === "contactMethod"
-          ? form.querySelectorAll('input[name="contactMethod"]')
-          : [form.elements[name]];
-
-        Array.prototype.forEach.call(els, function (el) {
-          el.addEventListener("blur", function () {
-            if (name === "contactMethod" && !submitted) return;
-            if (el.value || submitted || el.type === "checkbox") validateField(name);
-          });
-          el.addEventListener(el.tagName === "SELECT" || el.type === "radio" || el.type === "checkbox" ? "change" : "input", function () {
-            if (submitted || getFieldWrapper(name).classList.contains("invalid")) validateField(name);
-          });
-        });
-      });
-
-      form.addEventListener("submit", function (e) {
-        e.preventDefault();
-        submitted = true;
-
-        var firstInvalid = null;
-        Object.keys(validators).forEach(function (name) {
-          var ok = validateField(name);
-          if (!ok && !firstInvalid) firstInvalid = name;
-        });
-
-        if (firstInvalid) {
-          var focusEl = firstInvalid === "contactMethod"
-            ? form.querySelector('input[name="contactMethod"]')
-            : form.elements[firstInvalid];
-          focusEl.focus();
-          return;
-        }
-
-        // Collect data
-        var data = {
-          fullName: form.fullName.value.trim(),
-          email: form.email.value.trim(),
-          phone: form.phone.value.replace(/[\s\-()]/g, ""),
-          ageRange: form.ageRange.value,
-          areaOfInterest: form.interest.value,
-          preferredContactMethod: form.querySelector('input[name="contactMethod"]:checked').value,
-          message: form.message.value.trim(),
-          consent: form.consent.checked,
-          submittedAt: new Date().toISOString()
-        };
-
-        // Loading state
-        submitBtn.disabled = true;
-        submitBtn.classList.add("loading");
-        submitBtn.setAttribute("aria-busy", "true");
-        submitBtn.querySelector(".btn-text").textContent = "Sending…";
-
-        setTimeout(function () {
-          console.log("Enquiry form submission:", data);
-          console.log(JSON.stringify(data, null, 2));
-          showSuccess(data.fullName);
-        }, 1500);
-      });
-
-      function showSuccess(name) {
-        var wrap = document.createElement("div");
-        wrap.className = "form-success";
-        wrap.setAttribute("role", "status");
-        wrap.setAttribute("tabindex", "-1");
-        wrap.innerHTML =
-          '<div class="success-icon" aria-hidden="true">' +
-            '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg>' +
-          "</div>" +
-          "<h3></h3>" +
-          "<p>Your enquiry has been received. One of our advisers will be in touch within one business day to arrange your free consultation.</p>";
-        // textContent prevents any HTML injection from the name field
-        wrap.querySelector("h3").textContent = "Thank you, " + name + "!";
-
-        formCard.innerHTML = "";
-        formCard.appendChild(wrap);
-        wrap.focus();
-      }
-
-      /* =========================================================
-         7. NEWSLETTER SIGNUP
-         ========================================================= */
-      var newsletterForm = document.getElementById("newsletter-form");
-      var newsletterInput = document.getElementById("newsletter-email");
-      var newsletterMsg = document.getElementById("newsletter-msg");
-
-      newsletterForm.addEventListener("submit", function (e) {
-        e.preventDefault();
-        var v = newsletterInput.value.trim();
-        var error = !v ? "Please enter your email address."
-                  : !EMAIL_RE.test(v) ? "Please enter a valid email address."
-                  : "";
-
-        newsletterMsg.classList.remove("error", "success");
-        if (error) {
-          newsletterInput.classList.add("invalid");
-          newsletterInput.setAttribute("aria-invalid", "true");
-          newsletterMsg.classList.add("error");
-          newsletterMsg.textContent = error;
-          newsletterInput.focus();
-          return;
-        }
-
-        newsletterInput.classList.remove("invalid");
-        newsletterInput.setAttribute("aria-invalid", "false");
-        newsletterMsg.classList.add("success");
-        newsletterMsg.textContent = "Thanks for subscribing! Check your inbox to confirm.";
-        console.log("Newsletter signup:", JSON.stringify({ email: v }));
-        newsletterForm.reset();
-      });
-
-      newsletterInput.addEventListener("input", function () {
-        if (newsletterInput.classList.contains("invalid") && EMAIL_RE.test(newsletterInput.value.trim())) {
-          newsletterInput.classList.remove("invalid");
-          newsletterInput.setAttribute("aria-invalid", "false");
-          newsletterMsg.textContent = "";
-        }
-      });
-
-      /* =========================================================
-         8. FOOTER YEAR
-         ========================================================= */
-      document.getElementById("year").textContent = new Date().getFullYear();
-
-    })();
-  </script>
 </body>
 </html>
